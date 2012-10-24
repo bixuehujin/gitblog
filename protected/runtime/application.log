@@ -45,3 +45,464 @@ REQUEST_URI=/index.php?r=site/contact
 in /var/www/gitblog/protected/views/site/contact.php (68)
 in /var/www/gitblog/protected/controllers/SiteController.php (72)
 in /var/www/gitblog/index.php (13)
+2012/10/24 07:35:22 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibary('bootstap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:35:23 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibary('bootstap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:35:48 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibary('bootstrap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:36:01 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibrary('bootstrap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:36:11 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibrary('bootstrap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:36:51 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibrary('bootstrap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:36:53 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibrary('bootstrap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:38:24 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibrary('bootstrap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:38:58 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/site/login.php(6): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/site/login.php(6): ClientScript->registerLibrary('bootstap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('login', Array, true)
+#6 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#7 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#8 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#12 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#13 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /var/www/gitblog/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:40:02 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/layouts/main.php(2): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/layouts/main.php(2): ClientScript->registerLibrary('bootstap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#6 /var/www/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#7 /var/www/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#8 /var/www/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#9 /var/www/gitblog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#10 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#11 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#12 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#13 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#14 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#15 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#16 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#17 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#19 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#20 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/gitblog/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 07:40:04 [error] [exception.CException] exception 'CException' with message 'ClientScript and its behaviors do not have a method or closure named "registerLibrary".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/views/layouts/main.php(2): CComponent->__call('registerLibrary', Array)
+#1 /var/www/gitblog/protected/views/layouts/main.php(2): ClientScript->registerLibrary('bootstap')
+#2 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#3 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#4 /var/www/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#5 /var/www/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#6 /var/www/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#7 /var/www/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#8 /var/www/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#9 /var/www/gitblog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#10 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#11 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#12 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#13 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#14 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#15 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#16 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#17 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#19 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#20 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/gitblog/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/index
+---
+2012/10/24 08:29:58 [error] [exception.CException] exception 'CException' with message 'Property "CMenu.class" is not defined.' in /var/www/yii/framework/base/CComponent.php:174
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(162): CComponent->__set('class', 'nav')
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /var/www/gitblog/protected/views/layouts/main.php(36): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#8 /var/www/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#9 /var/www/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /var/www/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /var/www/gitblog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#13 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#15 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#21 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#22 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /var/www/gitblog/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/contact
+---
+2012/10/24 08:33:43 [error] [exception.CException] exception 'CException' with message 'Property "CMenu.options" is not defined.' in /var/www/yii/framework/base/CComponent.php:174
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(162): CComponent->__set('options', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /var/www/gitblog/protected/views/layouts/main.php(37): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#8 /var/www/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#9 /var/www/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /var/www/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /var/www/gitblog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#13 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#15 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#21 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#22 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /var/www/gitblog/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/contact
+---
+2012/10/24 08:34:13 [error] [exception.CException] exception 'CException' with message 'Property "CMenu.itemOptions" is not defined.' in /var/www/yii/framework/base/CComponent.php:174
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(162): CComponent->__set('itemOptions', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /var/www/gitblog/protected/views/layouts/main.php(37): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#8 /var/www/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#9 /var/www/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /var/www/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /var/www/gitblog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#13 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#15 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#21 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#22 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /var/www/gitblog/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/contact
+---
+2012/10/24 08:47:17 [error] [exception.CException] exception 'CException' with message 'Property "CBreadcrumbs.tabName" is not defined.' in /var/www/yii/framework/base/CComponent.php:174
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(162): CComponent->__set('tabName', 'ul')
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CBr...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('zii.widgets.CBr...', Array)
+#3 /var/www/gitblog/protected/views/layouts/main.php(48): CBaseController->widget('zii.widgets.CBr...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#8 /var/www/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#9 /var/www/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /var/www/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /var/www/gitblog/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#13 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#14 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#15 /var/www/gitblog/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#16 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#17 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#21 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#22 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /var/www/gitblog/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/contact
+---
+2012/10/24 15:01:50 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hujin' in 'where clause'. The SQL statement executed was: SELECT * FROM `user` `t` WHERE name=hujin LIMIT 1.
+in /var/www/gitblog/protected/models/User.php (14)
+in /var/www/gitblog/protected/components/UserIdentity.php (38)
+in /var/www/gitblog/protected/models/LoginForm.php (54)
+2012/10/24 15:01:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hujin' in 'where clause'. The SQL statement executed was: SELECT * FROM `user` `t` WHERE name=hujin LIMIT 1' in /var/www/yii/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(1286): CDbCommand->queryRow()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1391): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/gitblog/protected/models/User.php(14): CActiveRecord->find('name=hujin')
+#4 /var/www/gitblog/protected/components/UserIdentity.php(38): User->getByName('hujin')
+#5 /var/www/gitblog/protected/models/LoginForm.php(54): UserIdentity->authenticate()
+#6 /var/www/yii/framework/validators/CInlineValidator.php(43): LoginForm->authenticate('password', Array)
+#7 /var/www/yii/framework/validators/CValidator.php(214): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#8 /var/www/yii/framework/base/CModel.php(158): CValidator->validate(Object(LoginForm), NULL)
+#9 /var/www/gitblog/protected/controllers/SiteController.php(94): CModel->validate()
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogin()
+#11 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('login')
+#15 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/login')
+#16 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#17 /var/www/gitblog/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://hujin.me/index.php?r=site/login
+---
+2012/10/24 15:38:09 [error] [php] Undefined variable: _SESSION (/var/www/gitblog/protected/controllers/SiteController.php:81)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(283): SiteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gitblog/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=site/login
+in /var/www/gitblog/protected/controllers/SiteController.php (81)
+in /var/www/gitblog/index.php (13)
+2012/10/24 15:38:26 [error] [php] Undefined variable: _SESSION (/var/www/gitblog/protected/controllers/SiteController.php:81)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(283): SiteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gitblog/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=site/login
+in /var/www/gitblog/protected/controllers/SiteController.php (81)
+in /var/www/gitblog/index.php (13)
+2012/10/24 15:38:27 [error] [php] Undefined variable: _SESSION (/var/www/gitblog/protected/controllers/SiteController.php:81)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(283): SiteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gitblog/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=site/login
+in /var/www/gitblog/protected/controllers/SiteController.php (81)
+in /var/www/gitblog/index.php (13)
+2012/10/24 15:38:28 [error] [php] Undefined variable: _SESSION (/var/www/gitblog/protected/controllers/SiteController.php:81)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(283): SiteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gitblog/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=site/login
+in /var/www/gitblog/protected/controllers/SiteController.php (81)
+in /var/www/gitblog/index.php (13)
+2012/10/24 15:38:28 [error] [php] Undefined variable: _SESSION (/var/www/gitblog/protected/controllers/SiteController.php:81)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(283): SiteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/gitblog/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=site/login
+in /var/www/gitblog/protected/controllers/SiteController.php (81)
+in /var/www/gitblog/index.php (13)
+2012/10/24 15:46:04 [error] [exception.CException] exception 'CException' with message 'CHttpSession and its behaviors do not have a method or closure named "start".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/components/Controller.php(28): CComponent->__call('start', Array)
+#1 /var/www/gitblog/protected/components/Controller.php(28): CHttpSession->start()
+#2 /var/www/yii/framework/web/CWebApplication.php(360): Controller->__construct('site', NULL)
+#3 /var/www/yii/framework/web/CWebApplication.php(277): CWebApplication->createController('site/index')
+#4 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('site/index')
+#5 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/gitblog/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/index.php?r=site/index
+HTTP_REFERER=http://hujin.me/index.php?r=site/page&view=about
+---
