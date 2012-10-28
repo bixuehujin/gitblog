@@ -506,3 +506,293 @@ Stack trace:
 REQUEST_URI=/index.php?r=site/index
 HTTP_REFERER=http://hujin.me/index.php?r=site/page&view=about
 ---
+2012/10/25 14:12:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "about".' in /var/www/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(271): CController->missingAction('about')
+#1 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('about')
+#2 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/about')
+#3 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gitblog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=admin/about
+HTTP_REFERER=http://hujin.me/index.php?r=admin/index
+---
+2012/10/25 14:12:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "about".' in /var/www/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(271): CController->missingAction('about')
+#1 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('about')
+#2 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/about')
+#3 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gitblog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=admin/about
+HTTP_REFERER=http://hujin.me/index.php?r=admin/index
+---
+2012/10/25 14:12:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "about".' in /var/www/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(271): CController->missingAction('about')
+#1 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('about')
+#2 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/about')
+#3 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gitblog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=admin/about
+HTTP_REFERER=http://hujin.me/index.php?r=admin/about
+---
+2012/10/25 14:14:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "global".' in /var/www/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(271): CController->missingAction('global')
+#1 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('global')
+#2 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/global')
+#3 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/gitblog/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=admin/global
+HTTP_REFERER=http://hujin.me/index.php?r=admin/index
+---
+2012/10/28 07:39:36 [error] [exception.CException] exception 'CException' with message 'Property "SystemSettings.dbName" is not defined.' in /var/www/yii/framework/base/CComponent.php:174
+Stack trace:
+#0 /var/www/yii/framework/YiiBase.php(222): CComponent->__set('dbName', 'system')
+#1 /var/www/yii/framework/base/CModule.php(387): YiiBase::createComponent(Array)
+#2 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#3 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/gitblog/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:39:57 [error] [exception.CException] exception 'CException' with message 'SystemSettings and its behaviors do not have a method or closure named "init".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/yii/framework/base/CModule.php(388): CComponent->__call('init', Array)
+#1 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#2 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#3 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/gitblog/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:39:58 [error] [exception.CException] exception 'CException' with message 'SystemSettings and its behaviors do not have a method or closure named "init".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/yii/framework/base/CModule.php(388): CComponent->__call('init', Array)
+#1 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#2 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#3 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#7 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#14 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /var/www/gitblog/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:40:19 [error] [php] Missing argument 1 for SystemSettings::get(), called in /var/www/gitblog/protected/views/layouts/admin.php on line 35 and defined (/var/www/gitblog/protected/components/SystemSettings.php:11)
+Stack trace:
+#0 /var/www/yii/framework/web/CBaseController.php(96): AdminController->renderInternal()
+#1 /var/www/yii/framework/web/CController.php(785): AdminController->renderFile()
+#2 /var/www/gitblog/protected/controllers/AdminController.php(15): AdminController->render()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#4 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#5 /var/www/yii/framework/web/CController.php(287): AdminController->runAction()
+#6 /var/www/yii/framework/web/CController.php(266): AdminController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(283): AdminController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#10 /var/www/gitblog/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=admin/index
+in /var/www/gitblog/protected/components/SystemSettings.php (11)
+in /var/www/gitblog/protected/views/layouts/admin.php (35)
+in /var/www/gitblog/protected/controllers/AdminController.php (15)
+2012/10/28 07:46:46 [error] [exception.CException] exception 'CException' with message 'SystemSettings and its behaviors do not have a method or closure named "model".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/gitblog/protected/components/SystemSettings.php(8): CComponent->__call('model', Array)
+#1 /var/www/gitblog/protected/components/SystemSettings.php(8): SystemSettings->model()
+#2 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#3 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#4 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#5 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#6 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#8 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#14 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#15 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /var/www/gitblog/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:52:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'gitblog.SystemSettingsModel' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `SystemSettingsModel`.
+in /var/www/gitblog/protected/models/SystemSettingsModel.php (5)
+in /var/www/gitblog/protected/components/SystemSettings.php (8)
+in /var/www/gitblog/protected/views/layouts/admin.php (35)
+2012/10/28 07:52:46 [error] [exception.CDbException] exception 'CDbException' with message 'The table "SystemSettingsModel" for active record class "SystemSettingsModel" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2263
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(SystemSettingsModel))
+#1 /var/www/gitblog/protected/models/SystemSettingsModel.php(5): CActiveRecord::model('SystemSettingsM...')
+#2 /var/www/gitblog/protected/components/SystemSettings.php(8): SystemSettingsModel::model()
+#3 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#4 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#5 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#6 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#7 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#9 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#11 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#15 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#16 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#17 /var/www/gitblog/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:53:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'gitblog.SystemSettingsModel' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `SystemSettingsModel`.
+in /var/www/gitblog/protected/models/SystemSettingsModel.php (7)
+in /var/www/gitblog/protected/components/SystemSettings.php (8)
+in /var/www/gitblog/protected/views/layouts/admin.php (35)
+2012/10/28 07:53:13 [error] [exception.CDbException] exception 'CDbException' with message 'The table "SystemSettingsModel" for active record class "SystemSettingsModel" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2263
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(SystemSettingsModel))
+#1 /var/www/gitblog/protected/models/SystemSettingsModel.php(7): CActiveRecord::model('SystemSettingsM...')
+#2 /var/www/gitblog/protected/components/SystemSettings.php(8): SystemSettingsModel::model()
+#3 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#4 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#5 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#6 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#7 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#9 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#11 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#15 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#16 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#17 /var/www/gitblog/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:53:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'gitblog.SystemSettingsModel' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `SystemSettingsModel`.
+in /var/www/gitblog/protected/models/SystemSettingsModel.php (7)
+in /var/www/gitblog/protected/components/SystemSettings.php (8)
+in /var/www/gitblog/protected/views/layouts/admin.php (35)
+2012/10/28 07:53:14 [error] [exception.CDbException] exception 'CDbException' with message 'The table "SystemSettingsModel" for active record class "SystemSettingsModel" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2263
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(SystemSettingsModel))
+#1 /var/www/gitblog/protected/models/SystemSettingsModel.php(7): CActiveRecord::model('SystemSettingsM...')
+#2 /var/www/gitblog/protected/components/SystemSettings.php(8): SystemSettingsModel::model()
+#3 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#4 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#5 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#6 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#7 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#9 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#11 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#15 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#16 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#17 /var/www/gitblog/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:53:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'gitblog.SystemSettingsModel' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `SystemSettingsModel`.
+in /var/www/gitblog/protected/models/SystemSettingsModel.php (7)
+in /var/www/gitblog/protected/components/SystemSettings.php (8)
+in /var/www/gitblog/protected/views/layouts/admin.php (35)
+2012/10/28 07:53:14 [error] [exception.CDbException] exception 'CDbException' with message 'The table "SystemSettingsModel" for active record class "SystemSettingsModel" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2263
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(SystemSettingsModel))
+#1 /var/www/gitblog/protected/models/SystemSettingsModel.php(7): CActiveRecord::model('SystemSettingsM...')
+#2 /var/www/gitblog/protected/components/SystemSettings.php(8): SystemSettingsModel::model()
+#3 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#4 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#5 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#6 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#7 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#9 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#11 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#15 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#16 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#17 /var/www/gitblog/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---
+2012/10/28 07:53:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'gitblog.SystemSettingsModel' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `SystemSettingsModel`.
+in /var/www/gitblog/protected/models/SystemSettingsModel.php (7)
+in /var/www/gitblog/protected/components/SystemSettings.php (8)
+in /var/www/gitblog/protected/views/layouts/admin.php (35)
+2012/10/28 07:53:15 [error] [exception.CDbException] exception 'CDbException' with message 'The table "SystemSettingsModel" for active record class "SystemSettingsModel" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2263
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(SystemSettingsModel))
+#1 /var/www/gitblog/protected/models/SystemSettingsModel.php(7): CActiveRecord::model('SystemSettingsM...')
+#2 /var/www/gitblog/protected/components/SystemSettings.php(8): SystemSettingsModel::model()
+#3 /var/www/yii/framework/base/CModule.php(388): SystemSettings->init()
+#4 /var/www/yii/framework/base/CModule.php(104): CModule->getComponent('systemSettings')
+#5 /var/www/gitblog/protected/views/layouts/admin.php(35): CModule->__get('systemSettings')
+#6 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/gitblo...')
+#7 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/gitblo...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/gitblo...', Array, true)
+#9 /var/www/gitblog/protected/controllers/AdminController.php(15): CController->render('index')
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionIndex()
+#11 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(283): CController->run('index')
+#15 /var/www/yii/framework/web/CWebApplication.php(142): CWebApplication->runController('admin/index')
+#16 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#17 /var/www/gitblog/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/index.php?r=admin/index
+HTTP_REFERER=http://hujin.me/index.php
+---

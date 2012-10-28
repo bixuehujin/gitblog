@@ -37,7 +37,10 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-			
+		'systemSettings'=>array(
+			'class' => 'SystemSettings',
+			'dbName' => 'system'		
+		),
 		'clientScript' => array(
 			'class' => 'ClientScript',
 			'coreScriptUrl' => 'assets',
