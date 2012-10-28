@@ -12,7 +12,7 @@ class User extends CActiveRecord {
 	
 	
 	public function getByName($name) {
-		return $this->find("name='$name'");
+		return $this->find("username='$name'");
 	}
 	
 	

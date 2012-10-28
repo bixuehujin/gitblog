@@ -14,10 +14,36 @@ class AdminController extends Controller {
 
 		$this->render('index');
 	}
+	
+	
+	public function actionUser() {
+		$model = new UserForm();
+		
+		if(isset($_POST['UserForm'])) {
+			$model->attributes = $_POST['UserForm'];
+			if($model->save()) {
+				Yii::app()->sessionMessager->addMessage('个人信息修改成功', 'success');
+			}else {
+				Yii::app()->sessionMessager->addMessage('个人信息修改失败', 'error');
+			}
+		}	
+		$this->render('user', array('model' => $model));
+	}
+	
 
 	public function actionGlobal() {
-
-		$this->render('index');
+		$model = new GlobalForm();
+		
+		if(isset($_POST['GlobalForm'])) {
+			$model->attributes = $_POST['GlobalForm'];
+			if($model->save()) {
+				Yii::app()->sessionMessager->addMessage('修改成功', 'success');
+			}else {
+				Yii::app()->sessionMessager->addMessage('修改失败', 'error');
+			}
+		}
+		
+		$this->render('global', array('model' => $model));
 	}
 
 	public function actionAbout() {

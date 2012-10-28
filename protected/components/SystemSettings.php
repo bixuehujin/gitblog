@@ -38,16 +38,21 @@ class SystemSettings extends CComponent {
 		if(!is_string($key)) 
 			return false;
 		
+		if(array_key_exists($key, $this->settings) && $value === $this->settings[$key]) {
+			return true;
+		}
+		
 		$model = SystemSettingsModel::model();
-		if (!isset($this->settings[$key])) {
+		$model->name = $key;
+		$model->value = $value;
+		if (!array_key_exists($key, $this->settings)) {
 			$model->isNewRecord = true;
+			$model->save(false);
+		}else {
+			$model->update();
 		}
 		
 		$this->settings[$key] = $value;
-		
-		$model->name = $key;
-		$model->value = $value;
-		$model->save(false);
 		
 		return true;
 	}

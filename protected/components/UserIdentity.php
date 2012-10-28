@@ -9,12 +9,12 @@ class UserIdentity extends CUserIdentity
 {
 	
 	public $id;
-	public $name;
+	public $username;
 	public $pwd;
 	
 	
 	public function __construct($name, $pwd) {
-		$this->name = $name;
+		$this->username = $name;
 		$this->pwd = $pwd;
 	}
 	
@@ -29,7 +29,7 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
 		$userModel = User::model();
-		$user = $userModel->getByName($this->name);
+		$user = $userModel->getByName($this->username);
 		if(!$user) {
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
 		}else if($user->pwd != md5($this->pwd)) {
@@ -48,6 +48,6 @@ class UserIdentity extends CUserIdentity
 	
 	
 	public function getName() {
-		return $this->name;
+		return $this->username;
 	}
 }

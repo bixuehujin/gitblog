@@ -41,6 +41,9 @@ return array(
 			'class' => 'SystemSettings',
 			'dbName' => 'system'		
 		),
+		'sessionMessager' => array(
+			'class' => 'SessionMessager',
+		),
 		'clientScript' => array(
 			'class' => 'ClientScript',
 			'coreScriptUrl' => 'assets',
@@ -95,8 +98,14 @@ return array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+						'class'=>'CFileLogRoute',
+						'levels'=>'error, warning,info,trace,profile',
+				),
+				array(
+						'class'=>'CFileLogRoute',
+						'levels' => 'error, warning,info,trace,profile',
+						'categories'=>'system.db.*',
+						'logFile'=>'sql.log',
 				),
 				// uncomment the following to show log messages on web pages
 				/*
