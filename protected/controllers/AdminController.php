@@ -17,23 +17,34 @@ class AdminController extends Controller {
 	
 	
 	public function actionUser() {
-		$model = new UserForm();
-		
+		$userModel = new UserForm();
+		$pwdModel = new PwdForm();
 		if(isset($_POST['UserForm'])) {
-			$model->attributes = $_POST['UserForm'];
-			if($model->save()) {
+			$userModel->attributes = $_POST['UserForm'];
+			if($userModel->save()) {
 				Yii::app()->sessionMessager->addMessage('个人信息修改成功', 'success');
 			}else {
 				Yii::app()->sessionMessager->addMessage('个人信息修改失败', 'error');
 			}
-		}	
-		$this->render('user', array('model' => $model));
+		}
+
+		if(isset($_POST['PwdForm'])) {
+			if($pwdModel->change($_POST['PwdForm'])) {
+				Yii::app()->sessionMessager->addMessage('密码修改成功', 'success');
+			}else {
+				Yii::app()->sessionMessager->addMessage('密码修改失败，' . $pwdModel->getErrorMsg() , 'error');
+			}
+		}
+		
+		$this->render('user', array(
+				'userModel' => $userModel,
+				'pwdModel' => $pwdModel
+			));
 	}
 	
 
 	public function actionGlobal() {
 		$model = new GlobalForm();
-		
 		if(isset($_POST['GlobalForm'])) {
 			$model->attributes = $_POST['GlobalForm'];
 			if($model->save()) {
@@ -43,7 +54,9 @@ class AdminController extends Controller {
 			}
 		}
 		
-		$this->render('global', array('model' => $model));
+		$this->render('global', array(
+				'model' => $model,
+			));
 	}
 
 	public function actionAbout() {

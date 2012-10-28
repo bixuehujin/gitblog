@@ -10,12 +10,12 @@ class UserIdentity extends CUserIdentity
 	
 	public $id;
 	public $username;
-	public $pwd;
+	public $password;
 	
 	
 	public function __construct($name, $pwd) {
 		$this->username = $name;
-		$this->pwd = $pwd;
+		$this->password = $pwd;
 	}
 	
 	/**
@@ -32,7 +32,7 @@ class UserIdentity extends CUserIdentity
 		$user = $userModel->getByName($this->username);
 		if(!$user) {
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
-		}else if($user->pwd != md5($this->pwd)) {
+		}else if($user->password != md5($this->password)) {
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		}else {
 			$this->errorCode = self::ERROR_NONE;
