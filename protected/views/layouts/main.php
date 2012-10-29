@@ -27,7 +27,7 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 							array('label'=>'联系', 'url'=>array('/site/contact')),
 							array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 							array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-							array('label'=>'后台管理', 'url'=>array('/admin/index'), 'visible'=>!Yii::app()->user->isGuest)
+							array('label'=>'后台管理', 'url'=>array('/admin/content'), 'visible'=>!Yii::app()->user->isGuest)
 						),
 					)); 
 					?>		

@@ -20,6 +20,7 @@ return array(
 	),
 
 	'modules'=>array(
+		'admin' => array(),
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(

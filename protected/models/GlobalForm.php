@@ -15,7 +15,8 @@ class GlobalForm extends CFormModel {
 		return array(
 			'site_name' => '站点名称',
 			'site_desp' => '站点描述',
-			'site_slogan' => '网站口号'
+			'site_slogan' => '网站口号',
+			'site_email' => '电子邮件地址'
 		);
 	}
 	

@@ -19,10 +19,11 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->getBaseUrl() . '/css/admin
 				<?php $this->widget('zii.widgets.CMenu', array(
 					'htmlOptions' => array('class'=>'nav'),
 					'items' => array(
-						array('label'=>'首页', 'url'=>array('/admin/index')),
+						array('label'=>'首页', 'url'=>array('/admin')),
 						array('label'=>'用户信息', 'url'=>array('/admin/user')),
-						array('label'=>'全局设置', 'url'=>array('/admin/global')),
-						array('label'=>'关于', 'url'=>array('/admin/about')),
+						array('label'=>'内容源', 'url'=>array('/admin/source')),
+						array('label'=>'内容管理', 'url'=>array('/admin/content')),
+						array('label'=>'系统设置', 'url'=>array('/admin/system')),
 						array('label'=>'返回前台', 'url'=>array('/site/index')),
 					),
 				))?>
@@ -30,14 +31,10 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->getBaseUrl() . '/css/admin
 		</div>
 	</div>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="span12">
-				<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
-			</div>
-		</div>
-			<?php
-		echo $content;
-	?>
+		
+		<?php
+			echo $content;
+		?>
 	</div>
 
 <div class="container">
