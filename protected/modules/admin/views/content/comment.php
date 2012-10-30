@@ -3,7 +3,7 @@
 
 <div class="row">
 	<div class="span3">
-		<?php $this->renderPartial('_menu')?>
+		<?php $this->renderPartial('/common/_menu', array('items'=>$items))?>
 	</div>
 	
 	<div class="span9">

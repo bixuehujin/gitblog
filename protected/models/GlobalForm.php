@@ -4,12 +4,28 @@ class GlobalForm extends CFormModel {
 	
 	private $_settings;
 	
+	public $site_name;
+	public $site_desp;
+	public $site_slogan;
+	public $site_email;
+	
 	public function init() {
 		$this->_settings = Yii::app()->systemSettings;
 		foreach($this->_settings->get() as $key => $value) {
 			$this->$key = $value;
 		}
 	}
+	
+	
+	public function rules() {
+		return array(
+				array('site_name', 'required'),
+				array('site_desp', 'required'),
+				array('site_slogan', 'default'),
+				array('site_email', 'email', 'allowEmpty' => false, 'message'=>'邮件地址不合法'),
+		);
+	}
+	
 	
 	public function attributeLabels() {
 		return array(
@@ -21,24 +37,12 @@ class GlobalForm extends CFormModel {
 	}
 	
 	
-	public function __set($name, $value) {
-		$this->$name = $value;
-	}
-	
-	public function __get($name) {
-		if(isset($this->$name)) {
-			return $this->$name;
-		}else {
-			return NULL;
-		}
-	}
-	
-	
 	public function save() {
-		
+		if(!$this->validate()) {
+			return false;
+		}
 		foreach($this->attributes as $key => $value) {
 			$this->_settings->set($key, $value);
-			$this->$key = $value;
 		}
 		return true;
 	}

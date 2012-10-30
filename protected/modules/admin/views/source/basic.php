@@ -2,6 +2,8 @@
 $labelOptions = array('class'=>'control-label');
 ?>
 
+
+
 <?php 
 $form = $this->beginWidget('CActiveForm', array(
 	'id' => 'content-setting',
@@ -14,6 +16,7 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 
 <legend>内容设定</legend>
+<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 <section>
 	<div class="control-group">
 		<?php echo $form->labelEx($contentSetting, 'github', $labelOptions);?>

@@ -23,18 +23,10 @@ class UserController extends AdminController {
 			$this->refresh();
 		}
 		
-		if(isset($_POST['PwdForm'])) {
-			if($pwdModel->change($_POST['PwdForm'])) {
-				Yii::app()->sessionMessager->addMessage('密码修改成功', 'success');
-			}else {
-				Yii::app()->sessionMessager->addMessage('密码修改失败，' . $pwdModel->getErrorMsg() , 'error');
-			}
-			$this->refresh();
-		}
 		
 		$this->render('info', array(
-				'userModel' => $userModel,
-				'items' => $this->menuItems(),
+			'userModel' => $userModel,
+			'items' => $this->menuItems(),
 		));
 	}
 	
@@ -50,8 +42,8 @@ class UserController extends AdminController {
 		}
 		
 		$this->render('password', array(
-				'pwdModel' => $pwdModel,
-				'items' => $this->menuItems(),
+			'pwdModel' => $pwdModel,
+			'items' => $this->menuItems(),
 		));
 	}
 }

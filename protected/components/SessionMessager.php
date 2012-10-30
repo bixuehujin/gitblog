@@ -2,11 +2,14 @@
 class SessionMessager extends CApplicationComponent {
 	
 	private $_msgs;
+	private $_session;
 	
 	public function init() {
-		if (!isset($_SESSION['SessionMessager'])) {
-			$_SESSION['SessionMessager'] = array();
+		$this->_session = Yii::app()->session;
+		if(!$this->_session->get('SessionMessager')) {
+			$this->_session->add('SessionMessager', array());
 		}
+		
 		$this->_msgs = &$_SESSION['SessionMessager'];
 	}
 	

@@ -5,7 +5,8 @@
 	<?php echo $this->renderPartial('/common/_menu', array('items'=>$items));?>
 </div>
 <div class="span9">
-
+	
+	<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 
 	<?php 
 		$form = $this->beginWidget('CActiveForm', array(
@@ -66,7 +67,8 @@
 		
 		<div class="control-group">
 			<div class="controls">
-				<?php echo CHtml::submitButton('保存', array('class'=>'btn')); ?>
+				<?php echo CHtml::submitButton('保存', array('class'=>'btn btn-primary')); ?>
+				<?php echo CHtml::resetButton('重置', array('class'=>'btn')); ?>
 			</div>
 		</div>
 		

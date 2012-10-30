@@ -1,0 +1,61 @@
+<?php
+class Post extends CActiveRecord {
+	
+	static public function model($className = __CLASS__) {
+		return parent::model($className);
+	}
+	
+	public function tableName() {
+		return 'post';
+	}
+	
+	public function relations() {
+		return array(
+			'content'=>array(self::HAS_ONE, 'PostRevision', array('revision_id'=>'revision_id')),
+			'category'=>array(self::HAS_ONE, 'Category', array('category_id'=>'category_id')),
+			'user'=>array(self::HAS_ONE, 'User', array('uid'=>'uid'))
+		);
+	}
+	
+	
+	/**
+	 * Fetch posts by category id.
+	 * @param integer $id
+	 * @param array $options specify extra options.
+	 * <ul>
+	 * <li>
+	 * order: 
+	 * </li>
+	 * <li>
+	 * limit: how many records do you want fetch.
+	 * </li>
+	 * <li>
+	 * page:
+	 * </li>
+	 * </ul>
+	 * @return array of Post object or empty array if no records found.
+	 */
+	public function getByCategoryId($id = 0, $options = array()) {
+		$options += array(
+			'order' => 'post_id DESC',
+			'limit' => 10,		
+		);
+		$criteria = new CDbCriteria();
+		$criteria->limit = $options['limit'];
+		$criteria->order = $options['order'];
+		
+		if($id != 0) {
+			$ids = Category::model()->getSubCategoryIDs($id);
+			if (empty($ids)) {
+				$ids = array($id);
+			}
+			$criteria->addInCondition('category_id', $ids);
+		}
+		return $this->findAll($criteria);
+	}
+	
+	
+	public function getFormattedDate() {
+		return date('Y年m月d日 H:i', $this->created);
+	}
+}

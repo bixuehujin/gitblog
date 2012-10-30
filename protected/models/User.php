@@ -21,5 +21,15 @@ class User extends CActiveRecord {
 	}
 	
 	
+	static public function getName($uid) {
+		$cache = StaticCache::getInstance(__CLASS__ . __FUNCTION__);
+		if($username = $cache->get($uid)) {
+			return $username;
+		}
+		$attributes = self::model()->find('uid=' . $uid);
+		$username = $attributes->username;
+		$cache->set($uid, $username);
+		return $username;
+	}
 	
 }
