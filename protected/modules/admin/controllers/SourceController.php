@@ -24,4 +24,10 @@ class SourceController extends AdminController {
 			'contentSetting' => $contentSetting,
 		));
 	}
+	
+	public function menuItems() {
+		return array(
+			array('label'=>'内容设定', 'url'=>array('/admin/source/basic'))		
+		);
+	}
 }
