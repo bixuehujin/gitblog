@@ -9,11 +9,27 @@ class ViewController extends Controller {
 	 */
 	public function actionCategory() {
 		
-		$postModel = Post::model();
+		$pageSize = Yii::app()->systemSettings->get('post_page_size') ?: 10;
+		
+		$criteria = new CDbCriteria();
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$posts = $postModel->getByCategoryId($id);
+		if($id) {
+			$cateIds = Category::model()->getSubCategoryIds($id);
+			$cateIds = empty($cateIds) ? array($id) : $cateIds;
+			$criteria->addInCondition('category_id', $cateIds);
+		}
+		$criteria->order = 'post_id DESC';
+		
+		
+		$dataPravider = new CActiveDataProvider('Post', array(
+			'criteria'=>$criteria,
+			'pagination'=>array(
+				'pageSize'=>$pageSize
+			)		
+		));
 		$this->render('category', array(
-			'posts' => $posts,
+			'posts' => $dataPravider->getData(),
+			'pagination'=>$dataPravider->getPagination(),
 		));
 	}
 	
@@ -44,6 +60,33 @@ class ViewController extends Controller {
 		$posts = Post::model()->getByTagId($_GET['id']);
 		$this->render('tag', array(
 			'posts'=>$posts
+		));
+	}
+	
+	/**
+	 * view all comments in a single page.
+	 */
+	public function actionComments() {
+		if(!isset($_GET['id'])) {
+			throw new CHttpException(404, '访问页面不存在');
+		}
+		$criteria = new CDbCriteria();
+		$criteria->condition = 'post_id=' . $_GET['id'];
+		$criteria->order = 'comment_id DESC';
+		
+		$provider = new CActiveDataProvider('Comment', array(
+			'criteria'=>$criteria,
+			'pagination'=>array(
+				'pageSize'=>Yii::app()->systemSettings->get('comment_page_size') ?: 10,
+			),
+		));
+		
+		$post = Post::model()->find('post_id=' . $_GET['id']);
+		
+		$this->render('comments', array(
+				'comments'=>$provider->getData(),
+				'post'=>$post,
+				'pagination'=>$provider->getPagination(),
 		));
 	}
 	

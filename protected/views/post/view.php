@@ -15,8 +15,8 @@
 				'post' => $post,
 			));
 		?>
-		<?php $this->renderPartial('_post_comments', array('comments'=>$comments, 'post'=>$post))?>
-		
+		<?php $this->renderPartial('/comment/_comments', array('comments'=>$comments, 'post'=>$post))?>
+		<?php echo CHtml::link('查看全部评论', array('/view/comments', 'id'=>$post->post_id))?>
 	</div>
 	
 	<div class="span3">

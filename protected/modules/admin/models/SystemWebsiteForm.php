@@ -1,6 +1,5 @@
 <?php
-class GlobalForm extends CFormModel {
-	
+class SystemWebsiteForm extends CFormModel {
 	
 	private $_settings;
 	
@@ -11,8 +10,8 @@ class GlobalForm extends CFormModel {
 	
 	public function init() {
 		$this->_settings = Yii::app()->systemSettings;
-		foreach($this->_settings->get() as $key => $value) {
-			$this->$key = $value;
+		foreach($this->attributeNames() as $name) {
+			$this->$name = $this->_settings->get($name);
 		}
 	}
 	
@@ -36,6 +35,14 @@ class GlobalForm extends CFormModel {
 		);
 	}
 	
+	public function attributeNames() {
+		return array(
+			'site_name',
+			'site_desp',
+			'site_slogan',
+			'site_email'		
+		);
+	}
 	
 	public function save() {
 		if(!$this->validate()) {

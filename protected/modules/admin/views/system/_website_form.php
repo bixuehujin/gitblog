@@ -4,8 +4,11 @@
 		'htmlOptions'=>array('class'=>'form-horizontal')
 	));
 ?>
+<legend>站点信息</legend>
 <section>
 	<?php echo CHtml::errorSummary($model, '表单输入有误，请核对再提交:', null, array('class'=>'alert alert-error'))?>
+	<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+	
 	<div class="control-group">
 		<?php echo $form->labelEx($model, 'site_name', array('class'=>'control-label'))?>
 		<div class="controls">

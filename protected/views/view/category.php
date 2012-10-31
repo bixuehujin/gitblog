@@ -21,6 +21,7 @@ if (isset($_GET['id'])) {
 				
 			<?php endforeach;?>
 		</div>
+		<?php $this->renderPartial('/common/_pager', array('pagination'=>$pagination))?>
 	</div>
 	
 	<div class="span3">

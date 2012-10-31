@@ -2,3 +2,12 @@
 p{
 	text-indent:2em;
 }
+
+.pager .first,
+.pager .last{
+	display:none;
+}
+.pager li.active a{
+	background-color:#f5f5f5;
+}
+

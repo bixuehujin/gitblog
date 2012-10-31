@@ -12,13 +12,14 @@ class SystemController extends AdminController {
 	public function menuItems() {
 		return array(
 			array('label'=>'站点信息', 'url'=>array('/admin/system/website')),
+			array('label'=>'显示设置', 'url'=>array('/admin/system/show')),
 		);
 	}
 	
 	public function actionWebsite() {
-		$model = new GlobalForm();
-		if(isset($_POST['GlobalForm'])) {
-			$model->attributes = $_POST['GlobalForm'];
+		$model = new SystemWebsiteForm();
+		if(isset($_POST['SystemWebsiteForm'])) {
+			$model->attributes = $_POST['SystemWebsiteForm'];
 			if($model->save()) {
 				Yii::app()->sessionMessager->addMessage('修改成功', 'success');
 				$this->refresh();
@@ -27,6 +28,23 @@ class SystemController extends AdminController {
 		$this->render('website', array(
 			'model'=>$model,
 			'items' => $this->menuItems()
+		));
+	}
+	
+	public function actionShow() {
+		$model = new SystemShowForm();
+		
+		if(isset($_POST['SystemShowForm'])) {
+			$model->attributes = $_POST['SystemShowForm'];
+			if($model->save()) {
+				Yii::app()->sessionMessager->addMessage('保存成功', 'success');
+				$this->refresh();
+			}
+		}
+		
+		$this->render('show', array(
+				'model'=>$model,
+				'items'=>$this->menuItems(),
 		));
 	}
 }
