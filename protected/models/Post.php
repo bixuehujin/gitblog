@@ -13,7 +13,8 @@ class Post extends CActiveRecord {
 		return array(
 			'content'=>array(self::HAS_ONE, 'PostRevision', array('revision_id'=>'revision_id')),
 			'category'=>array(self::HAS_ONE, 'Category', array('category_id'=>'category_id')),
-			'user'=>array(self::HAS_ONE, 'User', array('uid'=>'uid'))
+			'user'=>array(self::HAS_ONE, 'User', array('uid'=>'uid')),
+			'tags'=>array(self::HAS_MANY, 'PostTag', array('post_id'=>'post_id')),
 		);
 	}
 	
@@ -51,6 +52,27 @@ class Post extends CActiveRecord {
 			}
 			$criteria->addInCondition('category_id', $ids);
 		}
+		return $this->findAll($criteria);
+	}
+	
+	
+	/**
+	 * fetch posts by tag_id.
+	 * @param integer $id 
+	 * @return array
+	 */
+	public function getByTagId($id = 0) {
+		if($id == 0) 
+			return array();
+		
+		$postTagModel = PostTag::model();
+		$postIds = $postTagModel->getPostIds($id);
+		
+		if(empty($postIds)) 
+			return array();
+		
+		$criteria = new CDbCriteria();
+		$criteria->addInCondition('post_id', $postIds);
 		return $this->findAll($criteria);
 	}
 	

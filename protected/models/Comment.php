@@ -22,7 +22,20 @@ class Comment extends CActiveRecord {
 	
 	protected function beforeSave() {
 		$this->created = time();
-		return true;
+		return parent::beforeSave();
+	}
+	
+	protected function afterSave() {
+		
+		$post = Post::model();
+		$post->updateCounters(array('num_comments'=>1), 'post_id=' . $this->post_id);
+		return parent::afterSave();
+	}
+	
+	protected function afterDelete() {
+		$post = Post::model();
+		$post->updateCounters(array('num_comments'=>-1, 'post_id' . $this->post_id));
+		return parent::afterDelete();
 	}
 	
 	public function getFormattedDate() {

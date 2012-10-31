@@ -1,7 +1,7 @@
 <?php 
 	$model = Category::model();
 	$list = $model->getList();
-	$items [] = array('label'=>'主页', 'url'=>array('/view'), 'active'=> (isset($_GET['r']) && $_GET['r'] == 'view'));
+	$items [] = array('label'=>'主页', 'url'=>array('/'), 'active'=> !isset($_GET['r'])) ;
 	foreach ($list as $item) {
 		$items[] = array(
 			'label' => $item->name,

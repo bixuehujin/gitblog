@@ -31,7 +31,7 @@
 					),
 					array(
 						'label'=>'返回前台', 
-						'url'=>array('/site/index')
+						'url'=>array('/')
 					),
 				),
 			))?>

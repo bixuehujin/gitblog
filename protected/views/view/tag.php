@@ -1,16 +1,16 @@
-<?php 
+<?php
 /**
- * view posts by category.
+ * view posts by tag.
+ * $posts: array of Post object.
  */
 ?>
 
-<?php
-if (isset($_GET['id'])) {
-	$this->breadcrumbs = array('分类'=>'#') 
-		+ Category::getCategoryBreadcrumbsArray($_GET['id']);
-}
+<?php 
+$this->breadcrumbs = array(
+	'标签'=>'#',
+	Tag::getTag($_GET['id'])->name
+);
 ?>
-
 
 <div class="row">
 	<div class="span9">

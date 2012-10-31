@@ -35,17 +35,16 @@ class Category extends CActiveRecord {
 	 * @param integer $id
 	 * @return array
 	 */
-	static public function getCategoryBreadcrumbsArray($id) {
+	static public function getCategoryBreadcrumbsArray($id, $markFirst = true) {
 		//TODO proformace issues on a log of categories.
 		$categories = Category::model()->findAll();
-		$isFirst = true;
 		$path = array();
 		while ($id != 0) {
 			foreach ($categories as $category) {
 				if($category->category_id == $id) {
-					if($isFirst) {
+					if($markFirst) {
 						$path[] = $category->name;
-						$isFirst = false;							
+						$markFirst = false;							
 					}else {
 						$path[$category->name] = array('/view/category', 'id'=>$category->category_id);
 					}

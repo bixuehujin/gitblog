@@ -23,4 +23,11 @@ class Controller extends CController
 	public $breadcrumbs=array();
 	
 	
+	public function init() {
+		if (isset($_GET['r']) && trim($_GET['r'], '/') == 'view') {
+			$this->redirect(array('/'));
+		}
+	}
+	
+	
 }

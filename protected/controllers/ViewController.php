@@ -3,8 +3,9 @@ class ViewController extends Controller {
 	
 	public $defaultAction = 'category';
 	
+	
 	/**
-	 * view by cotegory
+	 * view by category
 	 */
 	public function actionCategory() {
 		
@@ -20,7 +21,7 @@ class ViewController extends Controller {
 	 * view posts by user.
 	 */
 	public function actionUser() {
-		if(!isset($_GET['id'])) {
+		if (!isset($_GET['id'])) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		$postModel = Post::model();
@@ -37,8 +38,12 @@ class ViewController extends Controller {
 	 * view posts by tag.
 	 */
 	public function actionTag() {
+		if (!isset($_GET['id'])) {
+			throw new CHttpException(404, '访问页面不存在');
+		}
+		$posts = Post::model()->getByTagId($_GET['id']);
 		$this->render('tag', array(
-				
+			'posts'=>$posts
 		));
 	}
 	

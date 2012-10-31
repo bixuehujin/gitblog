@@ -1,9 +1,7 @@
 <?php
 	$this->pageTitle = $post->title . ' | ' . $this->pageTitle;
-	$this->breadcrumbs = array(
-		$post->category->name => array('/view/category', 'id'=>$post->category->category_id),
-		$post->title
-	);
+	$this->breadcrumbs = Category::getCategoryBreadcrumbsArray($post->category->category_id, false)
+		+ array($post->title);
 ?>
 
 <div class="row">
@@ -17,11 +15,12 @@
 				'post' => $post,
 			));
 		?>
-		<?php $this->renderPartial('_post_comments', array('comments'=>$comments))?>
+		<?php $this->renderPartial('_post_comments', array('comments'=>$comments, 'post'=>$post))?>
 		
 	</div>
 	
 	<div class="span3">
-		reference and infomation
+		<div>reference there</div>
+		<?php $this->renderPartial('/tag/_tag', array('tags'=>$post->tags))?>
 	</div>
 </div>

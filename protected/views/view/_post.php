@@ -8,6 +8,7 @@
 	<div class="info">
 		<?php echo CHtml::link($post->user->username, array('/view/user', 'id'=>$post->user->uid));?> 发表于 <?php echo $post->getFormattedDate();?>
 	</div>
+	<?php $this->renderPartial('/tag/_tag', array('tags'=>$post->tags));?>
 	<div class="summary">
 	<?php echo $post->summary;?>
 	</div>
