@@ -18,3 +18,9 @@ $this->breadcrumbs = array(
 <?php $this->renderPartial('/post/_posts', array('posts'=>$posts))?>
 
 <?php $this->renderPartial('/common/_pager', array('pagination'=>$pagination))?>
+
+<?php 
+$this->widgets += array(
+	'application.widgets.WeiboWidget'=>array(),
+);
+?>

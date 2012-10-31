@@ -9,6 +9,10 @@
  */
 ?>
 
+<?php 
+Yii::app()->clientScript->registerPackage('bootstrap.plugins')
+	->registerScriptFile(Yii::app()->getBaseUrl(). '/js/post-view.js');
+?>
 <?php
 	$this->pageTitle = $post->title . ' | ' . $this->pageTitle;
 	$this->breadcrumbs = Category::getCategoryBreadcrumbsArray($post->category->category_id, false)
@@ -31,6 +35,8 @@
 <?php 
 $this->widgets += array(
 	'application.widgets.TagWidget'=>array('tags'=>$post->tags),
-	'application.widgets.PostNavigationWidget'=>array(),
+	'application.widgets.PostNavigationWidget'=>array(
+		'navItems'=>$post->content->reference,
+	),
 );
 ?>

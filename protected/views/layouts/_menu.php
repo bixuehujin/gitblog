@@ -6,7 +6,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="navbar navbar-inverse">
+		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<a class="brand" href="<?php ?>">博客主页</a>
 				<div class="nav-collapse collapse">

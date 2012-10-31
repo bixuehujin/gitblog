@@ -21,9 +21,11 @@
 		</div>
 	</div>
 	<div class="span3">
-		<?php foreach($this->widgets as $name=>$options):?>
-			<?php $this->widget($name, $options)?>
-		<?php endforeach;?>
+		<div class="sidebar" data-spy="affix">
+			<?php foreach($this->widgets as $name=>$options):?>
+				<?php $this->widget($name, $options)?>
+			<?php endforeach;?>
+		</div>
 	</div>
 </div>
 

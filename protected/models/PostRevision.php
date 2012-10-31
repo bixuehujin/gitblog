@@ -8,4 +8,8 @@ class PostRevision extends CActiveRecord {
 	public function tableName() {
 		return 'post_revision';
 	}
+	
+	public function afterFind() {
+		$this->reference = unserialize($this->reference);
+	}
 }

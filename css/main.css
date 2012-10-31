@@ -1,4 +1,9 @@
 @CHARSET "UTF-8";
+body {
+  position: relative;
+  padding-top: 40px;
+}
+
 p{
 	text-indent:2em;
 }
@@ -11,3 +16,6 @@ p{
 	background-color:#f5f5f5;
 }
 
+.content-swapper {
+	padding-top:20px;
+}
