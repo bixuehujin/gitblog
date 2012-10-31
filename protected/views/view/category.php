@@ -1,6 +1,10 @@
 <?php 
 /**
  * view posts by category.
+ * 
+ * @var $this Controller
+ * @var $post Post object
+ * @var $pagination Pagination 
  */
 ?>
 
@@ -11,20 +15,5 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-
-<div class="row">
-	<div class="span9">
-		<div class="posts">
-			<?php foreach($posts as $post):?>
-			
-				<?php $this->renderPartial('/view/_post', array('post' => $post))?>
-				
-			<?php endforeach;?>
-		</div>
-		<?php $this->renderPartial('/common/_pager', array('pagination'=>$pagination))?>
-	</div>
-	
-	<div class="span3">
-		other infomation
-	</div>
-</div>
+<?php $this->renderPartial('/post/_posts', array('posts'=>$posts))?>
+<?php $this->renderPartial('/common/_pager', array('pagination'=>$pagination))?>

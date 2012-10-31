@@ -1,6 +1,5 @@
 <?php
 ?>
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 
 <?php 
 	$form = $this->beginWidget('CActiveForm', array(
@@ -13,6 +12,9 @@
 	));
 ?>
 	<legend>密码修改</legend>
+	
+	<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+	
 	<div class="control-group">
 		<?php echo $form->labelEx($pwdModel, 'password_old', array('class'=>'control-label'));?>
 		<div class="controls">

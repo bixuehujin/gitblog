@@ -1,6 +1,10 @@
 <?php
 /**
  * view posts by user.
+ * 
+ * @var $this Controller
+ * @var $posts array of Post object.
+ * @var $pagination Pagination object used to render a pager.
  */
 ?>
 
@@ -11,18 +15,6 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<div class="row">
-	<div class="span9">
-		<div class="posts">
-			<?php foreach($posts as $post):?>
-			
-				<?php $this->renderPartial('/view/_post', array('post' => $post))?>
-				
-			<?php endforeach;?>
-		</div>
-	</div>
-	
-	<div class="span3">
-		other infomation
-	</div>
-</div>
+<?php $this->renderPartial('/post/_posts', array('posts'=>$posts))?>
+
+<?php $this->renderPartial('/common/_pager', array('pagination'=>$pagination))?>

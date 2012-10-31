@@ -21,8 +21,8 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->getBaseUrl() . '/css/admin
 		?>
 	</div>
 
-<div class="container">
-
-</div>
+	<div class="container-fluid">
+	
+	</div>
 </body>
 </html>

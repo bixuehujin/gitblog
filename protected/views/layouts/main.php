@@ -18,17 +18,6 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 
 
 <div class="container">
-	<div class="row">
-		<?php if(isset($this->breadcrumbs)):?>
-			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-				'tagName' => 'ul',
-				'links'=>$this->breadcrumbs,
-				'htmlOptions'=>array('class'=>'breadcrumb'),
-				'activeLinkTemplate'=>'<li><a href="{url}">{label}</a></li>'
-			)); ?><!-- breadcrumbs -->
-		<?php endif?>
-	</div>
-	
 	
 	<div class="row">
 		<?php echo $content; ?>

@@ -27,7 +27,6 @@ class SystemController extends AdminController {
 		}
 		$this->render('website', array(
 			'model'=>$model,
-			'items' => $this->menuItems()
 		));
 	}
 	
@@ -44,7 +43,6 @@ class SystemController extends AdminController {
 		
 		$this->render('show', array(
 				'model'=>$model,
-				'items'=>$this->menuItems(),
 		));
 	}
 }

@@ -1,6 +1,5 @@
 <?php
 ?>
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 
 <?php 
 	$form = $this->beginWidget('CActiveForm', array(
@@ -14,6 +13,9 @@
 ?>
 
 <legend>用户信息</legend>
+
+<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+
 <section>
 	<div class="control-group">
 		<?php echo $form->labelEx($userModel, 'username', array('class'=>'control-label'));?>

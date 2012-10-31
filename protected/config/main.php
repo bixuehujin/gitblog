@@ -40,7 +40,7 @@ return array(
 		),
 		'systemSettings'=>array(
 			'class' => 'SystemSettings',
-			'dbName' => 'system'		
+			'dbName' => 'system'
 		),
 		'sessionMessager' => array(
 			'class' => 'SessionMessager',

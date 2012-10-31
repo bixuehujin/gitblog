@@ -1,5 +1,6 @@
 <?php
 /**
+ * configure the data source.
  * 
  * @author hujin
  */
@@ -27,7 +28,7 @@ class SourceController extends AdminController {
 	
 	public function menuItems() {
 		return array(
-			array('label'=>'内容设定', 'url'=>array('/admin/source/basic'))		
+			array('label'=>'内容设定', 'url'=>array('/admin/source/basic'))
 		);
 	}
 }

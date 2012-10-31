@@ -1,8 +1,9 @@
 <?php
 /**
  * view all commtents in a single page.
- * $comments: array of Comment object.
- * $post: Post object comments attached to.
+ * 
+ * @var $comments array of Comment object.
+ * @var $post Post object comments attached to.
  */
 ?>
 
