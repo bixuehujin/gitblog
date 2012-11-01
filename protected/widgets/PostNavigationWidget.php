@@ -41,6 +41,9 @@ class PostNavigationWidget extends CWidget {
 	
 	
 	public function run() {
+		if(!is_array($this->navItems)) {
+			return;
+		}
 		$items = $this->navItems;
 		$this->processNavItems($items);
 		
