@@ -11,6 +11,7 @@
 
 <?php 
 Yii::app()->clientScript->registerPackage('bootstrap.plugins')
+	->registerPackage('jquery.scrollTo')
 	->registerScriptFile(Yii::app()->getBaseUrl(). '/js/post-view.js');
 ?>
 <?php

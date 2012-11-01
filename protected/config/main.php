@@ -68,6 +68,10 @@ return array(
 						'js' => array('jquery/jquery.form.js'),
 						'depends' => array('jquery'),
 				),
+				'jquery.scrollTo' => array(
+						'js' => array('jquery.scrollTo.js'),
+						'depends' => array('jquery'),
+				),
 				'template' => array(
 						'js' => array('template.js'),
 				),

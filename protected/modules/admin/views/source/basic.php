@@ -33,6 +33,13 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 	
 	<div class="control-group">
+		<?php echo $form->labelEx($contentSetting, 'branch', $labelOptions);?>
+		<div class="controls">
+			<?php echo $form->textField($contentSetting, 'branch')?>
+		</div>
+	</div>
+	
+	<div class="control-group">
 		<div class="controls">
 			<?php echo CHtml::submitButton('保存', array('class'=>'btn btn-primary'))?>
 			<?php echo CHtml::resetButton('重置', array('class'=>'btn'))?>

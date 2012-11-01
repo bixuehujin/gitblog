@@ -3,8 +3,8 @@ class ContentSettingForm extends CFormModel {
 	
 	public $github;
 	public $repository;
+	public $branch;
 	
-	public $attributes;
 	private $_model;
 	
 	public function init() {
@@ -12,33 +12,51 @@ class ContentSettingForm extends CFormModel {
 		$model->uid = Yii::app()->user->id;
 		$setting = $model->findByPk($model->uid);
 		
-		$this->github = $setting->github;
-		$this->repository = $setting->repository;
-		
+		foreach ($this->attributeNames() as $name) {
+			$this->$name = $setting->$name;
+		}
 		$this->_model = $model;
 	}
 	
 	public function attributeNames() {
 		return array(
 			'github',
-			'repository'
+			'repository',
+			'branch'
 		);
 	}
 	
 	public function attributeLabels() {
 		return array(
 			'github' => 'GitHub帐号',
-			'repository' => '仓库名称'
+			'repository' => '仓库名称',
+			'branch' => '分支名称'
 		);
 	}
 	
+	public function rules() {
+		return array(
+			array('github', 'required'),
+			array('repository', 'required'),
+			array('branch', 'required')
+		);
+	}
 	
+	/**
+	 * validate form attributes and save record.
+	 * 
+	 * @return boolean
+	 */
 	public function save() {
-		
+		if(!$this->validate()) {
+			return false;
+		}
+
 		$userSetting = $this->_model;
 		$userSetting->uid = Yii::app()->user->id;
-		foreach ($this->attributes as $name => $value) {
-			$this->$name = $userSetting->$name = $value;
+		
+		foreach ($this->attributes as $key => $value) {
+			$userSetting->$key = $value;
 		}
 		
 		return $userSetting->update($this->attributeNames());
