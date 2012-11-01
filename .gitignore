@@ -4,3 +4,4 @@
 *.log
 protected/runtime/
 assets/
+protected/vendors/
