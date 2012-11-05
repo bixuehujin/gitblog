@@ -27,6 +27,12 @@ class Commit extends CActiveRecord {
 		return 'commit';
 	}
 	
+	public function relations() {
+		return array(
+			'userSettings'=>array(self::HAS_ONE, 'UserSetting', array('uid'=>'uid')),
+		);
+	}
+	
 	public function afterFind() {
 		$this->added = unserialize($this->added);
 		$this->removed = unserialize($this->removed);
