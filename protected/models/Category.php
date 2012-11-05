@@ -25,9 +25,11 @@ class Category extends CActiveRecord {
 		foreach($res as $item) {
 			$ret[] = $item->category_id;
 		}
+		if ($parent != 0) {
+			$ret[] = $parent;
+		}
 		return $ret;
 	}
-	
 	
 	/**
 	 * consturct breadcrumbs array used to render a breadcrumb navagation.
@@ -53,5 +55,10 @@ class Category extends CActiveRecord {
 			}
 		}
 		return array_reverse($path);
+	}
+	
+	static public function getIdByName($name) {
+		$category = Category::model()->find("name='$name'");
+		return $category->category_id;
 	}
 }

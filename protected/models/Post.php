@@ -55,6 +55,13 @@ class Post extends CActiveRecord {
 		return $this->findAll($criteria);
 	}
 	
+	/**
+	 * @param string $path
+	 * @return object on success, otherwise null
+	 */
+	public function findByPath($path) {
+		return $this->find("path='$path'");
+	}
 	
 	/**
 	 * fetch posts by tag_id.
