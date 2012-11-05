@@ -20,6 +20,7 @@ class PostParserTest extends CTestCase {
 				)),
 			)),
 			array('title'=>'h2_2' ,'level'=>2),
+			array('title'=>'h2_3 space' ,'level'=>2),
 		), $parser->reference);
 	}
 }

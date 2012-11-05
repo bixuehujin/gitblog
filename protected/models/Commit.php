@@ -119,12 +119,10 @@ class Commit extends CActiveRecord {
 					$postRevision->save(false);
 				}
 		
-				if (!$isNewPost) {
-					$post->version = $post->version + 1;
-					$post->modified = $timestamp;
-					$post->revision_id = $postRevision->revision_id;
-					$post->update(array('version', 'modified', 'revision_id'));
-				}
+				$post->version = $isNewPost ? 1 : $post->version + 1;
+				$post->modified = $timestamp;
+				$post->revision_id = $postRevision->revision_id;
+				$post->update(array('version', 'modified', 'revision_id'));
 			}
 		}
 		$commit->status = Commit::STATUS_SUCCEED;

@@ -38,7 +38,7 @@ class PostParser extends CComponent {
 	/**
 	 * @var string regexp expression to extract reference information for raw content.
 	 */
-	protected $referencePattern = '/^#{2,}\s*(.*)\s*#*\s*$/m';
+	protected $referencePattern = '/^#{2,}\s*(.*?)\s*#*\s*$/m';
 	
 	public function __construct($content) {
 		$this->rawContent = $content;
