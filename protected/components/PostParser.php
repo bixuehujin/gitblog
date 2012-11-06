@@ -40,6 +40,8 @@ class PostParser extends CComponent {
 	 */
 	protected $referencePattern = '/^#{2,}\s*(.*?)\s*#*\s*$/m';
 	
+	protected $fragmentPattern = '/<(h[2-6]{1})>(.*?)<\/\1>/';
+	
 	public function __construct($content) {
 		$this->rawContent = $content;
 	}
@@ -57,6 +59,7 @@ class PostParser extends CComponent {
 	public function parse() {
 		if($this->init()) {
 			$this->content =  Markdown($this->rawBody);
+			$this->parseFragment();
 			$this->reference = $this->parseReference($this->rawBody);
 			return true;
 		}
@@ -102,6 +105,17 @@ class PostParser extends CComponent {
 			);
 		}
 		return $this->constructReferenceTree($reference);
+	}
+	
+	/**
+	 * add a unique ID to every H2-H6 element.
+	 */
+	protected function parseFragment() {
+		$this->content = preg_replace_callback($this->fragmentPattern, function($matches){
+			static $i = -1;
+			$i ++;
+			return "<$matches[1] id=\"id-{$i}\">$matches[2]</$matches[1]>";
+		}, $this->content);
 	}
 	
 	/**

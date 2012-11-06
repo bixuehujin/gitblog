@@ -37,7 +37,7 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 $this->widgets += array(
 	'application.widgets.TagWidget'=>array('tags'=>$post->tags),
 	'application.widgets.PostNavigationWidget'=>array(
-		'navItems'=>$post->content->reference,
+		'navItems'=>$post->content->getFormattedReference(),
 	),
 );
 ?>
