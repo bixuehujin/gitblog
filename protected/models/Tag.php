@@ -54,6 +54,7 @@ class Tag extends ActiveRecord {
 	 * @param array 
 	 */
 	static public function getNewTags($tagsInfo) {
+		$ret = array();
 		foreach ($tagsInfo as $key => $tag) {
 			if($tag['id'] == null) {
 				$ret[$key] = $tag;

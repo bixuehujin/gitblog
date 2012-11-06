@@ -40,14 +40,18 @@ class PushController extends Controller {
 			if($commit) {
 				
 			}
-			$model = new Commit();
-			$model->uid = $settings->uid;
-			foreach ($fieldsMap as $gitkey=>$key) {
-				$model->$key = $commit->$gitkey;
+			try {
+				$model = new Commit();
+				$model->uid = $settings->uid;
+				foreach ($fieldsMap as $gitkey=>$key) {
+					$model->$key = $commit->$gitkey;
+				}
+				$model->save(false);
+			}catch (Exception $e) {
+				Yii::log("failed to save commit to database.[{$e->getMessage()}]", 'warning', 'application.gitblog');
 			}
-			$model->save(false);
+
 		}
-		echo 'success';
 	}
 	
 	

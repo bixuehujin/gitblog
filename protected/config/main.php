@@ -112,6 +112,12 @@ return array(
 						'categories'=>'system.db.*',
 						'logFile'=>'sql.log',
 				),
+				array(
+						'class'=>'CFileLogRoute',
+						'levels' => 'error, warning,info,trace,profile',
+						'categories'=>'application.*',
+						'logFile'=>'gitblog.log',
+				),
 				// uncomment the following to show log messages on web pages
 				/*
 				array(
