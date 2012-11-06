@@ -85,4 +85,13 @@ class Tag extends ActiveRecord {
 		return $ret;
 	}
 	
+	/**
+	 * check for specified tag is exist.
+	 * 
+	 * @param mixed $tagId
+	 */
+	static public function checkExist($tagId) {
+		return (bool)self::model()->find('tag_id=' . $tagId);
+	}
+	
 }

@@ -125,4 +125,12 @@ class Post extends CActiveRecord {
 		PostTag::addTags($this->post_id, $addIds);
 		return true;
 	}
+	
+	/**
+	 * check if specified post is exsit.
+	 * @param integer $postId
+	 */
+	static public function checkExist($postId) {
+		return (bool)self::model()->find('post_id=' . $postId);
+	}
 }

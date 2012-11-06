@@ -32,4 +32,12 @@ class User extends CActiveRecord {
 		return $username;
 	}
 	
+	/**
+	 * check if specified user is exsit.
+	 * 
+	 * @param integer $uid
+	 */
+	static public function checkExist($uid) {
+		return (bool)self::model()->find('uid=' . $uid);
+	}
 }

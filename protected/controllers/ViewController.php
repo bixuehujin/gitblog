@@ -27,6 +27,9 @@ class ViewController extends Controller {
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		if($id) {
 			$cateIds = Category::model()->getSubCategoryIds($id);
+			if(is_null($cateIds)) {
+				throw new CHttpException(404);
+			}
 			$cateIds = empty($cateIds) ? array($id) : $cateIds;
 			$criteria->addInCondition('category_id', $cateIds);
 		}
@@ -45,7 +48,7 @@ class ViewController extends Controller {
 	 * view posts by user.
 	 */
 	public function actionUser() {
-		if (!isset($_GET['id'])) {
+		if (!isset($_GET['id']) || !User::checkExist($_GET['id'])) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		
@@ -64,7 +67,7 @@ class ViewController extends Controller {
 	 * view posts by tag.
 	 */
 	public function actionTag() {
-		if (!isset($_GET['id'])) {
+		if(!isset($_GET['id']) || !Tag::checkExist($_GET['id'])) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		
@@ -103,7 +106,9 @@ class ViewController extends Controller {
 		));
 		
 		$post = Post::model()->find('post_id=' . $_GET['id']);
-		
+		if(!$post) {
+			throw new CHttpException(404);
+		}
 		$this->render('comments', array(
 				'comments'=>$provider->getData(),
 				'post'=>$post,

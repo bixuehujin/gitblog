@@ -4,14 +4,14 @@ class PostController extends Controller {
 	public function actionView() {
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		if(!$id) {
-			
+			throw new CHttpException(404);
 		}
 		
 		$postModel = Post::model();
 		$post = $postModel->find('post_id=' . $id);
 		
 		if(!$post) {
-			
+			throw new CHttpException(404);
 		}
 		
 		$commentModel = Comment::model();

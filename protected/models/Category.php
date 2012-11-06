@@ -10,6 +10,16 @@ class Category extends CActiveRecord {
 	}
 	
 	/**
+	 * check if a category is exsit.
+	 * 
+	 * @param integer $categoryId
+	 */
+	public function checkExist($categoryId) {
+		return (bool)$this->find('category_id=' . $categoryId);
+	}
+	
+	
+	/**
 	 * Fetch a list of categories.
 	 * @param integer $parent
 	 */
@@ -18,8 +28,17 @@ class Category extends CActiveRecord {
 		return $res;
 	}
 
-	
+	/**
+	 * fetch all sub categoryIds, contains the parent itself.
+	 * 
+	 * @param integer $parent
+	 * @return mixed if $parent !=0 and the category do not exsit, null will returned, 
+	 * otherwise a array contains all sub categoryId will be returned.
+	 */
 	public function getSubCategoryIDs($parent = 0) {
+		if($parent != 0 && !$this->checkExist($parent)) {
+			return null;
+		}
 		$res = $this->getList($parent);
 		$ret = array();
 		foreach($res as $item) {
