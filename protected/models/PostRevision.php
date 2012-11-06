@@ -30,7 +30,6 @@ class PostRevision extends CActiveRecord {
 	 */
 	public function getFormattedReference() {
 		$items = $this->reference;
-		print_r($items);
 		if (!is_array($items)) {
 			return array();
 		}

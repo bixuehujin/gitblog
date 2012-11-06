@@ -123,6 +123,10 @@ class Commit extends CActiveRecord {
 				$post->modified = $timestamp;
 				$post->revision_id = $postRevision->revision_id;
 				$post->update(array('version', 'modified', 'revision_id'));
+				
+				if(isset($parser->meta['tags'])) {
+					$post->updateTags($parser->meta['tags']);
+				}
 			}
 		}
 		$commit->status = Commit::STATUS_SUCCEED;

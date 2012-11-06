@@ -85,6 +85,44 @@ class Post extends CActiveRecord {
 	
 	
 	public function getFormattedDate() {
+		date_default_timezone_set('Asia/Shanghai');
 		return date('Y年m月d日 H:i', $this->created);
+	}
+	
+	/**
+	 * update tags relation to this post
+	 * 
+	 * @param mixed $tags
+	 */
+	public function updateTags($tags) {
+		if (is_string($tags)) {
+			$tags = explode(',', $tags);
+			foreach($tags as &$tag) {
+				$tag = trim($tag);
+			}
+		}
+		if (empty($tags)) {
+			return false;
+		}
+		$tagsInfo = Tag::getTagsInfo($tags);
+		$newTags = Tag::getNewTags($tagsInfo);
+		$insertTags = Tag::addTagsBatch($newTags);
+		$tags = $insertTags + $tagsInfo;
+		
+		$shouldIds = array();
+		foreach($tags as $tag) {
+			if(isset($tag['id'])) {
+				$shouldIds[] = $tag['id'];
+			}
+		}
+		
+		$ids = PostTag::getTagIds($this->post_id);
+		
+		$addIds = array_diff($shouldIds, $ids);
+		$deleteIds = array_diff($ids, $shouldIds);
+		
+		PostTag::removeTags($this->post_id, $deleteIds);
+		PostTag::addTags($this->post_id, $addIds);
+		return true;
 	}
 }
