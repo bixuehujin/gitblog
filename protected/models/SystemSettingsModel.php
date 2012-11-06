@@ -17,5 +17,4 @@ class SystemSettingsModel extends CActiveRecord {
 	protected function afterFind() {
 		$this->value = json_decode($this->value);
 	}
-	
 }
