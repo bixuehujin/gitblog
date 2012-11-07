@@ -21,6 +21,6 @@ $this->breadcrumbs = array(
 
 <?php 
 $this->widgets += array(
-	'application.widgets.WeiboWidget'=>array(),
+	'application.widgets.WeiboShow'=>array('uid'=>1747900082),
 );
 ?>
