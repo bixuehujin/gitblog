@@ -1,6 +1,6 @@
 <?php
 Yii::app()->clientScript->registerPackage('bootstrap')
-->registerPackage('bootstrap.responsive')
+//->registerPackage('bootstrap.responsive')
 ->registerCssFile(Yii::app()->getBaseUrl() . '/css/main.css');
 ?>
 <!DOCTYPE html>

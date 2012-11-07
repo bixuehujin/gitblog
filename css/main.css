@@ -4,6 +4,12 @@ body {
   padding-top: 40px;
 }
 
+.header-nav{
+	margin-left:-20px;
+}
+.header-nav{
+	margin-right:20px;
+}
 p{
 	text-indent:2em;
 }
