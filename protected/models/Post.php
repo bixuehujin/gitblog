@@ -127,6 +127,27 @@ class Post extends CActiveRecord {
 	}
 	
 	/**
+	 * get post abstract according to system settings.
+	 * 
+	 * @return string
+	 */
+	public function getAbstract() {
+		if (!empty($this->summary)) {
+			return $this->summary;
+		}
+		$ret = '';
+		if(Yii::app()->systemSettings->get('auto_abstract_generation')) {
+			$len = Yii::app()->systemSettings->get('post_abstract_len') ?: 200;
+			if (mb_strlen($this->content->body, 'utf-8') <= $len) {
+				$ret = $this->content->body;
+			}else {
+				$ret = mb_substr($this->content->body, 0, $len, 'utf-8') . '... ...';
+			}
+		}
+		return $ret;
+	}
+	
+	/**
 	 * check if specified post is exsit.
 	 * @param integer $postId
 	 */

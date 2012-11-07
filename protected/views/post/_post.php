@@ -14,7 +14,7 @@
 	</div>
 	<?php $this->widget('application.widgets.TagWidget', array('tags'=>$post->tags))?>
 	<div class="summary">
-	<?php echo $post->summary;?>
+	<?php echo $post->getAbstract();?>
 	</div>
 	<div class="view-all">
 		<?php echo CHtml::link('查看全文', array('/post/view', 'id'=>$post->post_id));?>

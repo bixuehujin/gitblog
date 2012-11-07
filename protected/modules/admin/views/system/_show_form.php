@@ -30,6 +30,25 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 	
 	<div class="control-group">
+		<?php echo $form->labelEx($model, 'auto_abstract_generation', array('class'=>'control-label'));?>
+		<div class="controls">
+			<?php echo $form->radioButtonList(
+					$model, 
+					'auto_abstract_generation', 
+					array('1'=>'是', '0'=>'否'), 
+					array('separator'=>'')
+				)
+			?>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<?php echo $form->labelEx($model, 'post_abstract_len', array('class'=>'control-label'));?>
+		<div class="controls">
+			<?php echo $form->textField($model, 'post_abstract_len');?>
+		</div>
+	</div>
+	<div class="control-group">
 		<div class="controls">
 			<?php echo CHtml::submitButton('保存', array('class'=>'btn btn-primary'));?>
 			<?php echo CHtml::resetButton('重置', array('class'=>'btn'));?>
