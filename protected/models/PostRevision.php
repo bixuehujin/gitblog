@@ -9,15 +9,30 @@ class PostRevision extends CActiveRecord {
 		return 'post_revision';
 	}
 	
-	public function afterFind() {
-		$this->reference = unserialize($this->reference);
-		return parent::afterFind();
+	
+	public function init() {
+		$this->attachEventHandler('onAfterFind', array($this, 'handleOnAfterFind'));
+		$this->attachEventHandler('onBeforeSave', array($this, 'handleOnBeforeSave'));
 	}
 	
-	public function beforeSave() {
-		$this->reference = serialize($this->reference);
-		return parent::beforeSave();
+	/**
+	 * event handler for OnAfterFind event.
+	 * 
+	 * @param CModelEvent $event
+	 */
+	public function handleOnAfterFind($event) {
+		$this->reference = unserialize($this->reference);
 	}
+
+	/**
+	 * event handler for OnBeforeSave event.
+	 * 
+	 * @param CModelEvent $event
+	 */
+	public function handleOnBeforeSave($event) {
+		$this->reference = serialize($this->reference);
+	}
+	
 	
 	public function findByShaAndPostID($sha, $post_id) {
 		return $this->find("sha='$sha' and post_id=$post_id");

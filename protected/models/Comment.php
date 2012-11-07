@@ -1,4 +1,15 @@
 <?php
+/**
+ * Comment Model class file.
+ * 
+ * @author JinHu <bixuehujin@gmail.com>
+ */
+
+/**
+ * Model used for present user comments.
+ * 
+ * @property string $formattedDate Human readable date format.
+ */
 class Comment extends CActiveRecord {
 	
 	static public function model($className = __CLASS__) {
@@ -20,23 +31,36 @@ class Comment extends CActiveRecord {
 		);
 	}
 	
-	protected function beforeSave() {
+	public function init() {
+		$this->attachEventHandler('onBeforeSave', array($this, 'handleOnBeforeSave'));
+		$this->attachEventHandler('onAfterSave', array($this, 'handleOnAfterSave'));
+		$this->attachEventHandler('onAfterDelete', array($this, 'handleOnAfterDelete'));
+	}
+	
+	/**
+	 * handler for onBeforeSave event.
+	 * @param CModelEvent $event
+	 */
+	public function handleOnBeforeSave($event) {
 		$this->created = time();
-		return parent::beforeSave();
 	}
 	
-	protected function afterSave() {
-		
-		$post = Post::model();
-		$post->updateCounters(array('num_comments'=>1), 'post_id=' . $this->post_id);
-		return parent::afterSave();
+	/**
+	 * handler for onAfterSave event.
+	 * @param CModelEvent $event
+	 */
+	public function handleOnAfterSave($event) {
+		Post::model()->updateCounters(array('num_comments'=>1), 'post_id=' . $this->post_id);
 	}
 	
-	protected function afterDelete() {
-		$post = Post::model();
-		$post->updateCounters(array('num_comments'=>-1, 'post_id' . $this->post_id));
-		return parent::afterDelete();
+	/**
+	 * handler for onAfterDelete event.
+	 * @param CModelEvent $event
+	 */
+	public function handleOnAfterDelete($event) {
+		Post::model()->updateCounters(array('num_comments'=>-1, 'post_id' . $this->post_id));
 	}
+	
 	
 	public function getFormattedDate() {
 		return date('Y年m月d日 H:i', $this->created);
