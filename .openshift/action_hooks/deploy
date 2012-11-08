@@ -3,3 +3,17 @@
 # build hook has been run but before the application has been started back
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
+
+dirs="assets css images js protected themes index.php"
+dist="php/"
+for dir in $dirs 
+do
+	cp $dir $dist -rf
+done
+
+cd $dist
+
+chmod 777 assets
+sed 's#/../#/../../#' index.php -i
+chmod 777 protected/runtime
+sed 's/localhost/127.6.173.1/' protected/config/main.php -i
