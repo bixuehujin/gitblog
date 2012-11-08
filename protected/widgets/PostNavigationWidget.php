@@ -45,6 +45,7 @@ class PostNavigationWidget extends CWidget {
 			return;
 		}
 		$items = $this->navItems;
+		//Helper::print_r($items);
 		$this->processNavItems($items);
 		
 		$output = $this->widget('zii.widgets.CMenu', array(
@@ -80,7 +81,7 @@ class PostNavigationWidget extends CWidget {
 		foreach($items as &$item) {
 			if(isset($item['items'])) {
 				$item['submenuOptions'] = $this->submenuOptions;
-				$this->processNavItems($item);
+				$this->processNavItems($item['items']);
 			}
 		}
 	}
