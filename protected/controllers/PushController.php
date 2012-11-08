@@ -56,7 +56,7 @@ class PushController extends Controller {
 	
 	
 	protected function getSettingsByToken($token) {
-		return UserSetting::model()->$userSetting->findByAttributes(array('token'=>$token));
+		return UserSetting::model()->findByAttributes(array('token'=>$token));
 	}
 	
 	/**
