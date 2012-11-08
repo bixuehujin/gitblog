@@ -47,13 +47,20 @@ class PostParser extends CComponent {
 	}
 	
 	public function init() {
-		$this->rawBody = preg_replace_callback($this->metaPattern, function($matches) {
-			$this->meta = $this->parseMetaData($matches[1]);
-			return '';
-		}, $this->rawContent);
+		$this->rawBody = preg_replace_callback($this->metaPattern, array($this, 'metaCallback'), $this->rawContent);
 		$this->rawBody = trim($this->rawBody, "\n");
 		return true;
 	}
+	
+	/**
+	 * cann't using $this in anonymous functions before PHP5.3.x
+	 * @param array $matches
+	 * @return string
+	 */
+	protected function metaCallback($matches) {
+		$this->meta = $this->parseMetaData($matches[1]);
+		return '';
+	} 
 	
 	
 	public function parse() {
