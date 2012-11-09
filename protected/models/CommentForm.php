@@ -8,7 +8,9 @@ class CommentForm extends CFormModel {
 	public $author;
 	public $comment_ref;
 	
-	//public $attributes;
+	public function init() {
+		
+	}
 	
 	public function rules() {
 		return array(

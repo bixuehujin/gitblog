@@ -29,3 +29,59 @@ p{
 .sidebar {
 	padding-top:20px;
 }
+
+
+.post{
+    margin-bottom:30px;
+}
+
+.post .post-head{
+    padding-bottom:5px;
+}
+
+.post .post-bottom .tags{
+    width:60%;
+    float:left;
+}
+.post .post-bottom .links{
+    width:40%;
+    float:right;
+    text-align:right;
+}
+
+
+/*css for comments list*/
+
+.comments .view-all{
+    float:right;
+    font-size:15px;
+    line-height:15px;
+    margin-top:18px;
+}
+
+.comment{
+    padding:10px 0;
+    border-bottom:1px dotted #ccc;
+}
+
+.comment .content{
+    margin-bottom:10px;
+}
+.comment .date{
+    color:#777;
+    font-size:13px;
+}
+.comment .reply{
+    float:right;
+}
+
+/*css for coment form*/
+
+#comment-form textarea{
+    width:97%;
+    height:60px;
+}
+
+#comment-form legend input{
+    margin-top:2px;
+}

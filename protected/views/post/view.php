@@ -29,8 +29,13 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 		'post' => $post,
 	));
 ?>
-<?php $this->renderPartial('/comment/_comments', array('comments'=>$comments, 'post'=>$post))?>
-<?php echo CHtml::link('查看全部评论', array('/view/comments', 'id'=>$post->post_id))?>
+<?php 
+	$this->renderPartial('/comment/_comments', array(
+		'comments'=>$comments, 
+		'post'=>$post,
+		'showAllLink'=>true,
+	))
+?>
 
 
 <?php 

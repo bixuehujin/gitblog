@@ -14,6 +14,8 @@ $this->breadcrumbs = array(
 );
 ?>
 
+<?php $this->renderPartial('/comment/_comment_form', array('commentForm'=>$commentForm, 'post'=>$post))?>
+
 <?php 
 $this->renderPartial('/comment/_comments', array('comments'=>$comments, 'post'=>$post));
 ?>

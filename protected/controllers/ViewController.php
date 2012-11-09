@@ -113,6 +113,7 @@ class ViewController extends Controller {
 				'comments'=>$provider->getData(),
 				'post'=>$post,
 				'pagination'=>$provider->getPagination(),
+				'commentForm'=>new CommentForm(),
 		));
 	}
 	
