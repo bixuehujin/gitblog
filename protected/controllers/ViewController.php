@@ -36,7 +36,13 @@ class ViewController extends Controller {
 		
 		$criteria->order = 'post_id DESC';
 		
+		$criteria->addCondition('visibility=0');
 		
+		$uid = Yii::app()->user->id;
+		if($uid) {
+			$criteria->addCondition("visibility=1 and uid={$uid}", 'OR');
+		}
+			
 		$dataPravider = $this->getPostDataProvider($criteria);
 		$this->render('category', array(
 			'posts' => $dataPravider->getData(),
@@ -52,10 +58,19 @@ class ViewController extends Controller {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		
-		$dataProvider = $this->getPostDataProvider(array(
-			'order'=>'post_id DESC',
-			'condition'=>'uid=' . $_GET['id'],		
-		));
+		$criteria = new CDbCriteria();
+		
+		$criteria->addCondition('visibility=0');
+		
+		$uid = Yii::app()->user->id;
+		if($uid) {
+			$criteria->addCondition("visibility=1 and uid={$uid}", 'OR');
+		}
+		
+		$criteria->order = 'post_id DESC';
+		$criteria->addCondition("uid={$_GET['id']}");
+		
+		$dataProvider = $this->getPostDataProvider($criteria);
 		
 		$this->render('user', array(
 			'posts' => $dataProvider->getData(),
@@ -75,6 +90,14 @@ class ViewController extends Controller {
 		if(!empty($postIds)) {
 			$criteria = new CDbCriteria();
 			$criteria->addInCondition('post_id', $postIds);
+			
+			$criteria->addCondition('visibility=0');
+			
+			$uid = Yii::app()->user->id;
+			if($uid) {
+				$criteria->addCondition("visibility=1 and uid={$uid}", 'OR');
+			}
+			
 			$dataProvider = $this->getPostDataProvider($criteria);
 			$maps['posts'] = $dataProvider->getData();
 			$maps['pagination'] = $dataProvider->getPagination();

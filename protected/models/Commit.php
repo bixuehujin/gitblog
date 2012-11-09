@@ -62,6 +62,7 @@ class Commit extends CActiveRecord {
 		$commits = $this->findAll(array(
 			'condition' => 'status=' . self::STATUS_NOT_PREFORM,
 			'with'=>'userSettings',
+			'order'=>'timestamp ASC',
 		));
 		try {
 			foreach($commits as $commit) {

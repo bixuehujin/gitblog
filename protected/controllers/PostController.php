@@ -1,4 +1,10 @@
 <?php
+/**
+ * PostController class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class PostController extends Controller {
 	
 	public function actionView() {
@@ -12,6 +18,13 @@ class PostController extends Controller {
 		
 		if(!$post) {
 			throw new CHttpException(404);
+		}
+		
+		//visibility checking
+		if($post->visibility == Post::VISIBILITY_SELF) { //only the author can view the post
+			if(Yii::app()->user->id != $post->uid) {
+				throw new CHttpException(404);
+			}
 		}
 		
 		$commentModel = Comment::model();
