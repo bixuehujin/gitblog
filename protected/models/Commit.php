@@ -90,18 +90,21 @@ class Commit extends CActiveRecord {
 			$parser = new PostParser($content);
 			$parser->parse();
 				
-			if (isset($parser->meta['status']) && $parser->meta['status'] == 'published') {
+			$meta = $parser->meta;
+			if (isset($parser->meta['status']) && $meta['status'] == 'published') {
 				$timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', $commitInfo['commit']['author']['date'])->getTimestamp();
-		
+				
 				$postModel = Post::model();
 				$post = $postModel->findByPath($file['filename']);
 				$isNewPost = $post ? false : true;
+				$visibilityMaps = Post::visibilityMaps();
+				$visibility = (isset($meta['visibility']) && isset($visibilityMaps[$meta['visibility']])) 
+					? $visibilityMaps[$meta['visibility']] : Post::VISIBILITY_ALL;
 				if (!$post) {
 					$post = new Post();
 					$post->path = $file['filename'];
-					$post->title = $parser->meta['title'];
 					$post->uid = $commit->userSettings->uid;
-					$post->category_id = isset($parser->meta['category']) ? Category::getIdByName($parser->meta['category']) : 0;
+					$post->category_id = isset($meta['category']) ? (int)Category::getIdByName($meta['category']) : 0;
 					//$post->summary;
 					$post->created  = $timestamp;
 					$post->save(false);
@@ -118,14 +121,19 @@ class Commit extends CActiveRecord {
 					$postRevision->post_id = $post->post_id;
 					$postRevision->save(false);
 				}
-		
+			
+				if(isset($meta['category']) && $categoryId = Category::getIdByName($meta['category'])) {
+					$post->category_id = $categoryId;
+				}
+				$post->title = $meta['title'];
 				$post->version = $isNewPost ? 1 : $post->version + 1;
 				$post->modified = $timestamp;
 				$post->revision_id = $postRevision->revision_id;
-				$post->update(array('version', 'modified', 'revision_id'));
+				$post->visibility = $visibility;
+				$post->update(array('version', 'modified', 'revision_id', 'visibility', 'category_id', 'title'));
 				
-				if(isset($parser->meta['tags'])) {
-					$post->updateTags($parser->meta['tags']);
+				if(isset($meta['tags'])) {
+					$post->updateTags($meta['tags']);
 				}
 			}
 		}

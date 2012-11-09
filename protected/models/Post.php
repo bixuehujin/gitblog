@@ -1,5 +1,22 @@
 <?php
 class Post extends CActiveRecord {
+	/**
+	 * the post can be viewed by all.
+	 */
+	const VISIBILITY_ALL = 0;
+	/**
+	 * the post can only be viewed by the author.
+	 */
+	const VISIBILITY_SELF = 1;
+	/**
+	 * visibility maps between internal and human readable format.
+	 */
+	static public function visibilityMaps(){ 
+		return array(
+			'all'=>self::VISIBILITY_ALL,
+			'self'=>self::VISIBILITY_SELF,
+		);
+	}
 	
 	static public function model($className = __CLASS__) {
 		return parent::model($className);
