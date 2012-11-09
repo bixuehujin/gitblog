@@ -39,6 +39,11 @@ p{
     padding-bottom:5px;
 }
 
+.post .post-head .date{
+    font-size:13px;
+    color:#777;
+}
+
 .post .post-bottom .tags{
     width:60%;
     float:left;

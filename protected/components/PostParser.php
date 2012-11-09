@@ -158,8 +158,9 @@ class PostParser extends CComponent {
 			return array();
 		}
 		
-		$stack = new SplStack();
+		$reference[] = $reference[0]; //duplicate the first element to the tail of array.
 		
+		$stack = new SplStack();
 		$stack->push($reference[0]);
 		unset($reference[0]);
 		
@@ -191,6 +192,8 @@ class PostParser extends CComponent {
 				$stack->push($item);
 			}
 		}
+		
+		$stack->pop(); //pop the duplicated element.
 		
 		$stack->rewind();
 		$tree = array();

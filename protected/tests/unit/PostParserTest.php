@@ -10,7 +10,7 @@ class PostParserTest extends CTestCase {
 			'title'=>'test post title',
 			'status'=>'published'		
 		), $parser->meta);
-		
+
 		$this->assertEquals(array(
 			array('title'=>'h2_1', 'level'=>2, 'items'=>array(
 				array('title'=>'h3_1' ,'level'=>3),
@@ -20,7 +20,10 @@ class PostParserTest extends CTestCase {
 				)),
 			)),
 			array('title'=>'h2_2' ,'level'=>2),
-			array('title'=>'h2_3 space' ,'level'=>2),
+			array('title'=>'h2_3 space' ,'level'=>2, 'items'=>array(
+				array('title'=>'h33_1', 'level'=>3),
+				array('title'=>'h33_2', 'level'=>3),
+			)),
 		), $parser->reference);
 	}
 }

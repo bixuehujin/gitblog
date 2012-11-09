@@ -8,7 +8,7 @@
 <div class="post">
 	<div class="post-head">
 		<?php echo CHtml::link($post->user->username, array('/view/user', 'id'=>$post->user->uid))?>
-		<span class="pull-right">
+		<span class="pull-right date">
 			<?php echo $post->getFormattedDate();?>
 		</span>
 	</div>
