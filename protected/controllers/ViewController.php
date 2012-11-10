@@ -89,15 +89,16 @@ class ViewController extends Controller {
 		$postIds = PostTag::model()->getPostIds($_GET['id']);
 		if(!empty($postIds)) {
 			$criteria = new CDbCriteria();
-			$criteria->addInCondition('post_id', $postIds);
 			
+			$criteria->addInCondition('post_id', $postIds);
 			$criteria->addCondition('visibility=0');
 			
 			$uid = Yii::app()->user->id;
 			if($uid) {
-				$criteria->addCondition("visibility=1 and uid={$uid}", 'OR');
-			}
-			
+				$criteria->addCondition("post_id IN(" 
+						. implode(',', $postIds) 
+						. ") and visibility=1 and uid={$uid}", 'OR');
+			}			
 			$dataProvider = $this->getPostDataProvider($criteria);
 			$maps['posts'] = $dataProvider->getData();
 			$maps['pagination'] = $dataProvider->getPagination();
