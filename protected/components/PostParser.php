@@ -34,9 +34,10 @@ class PostParser extends CComponent {
 	/**
 	 * @var string regexp expression to extract meta data from raw content.
 	 */
-	protected $metaPattern = '/^-{3,}(.*)-{3,}/s';
+	protected $metaPattern = '/^-{3,}(.*?)-{3,}/s';
 	/**
-	 * @var string regexp expression to extract reference information for raw content.
+	 * @var string regexp expression to extract reference information for raw 
+	 * content.
 	 */
 	protected $referencePattern = '/^#{2,}\s*(.*?)\s*#*\s*$/m';
 	
@@ -47,7 +48,10 @@ class PostParser extends CComponent {
 	}
 	
 	public function init() {
-		$this->rawBody = preg_replace_callback($this->metaPattern, array($this, 'metaCallback'), $this->rawContent);
+		$this->rawBody = preg_replace_callback($this->metaPattern, 
+			array($this, 'metaCallback'), 
+			$this->rawContent);
+
 		$this->rawBody = trim($this->rawBody, "\n");
 		return true;
 	}
@@ -118,11 +122,12 @@ class PostParser extends CComponent {
 	 * add a unique ID to every H2-H6 element.
 	 */
 	protected function parseFragment() {
-		$this->content = preg_replace_callback($this->fragmentPattern, function($matches){
-			static $i = -1;
-			$i ++;
-			return "<$matches[1] id=\"id-{$i}\">$matches[2]</$matches[1]>";
-		}, $this->content);
+		$this->content = preg_replace_callback($this->fragmentPattern, 
+			function($matches){
+				static $i = -1;
+				$i ++;
+				return "<$matches[1] id=\"id-{$i}\">$matches[2]</$matches[1]>";
+			}, $this->content);
 	}
 	
 	/**
@@ -158,7 +163,8 @@ class PostParser extends CComponent {
 			return array();
 		}
 		
-		$reference[] = $reference[0]; //duplicate the first element to the tail of array.
+		//duplicate the first element to the tail of array.
+		$reference[] = $reference[0]; 
 		
 		$stack = new SplStack();
 		$stack->push($reference[0]);

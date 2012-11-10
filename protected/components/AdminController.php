@@ -3,23 +3,27 @@
 /**
  * base controller for admin management.
  *  
- * @author hujin
+ * @author Jin Hu <bixuehujin@gmail.com>
  */
+
 class AdminController extends CController {
 	/**
-	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
-	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
+	 * @var string the default layout for the controller view. Defaults to 
+	 * '//layouts/column1', meaning using a single column layout. See 
+	 * 'protected/views/layouts/column1.php'.
 	 */
 	public $layout='column2';
 	/**
-	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
+	 * @var array context menu items. This property will be assigned to 
+	 * {@link CMenu::items}.
 	 */
 	public $menu;
 	/**
-	 * @var array the breadcrumbs of the current page. The value of this property will
-	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
-	 * for more details on how to specify this property.
-	*/
+	 * @var array the breadcrumbs of the current page. The value of this property
+	 * will be assigned to {@link CBreadcrumbs::links}. Please refer to 
+	 * {@link CBreadcrumbs::links} for more details on how to specify this 
+	 * property.
+	 */
 	public $breadcrumbs=array();
 	
 	
@@ -59,8 +63,8 @@ class AdminController extends CController {
 	}
 	
 	/**
-	 * All driven classes should implement the method, to specify what menu items should be
-	 * rendered on the left side.
+	 * All driven classes should implement the method, to specify what menu
+	 * items should be rendered on the left side.
 	 *
 	 * @return array
 	 * array pass to {@link CMenu zii.widgets.CMenu}, default to empty array.
