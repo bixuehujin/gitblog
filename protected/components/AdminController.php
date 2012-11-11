@@ -27,39 +27,44 @@ class AdminController extends CController {
 	public $breadcrumbs=array();
 	
 	
-	public function __construct($id, $module = null) {
+	public function init() {
 		$this->menu = array(
-					array(
-						'label'=>'首页', 
-						'url'=>array('/admin'), 
-						'active' => $_GET['r'] == 'admin'
-					),
-					array(
-						'label'=>'用户信息', 
-						'url'=>array('/admin/user'), 
-						'active' => preg_match('/admin\/user.*/', $_GET['r'])
-					),
-					array(
-						'label'=>'内容源', 
-						'url'=>array('/admin/source'), 
-						'active' => preg_match('/admin\/source.*/', $_GET['r'])
-					),
-					array(
-						'label'=>'内容管理', 
-						'url'=>array('/admin/content'), 
-						'active' => preg_match('/admin\/content.*/', $_GET['r'])
-					),
-					array(
-						'label'=>'系统设置', 
-						'url'=>array('/admin/system'), 
-						'active' => preg_match('/admin\/system.*/', $_GET['r'])
-					),
-					array(
-						'label'=>'返回前台', 
-						'url'=>array('/')
-					)
-			);
-		return parent::__construct($id, $module);
+			array(
+				'label'=>'首页', 
+				'url'=>array('/admin'), 
+				'active' => $_GET['r'] == 'admin'
+			),
+			array(
+				'label'=>'用户信息', 
+				'url'=>array('/admin/user'), 
+				'active' => preg_match('/admin\/user.*/', $_GET['r'])
+			),
+			array(
+				'label'=>'内容源', 
+				'url'=>array('/admin/source'), 
+				'active' => preg_match('/admin\/source.*/', $_GET['r'])
+			),
+			array(
+				'label'=>'内容管理', 
+				'url'=>array('/admin/content'), 
+				'active' => preg_match('/admin\/content.*/', $_GET['r'])
+			),
+			array(
+				'label'=>'系统设置', 
+				'url'=>array('/admin/system'), 
+				'active' => preg_match('/admin\/system.*/', $_GET['r'])
+			),
+			array(
+				'label' => '用户管理',
+				'url' => array('/admin/member'),
+				'visiable' => Yii::app()->user->id == 1,
+				'active' => preg_match('/admin\/member.*/', $_GET['r']),
+			),
+			array(
+				'label'=>'返回前台', 
+				'url'=>array('/')
+			)
+		);
 	}
 	
 	/**

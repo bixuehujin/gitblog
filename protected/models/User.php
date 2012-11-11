@@ -1,4 +1,10 @@
 <?php
+/**
+ * User model class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class User extends CActiveRecord {
 	
 	static public function model($className = __CLASS__) {
@@ -12,7 +18,7 @@ class User extends CActiveRecord {
 	
 	
 	public function getByName($name) {
-		return $this->find("username='$name'");
+		return $this->findByAttributes(array('username'=>$name));
 	}
 	
 	

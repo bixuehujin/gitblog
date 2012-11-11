@@ -10,8 +10,8 @@ return array(
 	'name'=>'侠古仁风的博客',
 	'defaultController' => 'view',
 	// preloading 'log' component
-	'preload'=>array('log'),
-
+	'preload'=>array('log', 'bootstrap'),
+	'language'=>'zh_cn',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
@@ -22,14 +22,16 @@ return array(
 	'modules'=>array(
 		'admin' => array(),
 		// uncomment the following to enable the Gii tool
-		/*
+		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Enter Your Password Here',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+			'generatorPaths'=>array(
+            	'bootstrap.gii',
+        	),
 		),
-		*/
 	),
 
 	// application components
@@ -44,6 +46,9 @@ return array(
 		),
 		'sessionMessager' => array(
 			'class' => 'SessionMessager',
+		),
+		'bootstrap'=>array(
+			'class'=>'ext.bootstrap.components.Bootstrap',
 		),
 		'clientScript' => array(
 			'class' => 'ClientScript',
@@ -94,6 +99,13 @@ return array(
 			'username' => 'root',
 			'password' => 'sdyxzsdyxz',
 			'charset' => 'utf8',
+		),
+		'authManager'=>array(
+			'class'=>'CDbAuthManager',
+			'connectionID'=>'db',
+			'itemTable'=>'auth_item',
+			'itemChildTable'=>'auth_item_child',
+			'assignmentTable'=>'auth_assignment',
 		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
