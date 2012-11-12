@@ -84,11 +84,14 @@ class RoleForm extends CFormModel {
 	 * @return boolean
 	 */
 	public function save() {
+		$ret = false;
 		if ($this->validateSave()) {
-			return (bool)Yii::app()->authManager->createAuthItem($this->name, 2, $this->description);
-		}else {
-			return false;
+			$ret = (bool)Yii::app()->authManager->createAuthItem($this->name, 2, $this->description);
+			if ($ret) {
+				Yii::app()->persistentMessage->addPersistentSuccess('创建角色成功');
+			}
 		}
+		return $ret;
 	}
 	
 	/**
@@ -104,13 +107,23 @@ class RoleForm extends CFormModel {
 			$auth->description = $this->description;
 			
 			Yii::app()->authManager->saveAuthItem($auth, $name);
+			Yii::app()->persistentMessage->addPersistentSuccess('修改角色成功');
 			return true;
 		}else {
 			return false;
 		}
 	}
 	
+	/**
+	 * delete a role
+	 * 
+	 * @return boolean
+	 */
 	public function delete() {
-		return (bool)Yii::app()->authManager->removeAuthItem($this->name);
+		$ret = (bool)Yii::app()->authManager->removeAuthItem($this->name);
+		if($ret) {
+			Yii::app()->persistentMessage->addPersistentSuccess('删除角色成功');
+		}
+		return $ret;
 	}
 }

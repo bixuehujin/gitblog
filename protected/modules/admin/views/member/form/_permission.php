@@ -9,9 +9,13 @@
  */
 ?>
 
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+<?php $form=$this->beginWidget('ActiveForm', array(
 	'id'=>'permission-form',
 ))?>
+
+<?php 
+	 echo $form->errorSummary($model);
+?>
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
@@ -20,9 +24,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 ));
 ?>
 
-<?php 
-	echo $form->errorSummary($model);
-?>
 
 <div class="control-group">
 	<div class="controls pull-right">

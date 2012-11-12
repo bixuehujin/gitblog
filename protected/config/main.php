@@ -48,6 +48,10 @@ return array(
 		'sessionMessager' => array(
 			'class' => 'SessionMessager',
 		),
+		'persistentMessage' => array(
+			'class' => 'PersistentMessage',
+		),
+		
 		'bootstrap'=>array(
 			'class'=>'ext.bootstrap.components.Bootstrap',
 		),

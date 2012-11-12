@@ -10,8 +10,18 @@ Yii::app()->clientScript->registerPackage('bootstrap.responsive')
 		<div class="span3">
 			<?php $this->renderPartial('/common/_menu', array('items'=>$this->menuItems()))?>
 		</div>
-		<div class="span9">
-			<?php echo $content?>
+		<div class="span9 section">
+			<div class="head">
+				<legend><?php echo $this->sectionTitle?></legend>
+			</div>
+			<?php if (Yii::app()->persistentMessage->hasMessages):?> 
+				<div class="messages">
+					<?php echo Yii::app()->persistentMessage->renderMessages();?>
+				</div>
+			<?php endif;?>
+			<div class="content">
+				<?php echo $content?>
+			</div>
 		</div>
 	</div>
 <?php $this->endContent(); ?>

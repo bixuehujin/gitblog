@@ -30,6 +30,7 @@ class PermissionForm extends  CFormModel {
 	 * generate data used for render GridView.
 	 */
 	protected function generateData() {
+		
 		$permissions = $this->auth->getAuthItems(0);
 		$roles = $this->auth->getAuthItems(2);
 		
@@ -43,8 +44,8 @@ class PermissionForm extends  CFormModel {
 			);
 			foreach ($roles as $role) {
 				$data[$i][$role->name] = array(
-						'granted' => $this->auth->hasItemChild($role->name, $permission->name) ? 1 : 0,
-						'nameKey' => array($permission->name, $role->name),
+					'granted' => $this->auth->hasItemChild($role->name, $permission->name) ? 1 : 0,
+					'nameKey' => array($permission->name, $role->name),
 				);
 			}
 			$i ++;
@@ -93,7 +94,7 @@ class PermissionForm extends  CFormModel {
 				}
 			}
 		}
-		
+		Yii::app()->persistentMessage->addPersistentSuccess('保存权限成功');
 		return true;
 	}
 	

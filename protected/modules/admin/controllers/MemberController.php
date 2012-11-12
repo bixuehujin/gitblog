@@ -11,6 +11,7 @@ class MemberController extends AdminController {
 	
 	
 	public function actionRoles() {
+		$this->sectionTitle = Yii::t('admin', 'Roles List');
 		$auth = Yii::app()->authManager;
 		$roles = $auth->getAuthItems(2);
 		$newRoles = array();
@@ -24,30 +25,31 @@ class MemberController extends AdminController {
 		$provider = new CArrayDataProvider($newRoles);
 		$this->render('role-list', array(
 			'rolesProvider'=>$provider,
-			'title'=>'角色列表',
 		));
 	}
 	
 	
 	public function actionCreateRole() {
+		$this->sectionTitle = Yii::t('admin', 'Create Role');
 		$model = new RoleForm();
 		
 		if (isset($_POST['RoleForm'])) {
 			$model->attributes = $_POST['RoleForm'];
 			if($model->save()) {
-				Yii::app()->sessionMessager->addMessage('创建角色成功', 'success');
 				$this->refresh();
 			}
 		}
 		
 		$this->render('role-op', array(
 			'model'=>$model,
-			'title'=>'创建角色',
 		));
 	}
 	
 	
 	public function actionModifyRole() {
+		
+		$this->sectionTitle = Yii::t('admin', 'Modify Role');
+		
 		if (!isset($_GET['name'])) {
 			throw new CHttpException(404);
 		}
@@ -59,7 +61,6 @@ class MemberController extends AdminController {
 			$model->attributes = $_POST['RoleForm'];
 			
 			if ($model->update($_GET['name'])) {
-				Yii::app()->sessionMessager->addMessage('修改角色成功', 'success');
 				$this->redirect(array('/admin/member/modifyRole', 'name'=>$_POST['RoleForm']['name']));
 			}
 			
@@ -67,12 +68,12 @@ class MemberController extends AdminController {
 		
 		$this->render('role-op', array(
 			'model'=>$model,
-			'title'=>'修改角色',
 		));
 	}
 	
 	
 	public function actionDeleteRole() {
+		$this->sectionTitle = Yii::t('admin', 'Delete Role');
 		if (!isset($_GET['name'])) {
 			throw new CHttpException(404);
 		}
@@ -83,18 +84,17 @@ class MemberController extends AdminController {
 		if (isset($_POST['RoleForm'])) {
 			$model->attributes = $_POST['RoleForm'];
 			if($model->delete()) {
-				Yii::app()->sessionMessager->addMessage('删除角色成功', 'success');
 				$this->redirect(array('/admin/member'));
 			}
 		}
 		
 		$this->render('role-op', array(
 			'model'=>$model,
-			'title'=>'删除角色',
 		));
 	}
 	
 	public function actionPermissions() {
+		$this->sectionTitle = '授权管理';
 		$model = new PermissionForm();
 		
 		if (isset($_POST['PermissionForm'])) {

@@ -26,6 +26,12 @@ class AdminController extends CController {
 	 */
 	public $breadcrumbs=array();
 	
+	/**
+	 * man section title.
+	 * @var string
+	 */
+	public $sectionTitle;
+	
 	
 	public function init() {
 		$this->menu = array(

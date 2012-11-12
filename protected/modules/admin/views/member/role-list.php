@@ -8,8 +8,6 @@
  */
 ?>
 
-<legend><?php echo $title?></legend>
-
 <?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 
 <?php 
@@ -25,5 +23,5 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 			'deleteButtonUrl'=>'Yii::app()->controller->createUrl("deleteRole", array("name"=>$data["name"]))',
 			'updateButtonUrl'=>'Yii::app()->controller->createUrl("modifyRole", array("name"=>$data["name"]))',
 		),
-	),		
+	),
 ))?>

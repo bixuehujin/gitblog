@@ -4,15 +4,15 @@
  * 
  * @var MemberController $this
  * @var RoleForm $model
- * @var 
  */
 ?>
 
 
 <?php 
+
 Yii::import('bootstrap.widgets.TbActiveForm');
 
-$form = $this->beginWidget('TbActiveForm', array(
+$form = $this->beginWidget('ActiveForm', array(
 	'id'=>'role-form',
 	'type'=>TbActiveForm::TYPE_HORIZONTAL,
 ))

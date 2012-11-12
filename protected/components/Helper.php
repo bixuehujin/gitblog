@@ -13,7 +13,7 @@ class Helper {
 	 */
 	static public function print_r($var) {
 		echo '<pre>';
-		echo print_r($var);
+		print_r($var);
 		echo '</pre>';
 	}
 	

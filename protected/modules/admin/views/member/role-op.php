@@ -7,9 +7,5 @@
  */
 ?>
 
-<legend><?php echo $title?></legend>
-
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
-
 <?php $this->renderPartial('form/_role', array('model'=>$model))?>
 
