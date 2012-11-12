@@ -14,8 +14,7 @@ class RoleForm extends CFormModel {
 	public $name;
 	public $description;
 	
-	private $oldName;
-	
+
 	public function init() {
 		if (empty($this->scenario)) {
 			$this->scenario = self::SCENARIO_CREATE;

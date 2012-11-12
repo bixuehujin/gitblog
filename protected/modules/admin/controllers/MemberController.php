@@ -95,8 +95,20 @@ class MemberController extends AdminController {
 	}
 	
 	public function actionPermissions() {
+		$model = new PermissionForm();
 		
-		$this->render('permissions');
+		if (isset($_POST['PermissionForm'])) {
+			$model->attributes = $_POST['PermissionForm'];
+			if ($model->save()) {
+				$this->refresh();
+			}
+		}
+		
+		$this->render('permissions', array(
+			'dataProvider'=>$model->dataProvider,
+			'columns'=>$model->columns,
+			'model'=>$model,
+		));
 	}
 	
 	public function actionGrant() {
