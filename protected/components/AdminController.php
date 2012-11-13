@@ -36,38 +36,38 @@ class AdminController extends CController {
 	public function init() {
 		$this->menu = array(
 			array(
-				'label'=>'首页', 
+				'label'=>'Home', 
 				'url'=>array('/admin'), 
 				'active' => $_GET['r'] == 'admin'
 			),
 			array(
-				'label'=>'用户信息', 
+				'label'=>'User', 
 				'url'=>array('/admin/user'), 
 				'active' => preg_match('/admin\/user.*/', $_GET['r'])
 			),
 			array(
-				'label'=>'内容源', 
+				'label'=>'Source', 
 				'url'=>array('/admin/source'), 
 				'active' => preg_match('/admin\/source.*/', $_GET['r'])
 			),
 			array(
-				'label'=>'内容管理', 
+				'label'=>'Content', 
 				'url'=>array('/admin/content'), 
 				'active' => preg_match('/admin\/content.*/', $_GET['r'])
 			),
 			array(
-				'label'=>'系统设置', 
+				'label'=>'System', 
 				'url'=>array('/admin/system'), 
 				'active' => preg_match('/admin\/system.*/', $_GET['r'])
 			),
 			array(
-				'label' => '用户管理',
+				'label' => 'Member',
 				'url' => array('/admin/member'),
 				'visiable' => Yii::app()->user->id == 1,
 				'active' => preg_match('/admin\/member.*/', $_GET['r']),
 			),
 			array(
-				'label'=>'返回前台', 
+				'label'=>'Back To Front', 
 				'url'=>array('/')
 			)
 		);

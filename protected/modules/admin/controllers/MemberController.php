@@ -111,36 +111,43 @@ class MemberController extends AdminController {
 		));
 	}
 	
-	public function actionGrant() {
+	
+	public function actionAccountList() {
+		$this->sectionTitle = Yii::t('admin', 'Account List');
 		
-		$this->render('grant');
+		$this->render('account-list', array(
+		
+		));
 	}
 	
-	public function actionAdministrator() {
-		
-		$this->render('administrator');
+	
+	public function actionCreateAccount() {
+		$this->sectionTitle = Yii::t('admin', 'Create Account');
+		$model = new AccountForm('creation');
+		$this->render('account-op', array(
+			'model'=>$model,
+		));
 	}
 	
 	public function menuItems() {
 		$items = array();
-		$items[] = array('label'=>'角色管理');
-		$items[] = array('label'=>'角色列表', 'url'=>array('/admin/member/roles'));
+		$items[] = array('label'=>Yii::t('admin', 'Roles Management'));
+		$items[] = array('label'=>Yii::t('admin', 'Roles List'), 'url'=>array('/admin/member/roles'));
 
 		if (trim($_GET['r'], '/') === 'admin/member/modifyRole') {
-			$items[] = array('label'=>'修改角色', 'url'=>Yii::app()->request->url, 'active'=>true);
+			$items[] = array('label'=>Yii::t('admin', 'Modify Role'), 'url'=>Yii::app()->request->url, 'active'=>true);
 		}else if (trim($_GET['r'], '/') === 'admin/member/deleteRole') {
-			$items[] = array('label'=>'删除角色', 'url'=>Yii::app()->request->url, 'active'=>true);
+			$items[] = array('label'=>Yii::t('admin', 'Delete Role'), 'url'=>Yii::app()->request->url, 'active'=>true);
 		}else {
-			$items[] = array('label'=>'创建角色', 'url'=>array('/admin/member/createRole'));
+			$items[] = array('label'=>Yii::t('admin', 'Create Role'), 'url'=>array('/admin/member/createRole'));
 		}
 		
 		$items[] = array('label'=>'授权管理');
 		$items[] = array('label'=>'授权管理', 'url'=>array('/admin/member/permissions'));
-		$items[] = array('label'=>'用户授权', 'url'=>array('/admin/member/grant'));
 		
-		$items[] = array('label'=>'用户管理');
-		$items[] = array('label'=>'用户列表', 'url'=>array('/admin/member/administrator'));
-		$items[] = array('label'=>'添加用户', 'url'=>array('/admin/member/administrator'));
+		$items[] = array('label'=>Yii::t('admin', 'Account Management'));
+		$items[] = array('label'=>Yii::t('admin', 'Account List'), 'url'=>array('/admin/member/accountList'));
+		$items[] = array('label'=>Yii::t('admin', 'Create Account'), 'url'=>array('/admin/member/createAccount'));
 		
 		return $items;
 	}

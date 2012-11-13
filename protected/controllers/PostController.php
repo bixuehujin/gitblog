@@ -7,6 +7,37 @@
 
 class PostController extends Controller {
 	
+	/**
+	 * declare permissions needed by this Controller.
+	 * 
+	 * @return array
+	 */
+	public function permissions() {
+		return array(
+			'post.create'=>array(
+				'name'=>'post.create',
+				'description'=>'Create New Post',
+			),
+			'post.editOwn'=>array(
+				'name'=>'post.editOwn',
+				'description'=>'Edit Own Post',
+			),
+			'post.editAny'=>array(
+				'name'=>'post.editAny',
+				'description'=>'Edit Any Post',
+			),
+			'post.deleteOwn'=>array(
+				'name'=>'post.deleteOwn',
+				'description'=>'Delete Own Post',
+			),
+			'post.deleteAny'=>array(
+				'name'=>'post.deleteAny',
+				'description'=>'Delete Any Post',
+			),
+		);
+	}
+	
+	
 	public function actionView() {
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		if(!$id) {
