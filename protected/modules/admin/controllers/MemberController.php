@@ -115,8 +115,30 @@ class MemberController extends AdminController {
 	public function actionAccountList() {
 		$this->sectionTitle = Yii::t('admin', 'Account List');
 		
-		$this->render('account-list', array(
+		$provider = new CActiveDataProvider('User');
+		$provider->setCriteria(array(
+			'order'=>'uid DESC',
+		));
 		
+		$columns = array(
+			'username::Account Name',
+			'truename::Real Name',
+			'gender::Gender',
+			'email::Email',
+			'github::Github Account',
+			'weibo::Weibo Account',
+			array(
+				'class' => 'bootstrap.widgets.TbButtonColumn',
+				'template'=>'{update} {delete}',
+				'deleteConfirmation'=>true,
+				'deleteButtonUrl'=>'Yii::app()->controller->createUrl("deleteAccount", array("id"=>$data->uid))',
+				'updateButtonUrl'=>'Yii::app()->controller->createUrl("modifyAccount", array("id"=>$data->uid))',
+			),
+		);
+		
+		$this->render('account-list', array(
+			'dataProvider'=>$provider,
+			'columns'=>$columns,
 		));
 	}
 	
@@ -124,9 +146,39 @@ class MemberController extends AdminController {
 	public function actionCreateAccount() {
 		$this->sectionTitle = Yii::t('admin', 'Create Account');
 		$model = new AccountForm('creation');
+		
+		if (isset($_POST['AccountForm'])) {
+			$model->attributes = $_POST['AccountForm'];
+			if ($model->save()) {
+				$this->refresh();
+			}
+		}
+		
 		$this->render('account-op', array(
 			'model'=>$model,
 		));
+	}
+	
+	
+	public function actionModifyAccount() {
+		$this->sectionTitle = Yii::t('admin', 'Modify Account');
+		$model = new AccountForm(AccountForm::SCENARIO_MODIFICATION);
+		
+		if(isset($_POST['AccountForm'])) {
+			$model->attributes = $_POST['AccountForm'];
+			if($model->save()) {
+				$this->refresh();
+			}
+		}
+		
+		$this->render('account-op', array(
+			'model'=>$model,
+		));
+	}
+	
+	
+	public function actionDeleteAccount() {
+		//$this->redirect($url)
 	}
 	
 	public function menuItems() {

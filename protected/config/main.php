@@ -17,6 +17,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.components.widgets.*',
+		'application.components.exceptions.*',
 		'system.web.helpers.*',
 	),
 

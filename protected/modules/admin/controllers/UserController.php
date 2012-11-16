@@ -3,6 +3,18 @@ class UserController extends AdminController {
 	
 	public $defaultAction = 'info';
 	
+	
+	public function permissions() {
+		return array(
+			'user.permissionManagement'=>array(
+				'description'=>'Perform user permission management'
+			),
+			'user.accountManagement'=>array(
+				'description'=>'Perform user account management',	
+			),
+		);
+	}
+	
 	public function menuItems() {
 		return array(
 			array('label'=>'基本信息', 'url'=>array('/admin/user/info')),

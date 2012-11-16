@@ -5,6 +5,11 @@
  * @author Jin Hu <bixuehujin@gmail.co>
  */
 
+/**
+ * Provide rebuild permissions real-time.
+ * 
+ * @property array $permissions    All declared permissions 
+ */
 class SitePermissionsBehavior extends CBehavior {
 
 	/**
@@ -45,7 +50,7 @@ class SitePermissionsBehavior extends CBehavior {
 	 * @param Event $event
 	 */
 	public function beginRequestHandler($event) {
-		$doRebuild = $this->autoRebuild ?: 
+		$doRebuild = $this->autoRebuild ?:
 			(bool)Yii::app()->systemSettings->get('auto_permissions_rebuld');
 		
 		if ($doRebuild) {
@@ -118,7 +123,7 @@ class SitePermissionsBehavior extends CBehavior {
 	 * @param array $permissions
 	 * @return boolean now always true.
 	 */
-	protected function savePermissions($permissions) {
+	public function savePermissions($permissions) {
 		$items = $this->auth->getAuthItems(0);
 		$indexedItems = array();
 		foreach ($items as $item) {

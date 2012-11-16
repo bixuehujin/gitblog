@@ -16,6 +16,7 @@ class AccountForm extends CFormModel {
 	const SCENARIO_CREATION = 'creation';
 	const SCENARIO_MODIFICATION = 'modification';
 	
+	public $uid;
 	public $username;
 	public $password;
 	public $password2;
@@ -24,11 +25,36 @@ class AccountForm extends CFormModel {
 	public $email;
 	public $github;
 	public $weibo;
+	/**
+	 * @var User
+	 */
+	private $user;
 	
 	public function init() {
+		$this->user = User::model();
 		if ($this->scenario == '') {
 			$this->scenario = self::SCENARIO_CREATION;
 		}
+		if (!($this->scenarioIsModification && !isset($_POST[__CLASS__]))) {
+			return;			
+		}
+		
+
+		if (isset($_GET['id']) && $_GET['id']) {
+			$user = $this->user->findByPk($_GET['id']);
+			if(!$user) {
+				throw new RecordNotFoundException('Load user from database failed');
+			}
+			foreach ($this->attributeNames() as $name) {
+				if($name != 'password2') {
+					$this->$name = $user->$name;
+				}
+			}
+			$this->password = '';
+		}else {
+			throw new InvalidRequestException("The index is not defined");
+		}
+		
 	}
 	
 	public function attributeLabels() {
@@ -46,20 +72,68 @@ class AccountForm extends CFormModel {
 	
 	public function rules() {
 		return array(
+			array('uid', 'required', 'on'=>self::SCENARIO_MODIFICATION),
 			array('username', 'required'),
-			array('email', 'email')
+			array('email', 'required'),
+			array('email', 'email'),
+			array('password', 'required', 'on'=>self::SCENARIO_CREATION),
+			array('password2', 'required', 'on'=>self::SCENARIO_CREATION),
 		);
 	}
 	
-	public function save() {
+	
+	public function validate($attributes = null, $clearErrors = true) {
+		if(!parent::validate($attributes, $clearErrors)) {
+			return false;
+		}
+
+		if ($this->password != $this->password2) {
+			$this->addError('password3', 'Password input does not match');
+			$this->addError('password2', '');
+			$this->addError('password', '');
+			return false;
+		}
+		
+		if($this->user->isNameTaken($this->username, $this->getScenarioIsCreation() ? null : Yii::app()->user->id)) {
+			$this->addError('Username', "username {$this->username} has been taken");
+			return false;
+		}
+		if($this->user->isEmailTaken($this->email, $this->getScenarioIsCreation() ? null : Yii::app()->user->id)) {
+			$this->addError('email', "Email {$this->email} has been taken");
+			return false;
+		}
 		
 		return true;
 	}
 	
-	public function update() {
+	/**
+	 * Save or update a account record.
+	 * 
+	 * @return boolean
+	 */
+	public function save() {
+		if (!$this->validate()) {
+			return false;
+		}
+		foreach($this->attributeNames() as $name) {
+			if ($name != 'password2') {
+				$this->user->$name = $this->$name;
+			}
+		}
 		
+		if ($this->getScenarioIsCreation()) {
+			$this->user->isNewRecord = true;
+		}
+		if (!$this->user->save(false)) {
+			$this->addError('', 'Save account failed');
+			return false;
+		}
+		$msg = $this->getScenarioIsCreation()
+			? 'Add Account successfull' : 'Save Account successfull'; 
+		Yii::app()->persistentMessage->addPersistentSuccess($msg);
 		return true;
 	}
+	
 	
 	/**
 	 * return whether the scenario is creation.

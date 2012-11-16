@@ -7,6 +7,10 @@
 
 class User extends CActiveRecord {
 	
+	/**
+	 * @param string $className
+	 * @return User
+	 */
 	static public function model($className = __CLASS__) {
 		return parent::model($className);
 	}
@@ -46,4 +50,39 @@ class User extends CActiveRecord {
 	static public function checkExist($uid) {
 		return (bool)self::model()->find('uid=' . $uid);
 	}
+	
+	/**
+	 * checking if given username is taken by others.
+	 * 
+	 * @param string $name
+	 * @param mixed $uid the uid to check, used for changed user information, default to null. 
+	 * @return boolean
+	 */
+	public function isNameTaken($name, $uid = null) {
+		$user = $this->findByAttributes(array('username'=>$name));
+		if ($uid == null) {
+			return (bool) $user;
+		}
+		if (!$user) return false;
+
+		return ($user->uid != $uid); 
+	}
+	
+	/**
+	 * checking if given email is taken by others.
+	 *
+	 * @param string $email
+	 * @param mixed $uid the uid to check, used for changed user address, default to null.
+	 * @return boolean
+	 */
+	public function isEmailTaken($email, $uid = null) {
+		$user = $this->findByAttributes(array('email'=>$email));
+		if ($uid == null) {
+			return (bool) $user;
+		}
+		if (!$user) return false;
+		
+		return ($user->uid != $uid);
+	}
+	
 }
