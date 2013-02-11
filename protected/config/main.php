@@ -48,8 +48,10 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'systemSettings'=>array(
-			'class' => 'SystemSettings',
-			'dbName' => 'system'
+			'class' => 'ext.common.components.Settings',
+		),
+		'settings'=>array(
+			'class' => 'ext.common.components.Settings',
 		),
 		'sessionMessager' => array(
 			'class' => 'SessionMessager',
