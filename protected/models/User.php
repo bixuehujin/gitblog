@@ -30,6 +30,10 @@ class User extends CActiveRecord {
 		return $this->findByPk($id);
 	}
 	
+	public function beforeSave() {
+		
+		return parent::beforeSave();
+	}
 	
 	static public function getName($uid) {
 		$cache = StaticCache::getInstance(__CLASS__ . __FUNCTION__);
@@ -65,7 +69,7 @@ class User extends CActiveRecord {
 		}
 		if (!$user) return false;
 
-		return ($user->uid != $uid); 
+		return ($user->uid != $uid);
 	}
 	
 	/**

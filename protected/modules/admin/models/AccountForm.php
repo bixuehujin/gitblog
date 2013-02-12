@@ -38,7 +38,6 @@ class AccountForm extends CFormModel {
 		if (!($this->scenarioIsModification && !isset($_POST[__CLASS__]))) {
 			return;			
 		}
-		
 
 		if (isset($_GET['id']) && $_GET['id']) {
 			$user = $this->user->findByPk($_GET['id']);
@@ -78,6 +77,12 @@ class AccountForm extends CFormModel {
 			array('email', 'email'),
 			array('password', 'required', 'on'=>self::SCENARIO_CREATION),
 			array('password2', 'required', 'on'=>self::SCENARIO_CREATION),
+			array('password', 'safe', 'on'=>self::SCENARIO_MODIFICATION),
+			array('password2', 'safe', 'on'=>self::SCENARIO_MODIFICATION),
+			array('gender', 'safe'),
+			array('github', 'safe'),
+			array('weibo', 'safe'),
+			array('truename', 'safe'),
 		);
 	}
 	
@@ -94,11 +99,11 @@ class AccountForm extends CFormModel {
 			return false;
 		}
 		
-		if($this->user->isNameTaken($this->username, $this->getScenarioIsCreation() ? null : Yii::app()->user->id)) {
+		if($this->user->isNameTaken($this->username, $this->getScenarioIsCreation() ? null : $this->uid)) {
 			$this->addError('Username', "username {$this->username} has been taken");
 			return false;
 		}
-		if($this->user->isEmailTaken($this->email, $this->getScenarioIsCreation() ? null : Yii::app()->user->id)) {
+		if($this->user->isEmailTaken($this->email, $this->getScenarioIsCreation() ? null : $this->uid)) {
 			$this->addError('email', "Email {$this->email} has been taken");
 			return false;
 		}
@@ -124,7 +129,7 @@ class AccountForm extends CFormModel {
 		if ($this->getScenarioIsCreation()) {
 			$this->user->isNewRecord = true;
 		}
-		if (!$this->user->save(false)) {
+		if (!$this->user->save(false, $this->getSafeAttributeNames())) {
 			$this->addError('', 'Save account failed');
 			return false;
 		}
