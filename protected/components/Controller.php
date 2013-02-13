@@ -42,9 +42,22 @@ class Controller extends CController
 	 */
 	public $userMenu = array();
 	
+	/**
+	 * Get the route of the current route.
+	 * 
+	 * @return string
+	 */
+	public function getRequestRoute() {
+		static $route;
+		if (!isset($route)) {
+			$route = Yii::app()->getUrlManager()->parseUrl(Yii::app()->getRequest());
+		}
+		return $route;
+	}
+	
 	public function init() {
-		if (isset($_GET['r']) && trim($_GET['r'], '/') == 'view') {
-			$this->redirect(array('/'));
+		if ($this->getRequestRoute() == 'view') {
+			$this->redirect('/');
 		}
 		$this->menu = $this->primaryMenuItems();
 		$this->userMenu = $this->userMenuItems();
@@ -56,9 +69,10 @@ class Controller extends CController
 	 * @return array
 	 */
 	protected function primaryMenuItems() {
+		$route = $this->getRequestRoute();
 		$model = Category::model();
 		$list = $model->getList();
-		$items [] = array('label'=>'主页', 'url'=>array('/'), 'active'=> !isset($_GET['r'])) ;
+		$items [] = array('label'=>'主页', 'url'=>Yii::app()->getBaseUrl() . '/', 'active'=> $route == '') ;
 		foreach ($list as $item) {
 			$items[] = array(
 					'label' => $item->name,

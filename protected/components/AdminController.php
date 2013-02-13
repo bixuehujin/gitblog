@@ -69,7 +69,7 @@ class AdminController extends CController {
 			),
 			array(
 				'label'=>'Back To Front', 
-				'url'=>'/'
+				'url'=>Yii::app()->getBaseUrl() . '/'
 			)
 		);
 	}
