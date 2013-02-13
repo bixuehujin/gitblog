@@ -182,13 +182,14 @@ class MemberController extends AdminController {
 	}
 	
 	public function menuItems() {
+		$route = Yii::app()->getUrlManager()->parseUrl(Yii::app()->getRequest());
 		$items = array();
 		$items[] = array('label'=>Yii::t('admin', 'Roles Management'));
 		$items[] = array('label'=>Yii::t('admin', 'Roles List'), 'url'=>array('/admin/member/roles'));
 
-		if (trim($_GET['r'], '/') === 'admin/member/modifyRole') {
+		if (trim($route, '/') === 'admin/member/modifyRole') {
 			$items[] = array('label'=>Yii::t('admin', 'Modify Role'), 'url'=>Yii::app()->request->url, 'active'=>true);
-		}else if (trim($_GET['r'], '/') === 'admin/member/deleteRole') {
+		}else if (trim($route, '/') === 'admin/member/deleteRole') {
 			$items[] = array('label'=>Yii::t('admin', 'Delete Role'), 'url'=>Yii::app()->request->url, 'active'=>true);
 		}else {
 			$items[] = array('label'=>Yii::t('admin', 'Create Role'), 'url'=>array('/admin/member/createRole'));

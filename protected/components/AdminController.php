@@ -34,41 +34,42 @@ class AdminController extends CController {
 	
 	
 	public function init() {
+		$route = Yii::app()->getUrlManager()->parseUrl(Yii::app()->getRequest());
 		$this->menu = array(
 			array(
 				'label'=>'Home', 
 				'url'=>array('/admin'), 
-				'active' => $_GET['r'] == 'admin'
+				'active' => $route == 'admin'
 			),
 			array(
 				'label'=>'User', 
 				'url'=>array('/admin/user'), 
-				'active' => preg_match('/admin\/user.*/', $_GET['r'])
+				'active' => preg_match('/admin\/user.*/', $route)
 			),
 			array(
 				'label'=>'Source', 
 				'url'=>array('/admin/source'), 
-				'active' => preg_match('/admin\/source.*/', $_GET['r'])
+				'active' => preg_match('/admin\/source.*/', $route)
 			),
 			array(
 				'label'=>'Content', 
 				'url'=>array('/admin/content'), 
-				'active' => preg_match('/admin\/content.*/', $_GET['r'])
+				'active' => preg_match('/admin\/content.*/', $route)
 			),
 			array(
 				'label'=>'System', 
 				'url'=>array('/admin/system'), 
-				'active' => preg_match('/admin\/system.*/', $_GET['r'])
+				'active' => preg_match('/admin\/system.*/', $route)
 			),
 			array(
 				'label' => 'Member',
 				'url' => array('/admin/member'),
 				'visiable' => Yii::app()->user->id == 1,
-				'active' => preg_match('/admin\/member.*/', $_GET['r']),
+				'active' => preg_match('/admin\/member.*/', $route),
 			),
 			array(
 				'label'=>'Back To Front', 
-				'url'=>array('/')
+				'url'=>'/'
 			)
 		);
 	}
