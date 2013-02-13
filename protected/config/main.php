@@ -18,6 +18,8 @@ return array(
 		'application.components.*',
 		'application.components.widgets.*',
 		'application.components.exceptions.*',
+		'ext.common.models.*',
+		'ext.common.components.*',
 		'system.web.helpers.*',
 	),
 
@@ -47,6 +49,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'assetManager'=>array(
+			'basePath' => __DIR__ . '/../../assets',
+		),
 		'systemSettings'=>array(
 			'class' => 'ext.common.components.Settings',
 		),
@@ -65,7 +70,7 @@ return array(
 		),
 		'clientScript' => array(
 			'class' => 'ClientScript',
-			'coreScriptUrl' => 'assets',
+			'coreScriptUrl' => '/assets',
 			'packages' => array(
 				'bootstrap' => array(
 						'css' => array('bootstrap/css/bootstrap.css'),
@@ -95,8 +100,6 @@ return array(
 				),
 			),
 		),
-		// uncomment the following to enable URLs in path-format
-		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -104,8 +107,9 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+			'showScriptName' => false,
+			'appendParams' => false,
 		),
-		*/
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=gitblog',
 			'emulatePrepare' => true,
