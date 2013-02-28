@@ -1,3 +1,3 @@
 [submodule "protected/extensions/common"]
 	path = protected/extensions/common
-	url = git://localhost/yii-common
+	url = git@github.com:bixuehujin/yii-common.git
