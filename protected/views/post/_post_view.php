@@ -1,3 +1,12 @@
+<?php
+/**
+ * The post view template file.
+ * 
+ */
+?>
+
+
+
 <div class="post">
 	<div class="title">
 		<h1><?php echo $post->title?></h1>

@@ -74,7 +74,10 @@ class PostController extends Controller {
 				$this->refresh(true, '#comment-form');
 			}
 		}
-		
+
+		$this->setBreadcrumbs(Category::getCategoryBreadcrumbsArray($post->category->category_id, false)
+			+ array($post->title));
+
 		$this->render('view', array(
 			'post' => $post,
 			'comments' => $comments,

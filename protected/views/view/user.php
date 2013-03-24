@@ -9,10 +9,10 @@
 ?>
 
 <?php 
-$this->breadcrumbs = array(
+$this->setBreadcrumbs(array(
 	'用户归档'=>'#',
 	User::getName($_GET['id']),
-);
+));
 ?>
 
 <?php $this->renderPartial('/post/_posts', array('posts'=>$posts))?>

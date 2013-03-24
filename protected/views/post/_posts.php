@@ -5,6 +5,7 @@
  */
 ?>
 
+
 <div class="posts">
 	<?php foreach($posts as $post):?>
 	

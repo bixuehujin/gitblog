@@ -21,12 +21,6 @@ class Controller extends CController
 	 */
 	public $menu=array();
 	/**
-	 * @var array the breadcrumbs of the current page. The value of this property will
-	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
-	 * for more details on how to specify this property.
-	 */
-	public $breadcrumbs=array();
-	/**
 	 * @var array widgets list should rendered. the structure should looks like:
 	 * <pre>
 	 *     array(
@@ -41,6 +35,11 @@ class Controller extends CController
 	 * @var array
 	 */
 	public $userMenu = array();
+	
+	/**
+	 * @var PageLayout
+	 */
+	private $_pageLayout;
 	
 	/**
 	 * Get the route of the current route.
@@ -80,6 +79,25 @@ class Controller extends CController
 			);
 		}
 		return $items;
+	}
+	
+	public function setBreadcrumbs($links) {
+		Yii::app()->getComponent('layout')->setBreadcrumbs($links);
+		return $this;
+	}
+	
+	public function getBreadcrumbs() {
+		Yii::app()->getComponent('layout')->getBreadcrumbs();
+	}
+	
+	/**
+	 * @return PageLayout
+	 */
+	public function getPageLayout() {
+		if ($this->_pageLayout === null) {
+			$this->_pageLayout = Yii::app()->getComponent('layout');
+		}
+		return $this->_pageLayout;
 	}
 	
 	/**

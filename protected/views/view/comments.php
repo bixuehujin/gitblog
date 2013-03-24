@@ -8,10 +8,10 @@
 ?>
 
 <?php 
-$this->breadcrumbs = array(
+$this->setBreadcrumbs(array(
 	$post->title=>array('/post/view', 'id'=>$post->post_id),
 	'评论列表'
-);
+));
 ?>
 
 <?php $this->renderPartial('/comment/_comment_form', array('commentForm'=>$commentForm, 'post'=>$post))?>

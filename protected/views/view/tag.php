@@ -8,10 +8,10 @@
 ?>
 
 <?php 
-$this->breadcrumbs = array(
+$this->setBreadcrumbs(array(
 	'标签'=>'#',
 	Tag::getTag($_GET['id'])->name
-);
+));
 ?>
 
 <?php $this->renderPartial('/post/_posts', array('posts'=>$posts))?>

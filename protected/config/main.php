@@ -151,6 +151,19 @@ return array(
 				*/
 			),
 		),
+		'mailgun'=>array(
+			'class'=>'ext.common.components.EMailgun',
+			'config'=>array(
+				'password'=>'key-8urgft93rdddn1zr03kjq1hfp64a3xt9',
+				'domain'=>'hujin.mailgun.org',
+			),
+			'defaultSender'=>'i@hujin.me',
+		),
+		'layout'=>array(
+			'class'=>'ext.common.components.PageLayout',
+			'defaultHeader'=>array('/common/header', array()),
+			'defaultFooter'=>array('/common/footer', array()),
+		),
 	),
 
 	// application-level parameters that can be accessed

@@ -13,8 +13,12 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 </head>
 
 <body>
+<?php $layout = Yii::app()->getComponent('layout')?>
 
-<?php echo $this->renderPartial('/layouts/_menu');?>
+
+<?php if ($layout->hasHeader()):?>
+	<?php $layout->renderHeader()?>
+<?php endif;?>
 
 
 <div class="container">
@@ -23,9 +27,10 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 		<?php echo $content; ?>
 	</div>
 	
-	<footer>
-		<p>Copyright &copy; <?php echo date('Y'); ?> by My Company.</p>
-	</footer>
+	
+	<?php if ($layout->hasFooter()):?>
+		<?php $layout->renderFooter()?>
+	<?php endif;?>
 </div>
 
 </body>

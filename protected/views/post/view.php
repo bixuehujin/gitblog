@@ -16,8 +16,6 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 ?>
 <?php
 	$this->pageTitle = $post->title . ' | ' . $this->pageTitle;
-	$this->breadcrumbs = Category::getCategoryBreadcrumbsArray($post->category->category_id, false)
-		+ array($post->title);
 ?>
 
 	

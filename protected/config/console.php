@@ -8,6 +8,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
+	'timezone' => 'Asia/Shanghai',
 
 	// application components
 	'components'=>array(
