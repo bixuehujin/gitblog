@@ -1,4 +1,10 @@
 <?php
+/**
+ * Category AR class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class Category extends CActiveRecord {
 	
 	static public function model($className = __CLASS__) {

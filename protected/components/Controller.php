@@ -8,8 +8,7 @@
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
  */
-class Controller extends CController
-{
+class Controller extends CController{
 	
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
@@ -60,8 +59,8 @@ class Controller extends CController
 		}
 		$this->menu = $this->primaryMenuItems();
 		$this->userMenu = $this->userMenuItems();
+		$this->getPageLayout();
 	}
-	
 	
 	/**
 	 * primary menu items.
@@ -111,5 +110,19 @@ class Controller extends CController
 		$items[] = array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest);
 		
 		return $items;
+	}
+	
+	/**
+	 * Set the page title.
+	 *
+	 * @param string $title
+	 * @param string $domain
+	 */
+	public function setTitle($title, $domain = null) {
+		$this->pageTitle = $title;
+		if ($domain != null) {
+			$this->pageTitle .= ' - ' . $domain;
+		}
+		$this->pageTitle .= ' | ' . Yii::app()->systemSettings->get('site_name');
 	}
 }

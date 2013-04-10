@@ -1,0 +1,24 @@
+#column-left {
+	float:left;
+	width:200px;
+	margin-left:-20px;
+}
+#column-right {
+	float:right;
+	width:240px;
+}
+
+#column-content {
+	float:left;
+}
+#page-content-inner{
+	margin: 0 auto;
+	width: 980px;
+}
+#page-footer {
+	text-align:center;
+}
+
+#page-footer .footer-innder {
+	margin: 0 auto;
+}

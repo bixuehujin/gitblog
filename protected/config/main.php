@@ -69,8 +69,9 @@ return array(
 			'class'=>'ext.bootstrap.components.Bootstrap',
 		),
 		'clientScript' => array(
-			'class' => 'ClientScript',
+			'class' => 'ext.common.components.MinifyClientScript',
 			'coreScriptUrl' => '/assets',
+			'debug' => YII_DEBUG,
 			'packages' => array(
 				'bootstrap' => array(
 						'css' => array('bootstrap/css/bootstrap.css'),
@@ -163,6 +164,10 @@ return array(
 			'class'=>'ext.common.components.PageLayout',
 			'defaultHeader'=>array('/common/header', array()),
 			'defaultFooter'=>array('/common/footer', array()),
+			'layout'=>'//layouts/column3',
+		),
+		'console'=>array(
+			'class'=>'ext.common.components.Console'
 		),
 	),
 

@@ -35,12 +35,10 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 	))
 ?>
 
-
 <?php 
-$this->widgets += array(
-	'application.widgets.TagWidget'=>array('tags'=>$post->tags),
-	'application.widgets.PostNavigationWidget'=>array(
-		'navItems'=>$post->content->getFormattedReference(),
-	),
-);
+$this->getPageLayout()
+	->addColumnItem('sidebar', 'application.widgets.TagWidget', array(
+		'tags' => $post->tags))
+	->addColumnItem('sidebar', 'application.widgets.PostNavigationWidget', array(
+		'navItems'=>$post->content->getFormattedReference()))
 ?>
