@@ -1,7 +1,9 @@
 <?php
 /**
  * Controller class file.
+ * 
  * @author Jin Hu <bixuehujin@gmail.com>
+ * @since 2012-10-10
  */
 
 /**
@@ -14,11 +16,11 @@ class Controller extends CController{
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout = '//layouts/column2';
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
-	public $menu=array();
+	public $menu = array();
 	/**
 	 * @var array widgets list should rendered. the structure should looks like:
 	 * <pre>
@@ -29,11 +31,6 @@ class Controller extends CController{
 	 * </pre>
 	 */
 	public $widgets = array();
-	/**
-	 * Items for render user links such as login, logout etc...
-	 * @var array
-	 */
-	public $userMenu = array();
 	
 	/**
 	 * @var PageLayout
@@ -58,23 +55,23 @@ class Controller extends CController{
 			$this->redirect('/');
 		}
 		$this->menu = $this->primaryMenuItems();
-		$this->userMenu = $this->userMenuItems();
 		$this->getPageLayout();
 	}
 	
 	/**
-	 * primary menu items.
+	 * Primary menu items.
+	 * 
 	 * @return array
 	 */
 	protected function primaryMenuItems() {
 		$route = $this->getRequestRoute();
 		$model = Category::model();
 		$list = $model->getList();
-		$items [] = array('label'=>'主页', 'url'=>Yii::app()->getBaseUrl() . '/', 'active'=> $route == '') ;
+		$items [] = array('label' => '主页', 'url' => Yii::app()->getBaseUrl() . '/', 'active' => $route == '') ;
 		foreach ($list as $item) {
 			$items[] = array(
-					'label' => $item->name,
-					'url' => array('/view/category', 'id'=>$item->category_id),
+				'label' => $item->name,
+				'url' => array('/view/category', 'id' => $item->category_id),
 			);
 		}
 		return $items;
@@ -100,14 +97,24 @@ class Controller extends CController{
 	}
 	
 	/**
-	 * user menu items such as login, logout.
+	 * User menu items such as login, logout.
+	 * 
 	 * @return array
 	 */
 	protected function userMenuItems() {
-		$items[] = array('label'=>'联系', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest);
-		$items[] = array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest);
-		$items[] = array('label'=>'管理', 'url'=>array('/admin'), 'visible'=>!Yii::app()->user->isGuest);
-		$items[] = array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest);
+		$items[] = array('label' => '联系', 'url' => array('/site/contact'), 'visible' => Yii::app()->user->isGuest);
+		$items[] = array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest);
+		$items[] = array('label' => '我的账号<b class="caret"></b>', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest, 'items' => array(
+			array('label' => '系统管理', 'url' => array('/admin'), 'visible' => !Yii::app()->user->isGuest, 'linkOptions' => array('target' => '_blank')),
+			array('label' => '基本信息', 'url' => array('/account/info')),
+			array('label' => '头像设置', 'url' => array('/account/avatar')),
+			array('label' => '密码设置', 'url' => array('/account/password')),
+			array('label' => '', 'itemOptions' => array('class' => 'divider')),
+			array('label' => '退出登陆', 'url' => array('/site/logout')),
+		),  'submenuOptions' => array('class' => 'dropdown-menu', 'role' => 'menu'),
+			'itemOptions' => array('class' => 'dropdown'),
+			'linkOptions' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown')
+		);
 		
 		return $items;
 	}
@@ -123,6 +130,6 @@ class Controller extends CController{
 		if ($domain != null) {
 			$this->pageTitle .= ' - ' . $domain;
 		}
-		$this->pageTitle .= ' | ' . Yii::app()->systemSettings->get('site_name');
+		$this->pageTitle .= ' | ' . Yii::app()->settings->get('site_name');
 	}
 }

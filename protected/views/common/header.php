@@ -3,8 +3,6 @@
  * @var $this Controller
  */
 ?>
-
-
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="navbar-swapper container">
@@ -22,7 +20,7 @@
 			<div class="span4 header-links pulls-left">
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'htmlOptions' => array('class'=>'nav pull-right'),
-					'items'=>$this->userMenu,
+					'items'=>$this->userMenuItems(),
 					'encodeLabel'=>false,
 				)); 
 				?>
