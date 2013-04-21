@@ -51,6 +51,7 @@ return array(
 		),
 		'assetManager'=>array(
 			'basePath' => __DIR__ . '/../../assets',
+			'forceCopy' => YII_DEBUG,
 		),
 		'systemSettings'=>array(
 			'class' => 'ext.common.components.Settings',

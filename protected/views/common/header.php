@@ -3,6 +3,9 @@
  * @var $this Controller
  */
 ?>
+<?php 
+Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/header.css')
+?>
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="navbar-swapper container">

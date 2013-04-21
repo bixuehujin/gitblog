@@ -10,7 +10,7 @@
 <?php
 Yii::app()->clientScript->registerPackage('bootstrap')
 //->registerPackage('bootstrap.responsive')
-->registerCssFile(Yii::app()->getBaseUrl() . '/css/main.css');
+//->registerCssFile(Yii::app()->getBaseUrl() . '/css/main.css');
 ?>
 <!DOCTYPE html>
 <html lang="zh">
@@ -24,7 +24,7 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 <body>
 <?php $layout = Yii::app()->getComponent('layout')?>
 
-
+<div id="page-swapper">
 <?php if ($layout->hasHeader()):?>
 	<?php $layout->renderHeader()?>
 <?php endif;?>
@@ -41,14 +41,13 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 <div class="container" id="page-content">
 <div id="page-content-inner">
 	<?php echo $content; ?>
+	<div class="clearfix"></div>
 </div>
 </div>
 
-<div class="clearfix clear"></div>
-
+</div>
 <?php if ($layout->hasFooter()):?>
 	<?php $layout->renderFooter()?>
 <?php endif;?>
-
 </body>
 </html>

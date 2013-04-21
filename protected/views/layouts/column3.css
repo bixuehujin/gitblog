@@ -1,7 +1,27 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+#page-swapper {
+    position: relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -30px; /* the bottom margin is the negative value of the footer's height */
+}
+
+#page-content {
+    padding-top: 50px;
+}
+
+#page-footer {
+    height: 30px;
+    text-align:center;
+}
+
 #column-left {
 	float:left;
 	width:200px;
-	margin-left:-20px;
 }
 #column-right {
 	float:right;
@@ -11,17 +31,11 @@
 #column-content {
 	float:left;
 }
-#page-content {
-	margin-top:10px;
-}
+
 #page-content-inner{
 	margin: 0 auto;
-	width: 980px;
-}
-#page-footer {
-	text-align:center;
 }
 
-#page-footer .footer-innder {
+#page-footer .footer-inner {
 	margin: 0 auto;
 }
