@@ -11,6 +11,9 @@
 #column-content {
 	float:left;
 }
+#page-content {
+	margin-top:10px;
+}
 #page-content-inner{
 	margin: 0 auto;
 	width: 980px;

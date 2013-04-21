@@ -169,6 +169,14 @@ return array(
 		'console'=>array(
 			'class'=>'ext.common.components.Console'
 		),
+		'fileManager'=>array(
+			'class' => 'ext.common.components.FileManager',
+			'thumbBasePath' => 'thumbnails',
+			'domains' => array(
+				'avatar' => 'avatar',
+			),
+			
+		),
 	),
 
 	// application-level parameters that can be accessed

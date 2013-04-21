@@ -2,8 +2,10 @@
 .project
 .buildpath
 *.log
-protected/runtime/
-assets/
-protected/vendors/
+/protected/runtime/
+/assets/
+/protected/vendors/
 yii
-php/
+/php/
+/thumbnails/
+/uploads/  

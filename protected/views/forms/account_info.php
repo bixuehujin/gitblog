@@ -15,7 +15,7 @@
 
 <?php echo $form->textFieldRow($model, 'username')?>
 <?php echo $form->textFieldRow($model, 'email')?>
-<?php echo $form->textFieldRow($model, 'gender')?>
+<?php echo $form->radioButtonListRow($model, 'gender', array('m' => '男', 'f' => '女', 'u' => '保密'))?>
 <?php echo $form->textFieldRow($model, 'truename')?>
 <?php echo $form->textFieldRow($model, 'github')?>
 <?php echo $form->textFieldRow($model, 'weibo')?>

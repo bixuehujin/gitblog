@@ -40,7 +40,14 @@ class AccountController extends Controller {
 			'设置' => array('/account'),
 			'头像设置',
 		));
-		$this->render('avatar', array());
+		$model = new AvatarForm();
+		if (!empty($_FILES)) {
+			$model->save();
+		}
+		
+		$this->render('avatar', array(
+			'model' => $model,
+		));
 	}
 	
 	public function actionPassword() {

@@ -1,0 +1,4 @@
+RewriteEngine on
+# redirect to /image/avatar when request images do not exsit.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) http://%{HTTP_HOST}/site/thumbnail/$1?rect=1

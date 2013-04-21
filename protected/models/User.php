@@ -27,6 +27,7 @@ class User extends CActiveRecord {
 	 */
 	private static $cachedEmail = array();
 	
+	private $_avatarImage;
 	
 	/**
 	 * @return User
@@ -41,6 +42,24 @@ class User extends CActiveRecord {
 	
 	public function beforeSave() {
 		return parent::beforeSave();
+	}
+	
+	/**
+	 * @return Image
+	 */
+	public function getAvatarImage() {
+		if ($this->avatar && !$this->_avatarImage) {
+			$this->_avatarImage = Image::load($this->avatar);
+		}
+		return $this->_avatarImage;
+	}
+	
+	public function getAvatarUrl($width, $height = null) {
+		$image = $this->getAvatarImage();
+		if ($image) {
+			return $image->getThumbURL($width, $height);
+		}
+		return '/misc/images/avatar-default.jpg';
 	}
 	
 	/**
