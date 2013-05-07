@@ -12,7 +12,10 @@
  * @var AvatarForm  $model
  */
 ?>
-<?php Yii::app()->console->render()?>
+<?php 
+Yii::app()->console->render();
+Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/account.css');
+?>
 <?php $this->renderPartial('/forms/avatar', array('model' => $model))?>
 
 <div>

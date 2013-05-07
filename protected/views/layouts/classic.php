@@ -39,12 +39,12 @@ Yii::app()->clientScript->registerPackage('bootstrap')
 <?php endif;?>
 
 <div class="container" id="page-content">
-<div id="page-content-inner">
-	<?php echo $content; ?>
-	<div class="clearfix"></div>
+	<div id="page-content-inner">
+		<?php echo $content; ?>
+		<div class="clearfix"></div>
+	</div>
 </div>
-</div>
-
+<div id="page-push"></div>
 </div>
 <?php if ($layout->hasFooter()):?>
 	<?php $layout->renderFooter()?>

@@ -13,9 +13,11 @@ html, body {
 #page-content {
     padding-top: 50px;
 }
-
-#page-footer {
+#page-footer, #page-push {
     height: 30px;
+}
+#page-footer {
+    position: relative;
     text-align:center;
 }
 
@@ -36,6 +38,6 @@ html, body {
 	margin: 0 auto;
 }
 
-#page-footer .footer-inner {
+.footer-inner {
 	margin: 0 auto;
 }
