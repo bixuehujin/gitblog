@@ -1,0 +1,25 @@
+#column-content {
+    width: 690px;
+    padding: 0 25px;
+}
+.section-title {
+    width: 100%;
+    padding-bottom: 20px;
+}
+.section-title h2{
+    font-weight: normal;
+    font-size: 21px;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.messages {
+    margin-top: -10px;
+}
+
+#post-form textarea {
+    width: 98%;
+}
+#post-form textarea#content {
+    height: 150px;
+}
