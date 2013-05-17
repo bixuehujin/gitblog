@@ -14,6 +14,36 @@ use Git2\Commit;
 use Git2\Signature;
 use Git2\TreeBuilder;
 use Git2\TreeEntry;
+use Git2\Walker;
+
+
+/**
+ * Sort the repository contents in no particular ordering;
+ * this sorting is arbitrary, implementation-specific
+ * and subject to change at any time.
+ * This is the default sorting for new walkers.
+ */
+define('GIT_SORT_NONE', 0);
+
+/**
+ * Sort the repository contents in topological order
+ * (parents before children); this sorting mode
+ * can be combined with time sorting.
+ */
+define('GIT_SORT_TOPOLOGICAL', 1 << 0);
+
+/**
+ * Sort the repository contents by commit time;
+ * this sorting mode can be combined with
+ * topological sorting.
+ */
+define('GIT_SORT_TIME', 1 << 1);
+/**
+ * Iterate through the repository contents in reverse
+ * order; this sorting mode can be combined with
+ * any of the above.
+ */
+define('GIT_SORT_REVERSE', 1 << 2);
 
 class GitClient extends CComponent {
 	
@@ -25,7 +55,7 @@ class GitClient extends CComponent {
 	
 	public function __construct($path) {
 		$this->path = $path;
-		$this->repo = Repository::init($this->path, false);
+		$this->repo = Repository::init($this->path, true);
 	}
 	
 	public function getParentsCommit() {
@@ -117,4 +147,65 @@ class GitClient extends CComponent {
 		));
 		return $parent;
 	}
+	
+	/**
+	 * 
+	 * @param string $utilOid
+	 * @return Git2\Commit[]
+	 */
+	public function listCommitUntil($utilOid = null) {
+		$ref = Reference::lookup($this->repo, 'refs/heads/master');
+		$headCommit = $ref->getTarget();
+		$walker = new Walker($this->repo);
+		$walker->push($headCommit);
+		$walker->sorting(GIT_SORT_TIME | GIT_SORT_TOPOLOGICAL);
+		$commits = array();
+		foreach ($walker as $item) {
+			if ($item->getOid() == $utilOid) {
+				break;
+			}
+			$commits[] = $item;
+		}
+		return $commits;
+	}
+	
+	/**
+	 * @param Git2\Commit $oldCommit
+	 * @param Git2\Commit $newCommit
+	 * @return array(
+	 *           'A' => array(),
+	 *           'M' => array(),
+	 *           'D' => array()
+	 *         )
+	 */
+	public function diffCommit($oldCommit, $newCommit) {
+		$res = $this->repo->diff($oldCommit->getTree(), $newCommit->getTree());
+		$res = explode("\n", trim($res));
+		$ret = array();
+		foreach ($res as $row) {
+			$ret[$row[0]][] = substr($row, 2);
+		}
+		return $ret;
+	}
+	
+	public function fetchBlobContent($oid) {
+		return $this->repo->lookup($oid)->getContent();
+	}
+
+	/**
+	 * @param Git2\Tree $tree
+	 * @param string    $filename
+	 */
+	public function fetchContentByPath($tree, $filename) {
+		if (($pathLen = strrpos($filename, '/')) === false) {
+			$entry = $tree->getEntryByName($filename);
+		}else {
+			$path = substr($filename, 0, $pathLen);
+			$filename = substr($filename, $pathLen + 1);
+			$subTree = $tree->getSubtree($path);
+			$entry = $subTree->getEntryByName($filename);
+		}
+		return $this->repo->lookup($entry->oid)->getContent();
+	}
 }
+

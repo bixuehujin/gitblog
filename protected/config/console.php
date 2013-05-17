@@ -9,22 +9,22 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
 	'timezone' => 'Asia/Shanghai',
-
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+		'ext.common.models.*',
+		'ext.common.components.*',
+		'system.web.helpers.*',
+	),
 	// application components
 	'components'=>array(
 		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		// uncomment the following to use a MySQL database
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=gitblog',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'sdyxzsdyxz',
 			'charset' => 'utf8',
 		),
-		*/
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
