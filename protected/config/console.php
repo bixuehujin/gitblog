@@ -19,11 +19,14 @@ return array(
 	// application components
 	'components'=>array(
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=gitblog',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=gitblog',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'sdyxzsdyxz',
 			'charset' => 'utf8',
+		),
+		'settings'=>array(
+			'class' => 'ext.common.components.Settings',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',

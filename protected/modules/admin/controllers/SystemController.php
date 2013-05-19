@@ -1,9 +1,12 @@
 <?php
 /**
- * controller for manage system wide settings, avaliable to system administor.
+ * SystemController class file.
  * 
- * @author hujin
- *
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
+/**
+ * Controller for manage system wide settings, avaliable to system administors.
  */
 class SystemController extends AdminController {
 	
@@ -13,6 +16,7 @@ class SystemController extends AdminController {
 		return array(
 			array('label'=>'站点信息', 'url'=>array('/admin/system/website')),
 			array('label'=>'显示设置', 'url'=>array('/admin/system/show')),
+			array('label'=>'Git设置', 'url'=>array('/admin/system/git')),
 		);
 	}
 	
@@ -43,6 +47,20 @@ class SystemController extends AdminController {
 		
 		$this->render('show', array(
 				'model'=>$model,
+		));
+	}
+	
+	public function actionGit() {
+		$model = new SystemGitForm();
+		
+		if (isset($_POST['SystemGitForm'])) {
+			$model->setAttributes($_POST["SystemGitForm"]);
+			if ($model->save()) {
+				$this->refresh();
+			}
+		}
+		$this->render('git', array(
+			'model'=>$model,
 		));
 	}
 }

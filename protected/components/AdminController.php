@@ -1,11 +1,13 @@
 <?php
-
 /**
- * base controller for admin management.
+ * AdminController class file.
  *  
  * @author Jin Hu <bixuehujin@gmail.com>
  */
 
+/**
+ * Base controller for admin management pages.
+ */
 class AdminController extends CController {
 	/**
 	 * @var string the default layout for the controller view. Defaults to 
@@ -46,11 +48,11 @@ class AdminController extends CController {
 				'url'=>array('/admin/user'), 
 				'active' => preg_match('/admin\/user.*/', $route)
 			),
-			array(
-				'label'=>'Source', 
-				'url'=>array('/admin/source'), 
-				'active' => preg_match('/admin\/source.*/', $route)
-			),
+			//array(
+			//	'label'=>'Source', 
+			//	'url'=>array('/admin/source'), 
+			//	'active' => preg_match('/admin\/source.*/', $route)
+			//),
 			array(
 				'label'=>'Content', 
 				'url'=>array('/admin/content'), 

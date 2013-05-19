@@ -1,9 +1,10 @@
 <?php
 /**
- * configure the data source.
+ * SourceController class file.
  * 
- * @author hujin
+ * @author Jin Hu <bixuehujin@gmail.com>
  */
+
 class SourceController extends AdminController {
 	
 	public $defaultAction = 'basic';

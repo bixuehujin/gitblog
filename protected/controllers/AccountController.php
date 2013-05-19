@@ -59,4 +59,22 @@ class AccountController extends Controller {
 		
 		$this->render('password', array());
 	}
+	
+	public function actionContent() {
+		$this->setTitle('内容设定');
+		$this->getPageLayout()->setBreadcrumbs(array(
+			'设置' => array('/account'),
+			'内容设定',
+		));
+		$model = new GitSettingForm();
+		if (isset($_POST['GitSettingForm'])) {
+			$model->setAttributes($_POST["GitSettingForm"]);
+			if ($model->save()) {
+				$this->refresh();
+			}
+		}
+		$this->render('content', array(
+			'model' => $model,
+		));
+	}
 }
