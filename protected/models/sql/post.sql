@@ -13,4 +13,6 @@ CREATE TABLE `post` (
   `rid`       int(11)          NOT NULL DEFAULT '0',
   `status`    tinyint(4)       NOT NULL DEFAULT '0',
   PRIMARY KEY (`pid`),
+  INDEX `author`(`author`),
+  INDEX `cid`(`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

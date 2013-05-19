@@ -1,7 +1,16 @@
 <?php
+/**
+ * PostRevision AR class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class PostRevision extends CActiveRecord {
-	
-	static public function model($className = __CLASS__) {
+
+	/**
+	 * @return PostRevision
+	 */
+	public static function model($className = __CLASS__) {
 		return parent::model($className);
 	}
 	

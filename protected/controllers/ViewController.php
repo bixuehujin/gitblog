@@ -1,4 +1,10 @@
 <?php
+/**
+ * ViewController class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class ViewController extends Controller {
 	
 	public $defaultAction = 'category';
@@ -22,28 +28,10 @@ class ViewController extends Controller {
 	 * view by category
 	 */
 	public function actionCategory() {
+		$id = Yii::app()->getRequest()->getQuery('id', 0);
 		
-		$criteria = new CDbCriteria();
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		if($id) {
-			$cateIds = Category::model()->getSubCategoryIds($id);
-			if(is_null($cateIds)) {
-				throw new CHttpException(404);
-			}
-			$cateIds = empty($cateIds) ? array($id) : $cateIds;
-			$criteria->addInCondition('category_id', $cateIds);
-		}
+		$dataPravider = Post::fetchProviderByCategoryId($id);
 		
-		$criteria->order = 'post_id DESC';
-		
-		$criteria->addCondition('visibility=0');
-		
-		$uid = Yii::app()->user->id;
-		if($uid) {
-			$criteria->addCondition("visibility=1 and uid={$uid}", 'OR');
-		}
-			
-		$dataPravider = $this->getPostDataProvider($criteria);
 		$this->render('category', array(
 			'posts' => $dataPravider->getData(),
 			'pagination'=>$dataPravider->getPagination(),

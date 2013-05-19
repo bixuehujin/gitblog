@@ -1,24 +1,21 @@
 <?php
+/**
+ * Post AR class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class Post extends CActiveRecord {
-	/**
-	 * the post can be viewed by all.
-	 */
-	const VISIBILITY_ALL = 0;
-	/**
-	 * the post can only be viewed by the author.
-	 */
-	const VISIBILITY_SELF = 1;
-	/**
-	 * visibility maps between internal and human readable format.
-	 */
-	static public function visibilityMaps(){ 
-		return array(
-			'all'=>self::VISIBILITY_ALL,
-			'self'=>self::VISIBILITY_SELF,
-		);
-	}
+
+	const STATUS_NORMAL     = 0;
+	const STATUS_DELETED    = 1;
+	const STATUS_UNVISIABLE = 2; // only author can view.
+
 	
-	static public function model($className = __CLASS__) {
+	/**
+	 * @return Post
+	 */
+	public static function model($className = __CLASS__) {
 		return parent::model($className);
 	}
 	
@@ -28,9 +25,9 @@ class Post extends CActiveRecord {
 	
 	public function relations() {
 		return array(
-			'content'=>array(self::HAS_ONE, 'PostRevision', array('revision_id'=>'revision_id')),
+			'revision'=>array(self::HAS_ONE, 'PostRevision', array('revision_id'=>'revision_id')),
 			'category'=>array(self::HAS_ONE, 'Category', array('category_id'=>'category_id')),
-			'user'=>array(self::HAS_ONE, 'User', array('uid'=>'uid')),
+			'author'=>array(self::HAS_ONE, 'User', array('uid'=>'uid')),
 			'tags'=>array(self::HAS_MANY, 'PostTag', array('post_id'=>'post_id')),
 		);
 	}
@@ -168,7 +165,63 @@ class Post extends CActiveRecord {
 	 * check if specified post is exsit.
 	 * @param integer $postId
 	 */
-	static public function checkExist($postId) {
+	public static function checkExist($postId) {
 		return (bool)self::model()->find('post_id=' . $postId);
+	}
+	
+	/**
+	 * Fetch a data provider of Post by category id.
+	 * 
+	 * @param integer $catid
+	 * @param integer $pageSize
+	 * @return CActiveDataProvider
+	 */
+	public static function fetchProviderByCategoryId($catid = 0, $pageSize = 10) {
+		$criteria = new CDbCriteria();
+		if ($catid) {
+			$criteria->addInCondition('cid', array($catid));
+		}
+		$criteria->order = 'pid DESC';
+		return new CActiveDataProvider(__CLASS__, array(
+			'criteria' => $criteria,
+			'pagination' => array(
+				'pageVar' => 'p',
+				'pageSize' => $pageSize,
+			)
+		));
+	}
+	
+	/**
+	 * Fetch a data provider of Post by author.
+	 * 
+	 * @param integer $uid
+	 * @param integer $pageSize
+	 * @return CActiveDataProvider
+	 */
+	public static function fetchProviderByAuthor($uid, $pageSize = 10) {
+		$criteria = new CDbCriteria();
+		$criteria->addColumnCondition(array(
+			'author' => $uid,
+		));
+		$criteria->order = 'pid DESC';
+		return new CActiveDataProvider(__CLASS__, array(
+			'criteria' => $criteria,
+			'pagination' => array(
+				'pageVar' => 'p',
+				'pageSize' => $pageSize,
+			),
+		));
+	}
+	
+	
+	/**
+	 * Fetch a data provider of Post by tagId.
+	 *
+	 * @param integer $tagId
+	 * @param integer $pageSize
+	 * @return CActiveDataProvider
+	 */
+	public static function fetchProviderByTag($tagId, $pageSize = 10) {
+		
 	}
 }
