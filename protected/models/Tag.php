@@ -1,19 +1,33 @@
 <?php
-class Tag extends ActiveRecord {
+/**
+ * Tag AR class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
+/**
+ * @property integer $tid
+ * @property string  $name
+ * @property string  $description
+ */
+class Tag extends Term {
 	
-	static public function model($className = __CLASS__) {
-		return parent::model($className);
-	}
-	
-	public function tableName() {
-		return 'tag';
+	public function vocabulary() {
+		$vocabulary = TermVocabulary::loadByMName('category');
+		if (!$vocabulary) {
+			$vocabulary = new TermVocabulary();
+			$vocabulary->name = '分类';
+			$vocabulary->mname = 'category';
+			$vocabulary->save(false);
+		}
+		return $vocabulary;
 	}
 	
 	/**
 	 * get tag infomation by tagId.
 	 * @param integer $tagId
 	 */
-	static public function getTag($tagId) {
+	public static function getTag($tagId) {
 		return self::model()->find('tag_id=' . $tagId);
 	}
 	
@@ -24,7 +38,7 @@ class Tag extends ActiveRecord {
 	 * @return array tagName indexed array, contains id and name. if a tag doesn't exist
 	 * its id will be null.
 	 */
-	static public function getTagsInfo($tags) {
+	public static function getTagsInfo($tags) {
 		if (is_string($tags)) {
 			$tags = explode(',', $tags);
 			foreach($tags as &$tag) {
@@ -53,7 +67,7 @@ class Tag extends ActiveRecord {
 	 * @param array $tagsInfo returned by $this->getTagsInfo()
 	 * @param array 
 	 */
-	static public function getNewTags($tagsInfo) {
+	public static function getNewTags($tagsInfo) {
 		$ret = array();
 		foreach ($tagsInfo as $key => $tag) {
 			if($tag['id'] == null) {
@@ -68,7 +82,7 @@ class Tag extends ActiveRecord {
 	 * 
 	 * @param array $tags
 	 */
-	static public function addTagsBatch($tags) {
+	public static function addTagsBatch($tags) {
 		$ret = array();
 		foreach($tags as $tag) {
 			$model = new Tag();
@@ -90,8 +104,23 @@ class Tag extends ActiveRecord {
 	 * 
 	 * @param mixed $tagId
 	 */
-	static public function checkExist($tagId) {
+	public static function checkExist($tagId) {
 		return (bool)self::model()->find('tag_id=' . $tagId);
 	}
 	
+	/**
+	 * Load a tag by its name.
+	 * 
+	 * @param string $name
+	 * @return Tag
+	 */
+	public static function loadByName($name, $autoCreate = false) {
+		$ret = static::model()->findByAttributes(array(
+			'name' => $name
+		));
+		if (!$ret && $autoCreate) {
+			$ret = Tag::create($name);
+		}
+		return $ret;
+	}
 }

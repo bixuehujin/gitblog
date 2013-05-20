@@ -5,14 +5,60 @@
  * @author Jin Hu <bixuehujin@gmail.com>
  */
 
-class Category extends CActiveRecord {
-	
-	static public function model($className = __CLASS__) {
-		return parent::model($className);
+
+/**
+ * @property integer $cid
+ * @property string  $name
+ * @property string  $mname
+ * @property string  $description
+ * @property integer $weight
+ */
+class Category extends Term {
+
+	public function getCid() {
+		return $this->tid;
 	}
 	
-	public function tableName() {
-		return 'category';
+	public function vocabulary() {
+		$vocabulary = TermVocabulary::loadByMName('category');
+		if (!$vocabulary) {
+			$vocabulary = new TermVocabulary();
+			$vocabulary->name = '分类';
+			$vocabulary->mname = 'category';
+			$vocabulary->save(false);
+		}
+		return $vocabulary;
+	}
+	
+	protected function buildMenu($cid, $activeCid) {
+		$children = self::fetchChildren($cid);
+		$menu = array();
+		foreach ($children as $item) {
+			$menu[] = array(
+				'label' => $item->name,
+				'url' => array('', 'cid' => $item->cid),
+				'active' => $activeCid == $item->cid,
+			);
+		}
+		return $menu;
+	}
+	
+	public function buildPrimaryMenu() {
+		$activeCid = Yii::app()->request->getQuery('cid', 0);
+		$menu = $this->buildMenu(0, $activeCid);
+		$menu[] = array(
+			'label' => '全部',
+			'url' => array(''),
+			'active' => $activeCid == 0,
+		);
+		return $menu;
+	}
+	
+	public function buildSecondaryMenu() {
+		$activeCid = Yii::app()->request->getQuery('cid', 0);
+		if (!$activeCid) return array();
+		
+		return $this->buildMenu($activeCid, 0);
 	}
 	
 	/**
@@ -57,33 +103,25 @@ class Category extends CActiveRecord {
 	}
 	
 	/**
+	 * Load a category by its name.
+	 * 
+	 * @param string $name
+	 * @return Category
+	 */
+	public static function loadByName($name) {
+		return static::model()->findByAttributes(array(
+			'name' => $name
+		));
+	}
+	
+	/**
 	 * consturct breadcrumbs array used to render a breadcrumb navagation.
 	 * 
 	 * @param integer $id
 	 * @return array
 	 */
-	static public function getCategoryBreadcrumbsArray($id, $markFirst = true) {
-		//TODO proformace issues on a log of categories.
-		$categories = Category::model()->findAll();
-		$path = array();
-		while ($id != 0) {
-			foreach ($categories as $category) {
-				if($category->category_id == $id) {
-					if($markFirst) {
-						$path[] = $category->name;
-						$markFirst = false;							
-					}else {
-						$path[$category->name] = array('/view/category', 'id'=>$category->category_id);
-					}
-					$id = $category->parent;
-				}
-			}
-		}
-		return array_reverse($path);
-	}
-	
-	static public function getIdByName($name) {
-		$category = Category::model()->find("name='$name'");
-		return $category->category_id;
+	public static function getCategoryBreadcrumbsArray($id) {
+		$path  = self::fetchTermPath($id);
+		
 	}
 }

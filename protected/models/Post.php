@@ -10,7 +10,12 @@ class Post extends CActiveRecord {
 	const STATUS_NORMAL     = 0;
 	const STATUS_DELETED    = 1;
 	const STATUS_UNVISIABLE = 2; // only author can view.
-
+	
+	/**
+	 * Tags attached to current post.
+	 * @var Tag[]
+	 */
+	private $tags;
 	
 	/**
 	 * @return Post
@@ -26,10 +31,12 @@ class Post extends CActiveRecord {
 	public function relations() {
 		return array(
 			'revision'=>array(self::HAS_ONE, 'PostRevision', array('revision_id'=>'revision_id')),
-			'category'=>array(self::HAS_ONE, 'Category', array('category_id'=>'category_id')),
 			'author'=>array(self::HAS_ONE, 'User', array('uid'=>'uid')),
-			'tags'=>array(self::HAS_MANY, 'PostTag', array('post_id'=>'post_id')),
 		);
+	}
+	
+	public function getCategory() {
+		return Category::load($this->cid);
 	}
 	
 	
@@ -160,6 +167,58 @@ class Post extends CActiveRecord {
 		}
 		return $ret;
 	}
+	
+	/**
+	 * @return Tag[]
+	 */
+	public function getAttachedTags() {
+		if ($this->tags === null) {
+			$this->tags = TermEntity::getAttachedTerms($this->pid, 'post');
+		}
+		return $this->tags;
+	}
+	
+	/**
+	 * Apply a category to the current post.
+	 * 
+	 * @param string $catName
+	 */
+	public function applyCategory($catName) {
+		$catgory = Category::loadByName($catName);
+		if ($catgory && $this->cid != $catgory->cid) {
+			$this->cid = $catgory->cid;
+			$this->save(false, array('cid'));
+		}
+	}
+	
+	/**
+	 * Apply a set of tags to the current post.
+	 * 
+	 * @param array $tagNames
+	 */
+	public function applyTags($tagNames) {
+		$otags = $this->getAttachedTags();
+		$otags = Utils::arrayColumns($otags, null, 'name');
+		$otagNames = array_keys($otags);
+		
+		$deletedTags = array_diff($otagNames, $tagNames);
+		$addedTags = array_diff($tagNames, $otagNames);
+		
+		$ntags = $otags;
+		
+		foreach ($deletedTags as $tagName) {
+			$otags[$tagName]->unattach($this->pid, 'post');
+			unset($ntags[$tagName]);
+		}
+		foreach ($addedTags as $tagName) {
+			$tag = Tag::loadByName($tagName, true);
+			if ($tag) {
+				$ntags[$tagName] = $tag;
+			}
+		}
+		$this->tags = $ntags;
+	}
+	
 	
 	/**
 	 * check if specified post is exsit.
