@@ -8,11 +8,19 @@
  * @var $comments array of Comment object.
  */
 ?>
+<?php 
+$this->getPageLayout()
+	->addColumnItem('right', 'application.widgets.TagWidget', array(
+		'tags' => $post->attachedTags))
+	->addColumnItem('right', 'application.widgets.PostNavigationWidget', array(
+		'navItems'=>$post->content->getFormattedReference(), 'htmlOptions' => array('class' => 'navigation affix')))
+?>
 
 <?php 
 Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 	->registerPackage('jquery.scrollTo')
-	->registerScriptFile(Yii::app()->getBaseUrl(). '/js/post-view.js');
+	->registerScriptFile(Yii::app()->getBaseUrl(). '/js/post-view.js')
+	->pregisterCssFile(__DIR__ . '/post.css');
 ?>
 <?php
 	$this->pageTitle = $post->title . ' | ' . $this->pageTitle;
@@ -35,10 +43,3 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 	))
 ?>
 
-<?php 
-$this->getPageLayout()
-	->addColumnItem('sidebar', 'application.widgets.TagWidget', array(
-		'tags' => $post->tags))
-	->addColumnItem('sidebar', 'application.widgets.PostNavigationWidget', array(
-		'navItems'=>$post->content->getFormattedReference()))
-?>

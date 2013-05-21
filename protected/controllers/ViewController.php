@@ -33,32 +33,28 @@ class ViewController extends Controller {
 		$dataPravider = Post::fetchProviderByCategoryId($id);
 		
 		$this->render('category', array(
-			'posts' => $dataPravider->getData(),
-			'pagination'=>$dataPravider->getPagination(),
+			'provider' => $dataPravider,
 		));
+	}
+	
+	/**
+	 * View by topics.
+	 */
+	public function actionTopic() {
+		
+		$this->render('topic', array());
 	}
 	
 	/**
 	 * view posts by user.
 	 */
 	public function actionUser() {
-		if (!isset($_GET['id']) || !User::checkExist($_GET['id'])) {
+		$id = Yii::app()->request->getQuery('id', 0);
+		if (!$id || !($user = User::load($id))) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		
-		$criteria = new CDbCriteria();
-		
-		$criteria->addCondition('visibility=0');
-		
-		$uid = Yii::app()->user->id;
-		if($uid) {
-			$criteria->addCondition("visibility=1 and uid={$uid}", 'OR');
-		}
-		
-		$criteria->order = 'post_id DESC';
-		$criteria->addCondition("uid={$_GET['id']}");
-		
-		$dataProvider = $this->getPostDataProvider($criteria);
+		$dataProvider = Post::fetchProviderByAuthor($user->uid);
 		
 		$this->render('user', array(
 			'posts' => $dataProvider->getData(),
@@ -70,42 +66,29 @@ class ViewController extends Controller {
 	 * view posts by tag.
 	 */
 	public function actionTag() {
-		if(!isset($_GET['id']) || !Tag::checkExist($_GET['id'])) {
+		$id = Yii::app()->request->getQuery('id', 0);
+		if(!$id || !($tag = Tag::load($id))) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		
-		$postIds = PostTag::model()->getPostIds($_GET['id']);
-		if(!empty($postIds)) {
-			$criteria = new CDbCriteria();
-			
-			$criteria->addInCondition('post_id', $postIds);
-			$criteria->addCondition('visibility=0');
-			
-			$uid = Yii::app()->user->id;
-			if($uid) {
-				$criteria->addCondition("post_id IN(" 
-						. implode(',', $postIds) 
-						. ") and visibility=1 and uid={$uid}", 'OR');
-			}			
-			$dataProvider = $this->getPostDataProvider($criteria);
-			$maps['posts'] = $dataProvider->getData();
-			$maps['pagination'] = $dataProvider->getPagination();
-		}else {
-			$maps['posts'] = array();
-			$maps['pagination'] = null;
-		}
+		$provider = Post::fetchProviderByTag($id);
 		
-		$posts = Post::model()->getByTagId($_GET['id']);
-		$this->render('tag', $maps);
+		$this->render('tag', array(
+			'posts' => $provider->getData(),
+			'pagination' => $provider->getPagination(),
+			'tag' => $tag,
+		));
 	}
 	
 	/**
 	 * view all comments in a single page.
 	 */
 	public function actionComments() {
-		if(!isset($_GET['id'])) {
+		$id = Yii::app()->request->getQuery('id', 0);
+		if(!$id || !($post = Post::load($id))) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
+		
 		$criteria = new CDbCriteria();
 		$criteria->condition = 'post_id=' . $_GET['id'];
 		$criteria->order = 'comment_id DESC';
@@ -117,10 +100,7 @@ class ViewController extends Controller {
 			),
 		));
 		
-		$post = Post::model()->find('post_id=' . $_GET['id']);
-		if(!$post) {
-			throw new CHttpException(404);
-		}
+		
 		$this->render('comments', array(
 				'comments'=>$provider->getData(),
 				'post'=>$post,

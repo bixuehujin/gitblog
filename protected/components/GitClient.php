@@ -196,7 +196,7 @@ class GitClient extends CComponent {
 	 * @param Git2\Tree $tree
 	 * @param string    $filename
 	 */
-	public function fetchContentByPath($tree, $filename) {
+	public function fetchContentByPath($tree, $filename, &$oid = null) {
 		if (($pathLen = strrpos($filename, '/')) === false) {
 			$entry = $tree->getEntryByName($filename);
 		}else {
@@ -204,6 +204,9 @@ class GitClient extends CComponent {
 			$filename = substr($filename, $pathLen + 1);
 			$subTree = $tree->getSubtree($path);
 			$entry = $subTree->getEntryByName($filename);
+		}
+		if (!$oid) {
+			$oid = $entry->oid;
 		}
 		return $this->repo->lookup($entry->oid)->getContent();
 	}

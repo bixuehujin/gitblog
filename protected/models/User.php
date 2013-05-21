@@ -62,6 +62,14 @@ class User extends CActiveRecord {
 		return '/misc/images/avatar-default.jpg';
 	}
 	
+	public function getSetting($name) {
+		return UserSetting::model()->get($name, $this);
+	}
+	
+	public function setSetting($name, $value) {
+		return UserSetting::model()->set($name, $value, $this);
+	}
+	
 	/**
 	 * Load a user by its indentifier(uid, username, email) from database.
 	 * 

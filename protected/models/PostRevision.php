@@ -7,6 +7,8 @@
 
 class PostRevision extends CActiveRecord {
 
+	private $parser;
+	
 	/**
 	 * @return PostRevision
 	 */
@@ -18,33 +20,14 @@ class PostRevision extends CActiveRecord {
 		return 'post_revision';
 	}
 	
-	
-	public function init() {
-		$this->attachEventHandler('onAfterFind', array($this, 'handleOnAfterFind'));
-		$this->attachEventHandler('onBeforeSave', array($this, 'handleOnBeforeSave'));
-	}
-	
-	/**
-	 * event handler for OnAfterFind event.
-	 * 
-	 * @param CModelEvent $event
-	 */
-	public function handleOnAfterFind($event) {
-		$this->reference = unserialize($this->reference);
-	}
-
-	/**
-	 * event handler for OnBeforeSave event.
-	 * 
-	 * @param CModelEvent $event
-	 */
-	public function handleOnBeforeSave($event) {
-		$this->reference = serialize($this->reference);
-	}
-	
-	
-	public function findByShaAndPostID($sha, $post_id) {
-		return $this->find("sha='$sha' and post_id=$post_id");
+	protected function parseContent() {
+		if ($this->parser == null) {
+			$parser = new PostParser();
+			$parser->setBody($this->content);
+			$parser->parse();
+			$this->parser = $parser;
+		}
+		return $this->parser;
 	}
 	
 	/**
@@ -53,14 +36,16 @@ class PostRevision extends CActiveRecord {
 	 * @return array array c
 	 */
 	public function getFormattedReference() {
-		$items = $this->reference;
-		if (!is_array($items)) {
-			return array();
-		}
+		$parser = $this->parseContent();
+		$items = $parser->reference;
 		$this->processReference($items);
 		return $items;
 	}
 	
+	public function getFormattedContent() {
+		$parser = $this->parseContent();
+		return $parser->content;
+	}
 	
 	protected function processReference(&$items) {
 		static $i = 0;
@@ -71,5 +56,13 @@ class PostRevision extends CActiveRecord {
 				$this->processReference($item['items']);
 			}
 		}
+	}
+	
+	
+	public function beforeSave() {
+		if ($this->isNewRecord) {
+			$this->created = time();
+		}
+		return parent::beforeSave();
 	}
 }

@@ -30,9 +30,12 @@ class Post extends CActiveRecord {
 	
 	public function relations() {
 		return array(
-			'revision'=>array(self::HAS_ONE, 'PostRevision', array('revision_id'=>'revision_id')),
-			'author'=>array(self::HAS_ONE, 'User', array('uid'=>'uid')),
+			'content'=>array(self::HAS_ONE, 'PostRevision', array('rid'=>'rid')),
 		);
+	}
+	
+	public function getAuthor() {
+		return User::load($this->author);
 	}
 	
 	public function getCategory() {
@@ -105,9 +108,9 @@ class Post extends CActiveRecord {
 	}
 	
 	
-	public function getFormattedDate() {
+	public function getFormattedCreated() {
 		date_default_timezone_set('Asia/Shanghai');
-		return date('Y年m月d日 H:i', $this->created);
+		return date('m月d日 H:i', $this->created);
 	}
 	
 	/**
@@ -157,12 +160,12 @@ class Post extends CActiveRecord {
 			return $this->summary;
 		}
 		$ret = '';
-		if(Yii::app()->systemSettings->get('auto_abstract_generation')) {
-			$len = Yii::app()->systemSettings->get('post_abstract_len') ?: 200;
-			if (mb_strlen($this->content->body, 'utf-8') <= $len) {
-				$ret = $this->content->body;
+		if(Yii::app()->settings->get('auto_abstract_generation')) {
+			$len = Yii::app()->settings->get('post_abstract_len') ?: 200;
+			if (mb_strlen($this->content->formattedContent, 'utf-8') <= $len) {
+				$ret = $this->content->formattedContent;
 			}else {
-				$ret = mb_substr($this->content->body, 0, $len, 'utf-8') . '... ...';
+				$ret = mb_substr($this->content->formattedContent, 0, $len, 'utf-8') . '... ...';
 			}
 		}
 		return $ret;
@@ -194,16 +197,23 @@ class Post extends CActiveRecord {
 	/**
 	 * Apply a set of tags to the current post.
 	 * 
-	 * @param array $tagNames
+	 * @param string|array $tagNames
 	 */
 	public function applyTags($tagNames) {
+		if (is_string($tagNames)) {
+			$tagNames = explode(',', $tagNames);
+		}
+		foreach ($tagNames as &$tagName) {
+			$tagName = trim($tagName);
+		}
+		unset($tagName);
+		
 		$otags = $this->getAttachedTags();
 		$otags = Utils::arrayColumns($otags, null, 'name');
 		$otagNames = array_keys($otags);
 		
 		$deletedTags = array_diff($otagNames, $tagNames);
 		$addedTags = array_diff($tagNames, $otagNames);
-		
 		$ntags = $otags;
 		
 		foreach ($deletedTags as $tagName) {
@@ -213,12 +223,40 @@ class Post extends CActiveRecord {
 		foreach ($addedTags as $tagName) {
 			$tag = Tag::loadByName($tagName, true);
 			if ($tag) {
+				$tag->attachTo($this->pid, 'post');
 				$ntags[$tagName] = $tag;
 			}
 		}
 		$this->tags = $ntags;
 	}
 	
+	public function beforeSave() {
+		if ($this->getIsNewRecord()) {
+			$this->created = time();
+		}
+		$this->modified = time();
+		return parent::beforeSave();
+	}
+	
+	/**
+	 * Load a post by its pid.
+	 * 
+	 * @param integer $pid
+	 * @return Post
+	 */
+	public static function load($pid) {
+		return self::model()->findByPk($pid);
+	}
+	
+	/**
+	 * Load a post by its git path.
+	 * 
+	 * @param string $path
+	 * @return Post
+	 */
+	public static function loadByPath($path) {
+		return self::model()->findByAttributes(array('path' => $path));
+	}
 	
 	/**
 	 * check if specified post is exsit.
@@ -238,7 +276,9 @@ class Post extends CActiveRecord {
 	public static function fetchProviderByCategoryId($catid = 0, $pageSize = 10) {
 		$criteria = new CDbCriteria();
 		if ($catid) {
-			$criteria->addInCondition('cid', array($catid));
+			$ids = TermHierarchy::fetchChildren($catid);
+			$ids[] = $catid;
+			$criteria->addInCondition('cid', $ids);
 		}
 		$criteria->order = 'pid DESC';
 		return new CActiveDataProvider(__CLASS__, array(
@@ -281,6 +321,15 @@ class Post extends CActiveRecord {
 	 * @return CActiveDataProvider
 	 */
 	public static function fetchProviderByTag($tagId, $pageSize = 10) {
-		
+		$criteria = new CDbCriteria();
+		$criteria->join = 'join term_entity on pid=entity_id and tid=' . $tagId;
+		$criteria->order = 'modified DESC';
+		return new CActiveDataProvider(__CLASS__, array(
+			'criteria' => $criteria,
+			'pagination' => array(
+				'pageVar' => 'p',
+				'pageSize' => $pageSize,
+			)
+		));
 	}
 }

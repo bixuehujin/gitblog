@@ -9,7 +9,7 @@
 <?php 
 	$form = $this->beginWidget('CActiveForm', array(
 		'id'=>'comment-form',
-		'action' => array('/post/view', 'id'=>$post->post_id, '#'=>'comment-form'),
+		'action' => array('/post/view', 'id'=>$post->pid, '#'=>'comment-form'),
 		'enableClientValidation' => true,
 		'clientOptions' => array(
 			'validateOnSubmit' => true
@@ -27,7 +27,7 @@
 	<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 	<?php echo CHtml::errorSummary($commentForm, '表单提交发生错误，请检查：', null, array('class'=>'alert alert-error'))?>
 <section>
-	<?php echo $form->hiddenField($commentForm, 'post_id', array('value'=>$post->post_id))?>
+	<?php echo $form->hiddenField($commentForm, 'post_id', array('value'=>$post->pid))?>
 	<?php echo $form->hiddenField($commentForm, 'comment_ref')?>
 	
 	<div class="control-group">

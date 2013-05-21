@@ -43,16 +43,28 @@ class PostParser extends CComponent {
 	
 	protected $fragmentPattern = '/<(h[2-6]{1})>(.*?)<\/\1>/';
 	
-	public function __construct($content) {
+	public function __construct($content = null) {
 		$this->rawContent = $content;
 	}
 	
+	public function setContent($content) {
+		$this->rawContent = $content;
+		return $this;
+	}
+	
+	public function setBody($body) {
+		$this->rawBody = $body;
+		return $this;
+	}
+	
 	public function init() {
-		$this->rawBody = preg_replace_callback($this->metaPattern, 
-			array($this, 'metaCallback'), 
-			$this->rawContent);
-
-		$this->rawBody = trim($this->rawBody, "\n");
+		if ($this->rawBody == null) {
+			$this->rawBody = preg_replace_callback($this->metaPattern,
+					array($this, 'metaCallback'),
+					$this->rawContent);
+			
+			$this->rawBody = trim($this->rawBody, "\n");
+		}
 		return true;
 	}
 	
@@ -69,6 +81,9 @@ class PostParser extends CComponent {
 	
 	public function parse() {
 		if($this->init()) {
+			if ($this->rawBody == null) {
+				throw new InvalidArgumentException('The rowBody is not set!');
+			}
 			$this->content =  Markdown($this->rawBody);
 			$this->parseFragment();
 			$this->reference = $this->parseReference($this->rawBody);
@@ -103,7 +118,7 @@ class PostParser extends CComponent {
 	 * @param string $rawBody
 	 * @return array
 	 */
-	protected function parseReference($rawBody) {
+	public function parseReference($rawBody) {
 		$reference = array();
 		preg_match_all($this->referencePattern, $this->rawBody, $matches);
 		$titles = $matches[1];

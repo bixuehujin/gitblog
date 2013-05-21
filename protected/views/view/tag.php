@@ -10,7 +10,7 @@
 <?php 
 $this->setBreadcrumbs(array(
 	'标签'=>'#',
-	Tag::getTag($_GET['id'])->name
+	$tag->name,
 ));
 ?>
 

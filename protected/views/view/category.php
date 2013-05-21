@@ -7,16 +7,15 @@
  * @var $pagination Pagination 
  */
 ?>
-
-<?php
-if (isset($_GET['id'])) {
-	$this->setBreadcrumbs( array('分类'=>'#') 
-		+ Category::getCategoryBreadcrumbsArray($_GET['id']));
-}
+<?php 
+Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/view.css');
 ?>
 
-<?php $this->renderPartial('/post/_posts', array('posts'=>$posts))?>
-<?php $this->renderPartial('/common/_pager', array('pagination'=>$pagination))?>
+
+<?php $this->renderPartial('/common/navigation')?>
+
+<?php $this->renderPartial('/post/_posts', array('provider'=>$provider))?>
+
 
 <?php 
 $this->getPageLayout()->addColumnItem('sidebar', 'application.widgets.WeiboShow', array(

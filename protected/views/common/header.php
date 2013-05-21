@@ -14,7 +14,10 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/header.css')
 				<div class="nav-collapse collapse">
 					<?php $this->widget('zii.widgets.CMenu',array(
 						'htmlOptions' => array('class'=>'nav'),
-						'items'=>$this->menu,
+						'items'=>array(
+							array('label' => '文章', 'url' => array('view/category')),
+							array('label' => '专题', 'url' => array('view/topic')),
+						),
 						'encodeLabel'=>false,
 					)); 
 					?>

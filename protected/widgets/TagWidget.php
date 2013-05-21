@@ -30,8 +30,8 @@ class TagWidget extends CWidget {
 			$html .= "<span>{$this->label}</span>";
 		}
 		foreach ($this->tags as $tag) {
-			$tagName = $this->prefix ? $this->prefix . $tag->tag->name : $tag->tag->name;
-			$html .= CHtml::link($tagName, array('/view/tag', 'id'=>$tag->tag->tag_id, 'htmlOptions'=>$this->itemOptions)) . ' ';
+			$tagName = $this->prefix ? $this->prefix . $tag->name : $tag->name;
+			$html .= CHtml::link($tagName, array('/view/tag', 'id'=>$tag->tid, 'htmlOptions'=>$this->itemOptions)) . ' ';
 		}
 		$html .= '</div>';
 		return $html;

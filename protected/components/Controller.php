@@ -54,7 +54,7 @@ class Controller extends CController{
 		if ($this->getRequestRoute() == 'view') {
 			$this->redirect('/');
 		}
-		$this->menu = $this->primaryMenuItems();
+		//$this->menu = $this->primaryMenuItems();
 		$this->getPageLayout();
 	}
 	

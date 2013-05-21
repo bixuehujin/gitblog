@@ -39,23 +39,9 @@ class PostController extends Controller {
 	
 	
 	public function actionView() {
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		if(!$id) {
+		$id = Yii::app()->request->getQuery('id');
+		if(!$id || !($post = Post::load($id))) {
 			throw new CHttpException(404);
-		}
-		
-		$postModel = Post::model();
-		$post = $postModel->find('post_id=' . $id);
-		
-		if(!$post) {
-			throw new CHttpException(404);
-		}
-		
-		//visibility checking
-		if($post->visibility == Post::VISIBILITY_SELF) { //only the author can view the post
-			if(Yii::app()->user->id != $post->uid) {
-				throw new CHttpException(404);
-			}
 		}
 		
 		$commentModel = Comment::model();
@@ -75,7 +61,7 @@ class PostController extends Controller {
 			}
 		}
 
-		$this->setBreadcrumbs(Category::getCategoryBreadcrumbsArray($post->category->category_id, false)
+		$this->setBreadcrumbs(Category::getCategoryBreadcrumbsArray($post->cid)
 			+ array($post->title));
 
 		$this->render('view', array(

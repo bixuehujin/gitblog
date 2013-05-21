@@ -15,10 +15,10 @@ Yii::app()->clientScript->registerPackage('jquery.scrollTo');
 
 <div class="comments">
 	<legend class="clearfix">
-		<span class="title">评论列表 (<?php echo $post->num_comments?>)</span>
+		<span class="title">评论列表 (<?php echo $post->comments?>)</span>
 		<?php
 			if(isset($showAllLink) && $showAllLink) { 
-				echo CHtml::link('查看全部', array('/view/comments', 'id'=>$post->post_id), array('class'=>'view-all'));
+				echo CHtml::link('查看全部', array('/view/comments', 'id'=>$post->pid), array('class'=>'view-all'));
 			}
 		?>
 	</legend>

@@ -13,11 +13,11 @@
 class Tag extends Term {
 	
 	public function vocabulary() {
-		$vocabulary = TermVocabulary::loadByMName('category');
+		$vocabulary = TermVocabulary::loadByMName('tag');
 		if (!$vocabulary) {
 			$vocabulary = new TermVocabulary();
-			$vocabulary->name = '分类';
-			$vocabulary->mname = 'category';
+			$vocabulary->name = '标签';
+			$vocabulary->mname = 'tag';
 			$vocabulary->save(false);
 		}
 		return $vocabulary;
@@ -97,15 +97,6 @@ class Tag extends Term {
 			);
 		}
 		return $ret;
-	}
-	
-	/**
-	 * check for specified tag is exist.
-	 * 
-	 * @param mixed $tagId
-	 */
-	public static function checkExist($tagId) {
-		return (bool)self::model()->find('tag_id=' . $tagId);
 	}
 	
 	/**

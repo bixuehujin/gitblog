@@ -36,7 +36,7 @@ class Category extends Term {
 		foreach ($children as $item) {
 			$menu[] = array(
 				'label' => $item->name,
-				'url' => array('', 'cid' => $item->cid),
+				'url' => array('', 'id' => $item->cid),
 				'active' => $activeCid == $item->cid,
 			);
 		}
@@ -44,7 +44,7 @@ class Category extends Term {
 	}
 	
 	public function buildPrimaryMenu() {
-		$activeCid = Yii::app()->request->getQuery('cid', 0);
+		$activeCid = Yii::app()->request->getQuery('id', 0);
 		$menu = $this->buildMenu(0, $activeCid);
 		$menu[] = array(
 			'label' => '全部',
@@ -55,7 +55,7 @@ class Category extends Term {
 	}
 	
 	public function buildSecondaryMenu() {
-		$activeCid = Yii::app()->request->getQuery('cid', 0);
+		$activeCid = Yii::app()->request->getQuery('id', 0);
 		if (!$activeCid) return array();
 		
 		return $this->buildMenu($activeCid, 0);
@@ -81,25 +81,21 @@ class Category extends Term {
 	}
 
 	/**
-	 * fetch all sub categoryIds, contains the parent itself.
+	 * Fetch all sub categoryIds, contains the parent itself.
 	 * 
 	 * @param integer $parent
 	 * @return mixed if $parent !=0 and the category do not exsit, null will returned, 
 	 * otherwise a array contains all sub categoryId will be returned.
 	 */
-	public function getSubCategoryIDs($parent = 0) {
+	public function getChildrenIds($parent = 0) {
 		if($parent != 0 && !$this->checkExist($parent)) {
 			return null;
 		}
-		$res = $this->getList($parent);
-		$ret = array();
-		foreach($res as $item) {
-			$ret[] = $item->category_id;
-		}
+		$tids = TermHierarchy::fetchChildren($parent);
 		if ($parent != 0) {
-			$ret[] = $parent;
+			$tids[] = $parent;
 		}
-		return $ret;
+		return $tids;
 	}
 	
 	/**
@@ -122,6 +118,10 @@ class Category extends Term {
 	 */
 	public static function getCategoryBreadcrumbsArray($id) {
 		$path  = self::fetchTermPath($id);
-		
+		$ret = array();
+		foreach ($path as $item) {
+			$ret[$item->name] = array('view/category', 'id' => $item->cid);
+		}
+		return $ret;
 	}
 }

@@ -8,9 +8,11 @@
 
 class BuilderCommand extends CConsoleCommand {
 	
-	private $repo;
-	private $until;
-	
+	private $identifier;
+	/**
+	 * @var User
+	 */
+	private $user;
 	/**
 	 * @var GitClient
 	 */
@@ -19,7 +21,9 @@ class BuilderCommand extends CConsoleCommand {
 	
 	protected function getClient() {
 		if ($this->client === null) {
-			$this->client = new GitClient($this->repo);
+			$path = Yii::app()->settings->get('git_base_path');
+			$path .= '/' . $this->user->getSetting('repository') . '.git';
+			$this->client = new GitClient($path);
 		}
 		return $this->client;
 	}
@@ -31,43 +35,120 @@ class BuilderCommand extends CConsoleCommand {
 			return 1;
 		}
 		
+		$lastCommit = $this->user->getSetting('last_commit');
 		$client = $this->getClient();
-		$commitsOld = $commits = $client->listCommitUntil();
+		$commitsOld = $commits = $client->listCommitUntil($lastCommit);
 		array_shift($commitsOld);
+		if ($lastCommit) {
+			$commitsOld[] = $lastCommit;
+		}
 		foreach ($commitsOld as $i => $commitOld) {
 			$diff = $this->client->diffCommit($commitOld, $commits[$i]);
 			//var_dump($commits[$i]->getTree());
 			$this->parseDiffFiles($diff, $commits[$i]);
+		}
+		
+		if (!$lastCommit) {//deal with the firset init commit.
+			//TODO DO NOT SUPPORT TREE!
+			foreach ($commitOld->getTree() as $entry) {
+				$content = $this->client->fetchBlobContent($entry->oid);
+				$this->parseContent($content, $entry->name, $commitOld->getMessage(), $entry->oid);
+			}
 		}
 	}
 
 	protected function parseDiffFiles($diff, $currCommit) {
 		if (isset($diff['A'])) {
 			foreach ($diff['A'] as $filename) {
+				$content = $this->client->fetchContentByPath($currCommit->getTree(), $filename, $oid);
+				$this->parseContent($content, $filename, $currCommit->getMessage(), $oid);
+			}
+		}else if (isset($diff['M'])) {
+			foreach ($diff['M'] as $filename) {
 				$content = $this->client->fetchContentByPath($currCommit->getTree(), $filename);
+				//var_dump($content);
+			}
+		}else {
+			
+		}
+	}
+	
+	/**
+	 * Parse a single content.
+	 * 
+	 * @param string $content
+	 * @param string $filename
+	 * @param string $message The commit message.
+	 */
+	protected function parseContent($content, $filename, $message, $oid) {
+		$ext = pathinfo($filename, PATHINFO_EXTENSION);
+		if (in_array($ext, array('md', 'markdown'))) {
+			$parser = new PostParser($content);
+			if ($parser->parse()) {
+				$meta = $parser->meta;
+				$post = Post::loadByPath($filename);
+				$newPost = false;
+				if (!$post) {
+					$newPost = true;
+					$post = new Post();
+					$post->author = $post->committer = $this->user->uid;
+					$post->oid = $oid;
+					$post->path = $filename;
+					$post->title = $meta['title'];
+					$post->save(false);
+				}
+				
+				$revision = new PostRevision();
+				$revision->post_id = $post->pid;
+				$revision->oid = $oid;
+				$revision->creator = $this->user->uid;
+				$revision->title = $meta['title'];
+				$revision->path = $filename;
+				$revision->content = $parser->rawBody;
+				$revision->commit = $message;
+				$revision->save(false);
+				
+				if ($newPost) {
+					$post->author = $this->user->uid;
+				}
+				$post->committer = $this->user->uid;
+				$post->rid = $revision->rid;
+				$post->save(false);
+				
+				$post->applyCategory($meta['category']);
+				$post->applyTags($meta['tags']);
 				
 			}
+		}else if (in_array($ext, array('jpg', 'png', 'jpeg', 'gif'))) {
+			
 		}
 	}
 	
 	
+	/**
+	 * Parse command line options.
+	 * 
+	 * @param  $args
+	 * @return boolean
+	 */
 	protected function parseOptions($args) {
 		list($action, $options, $args)=$this->resolveRequest($args);
-		if (!isset($options['repo'])) {
+		if (!isset($options['identifier'])) {
 			return false;
 		}
 
-		foreach (array('repo', 'until') as $option) {
+		foreach (array('identifier') as $option) {
 			if (isset($options[$option])) {
 				$this->$option = $options[$option];
 			}
 		}
-		if (!is_string($this->repo) || is_dir($this->repo) === false) {
-			printf("Option '--repo' is not a valid path.\n\n");
+		if(!($this->user = $user = User::load($this->identifier))) {
+			printf("No record matched by identifier '{$this->identifier}'.\n");
 			return false;
 		}
 		return true;
 	}
+	
 	
 	public function getHelp() {
 		return <<<EOF
@@ -81,9 +162,7 @@ PARAMETERS
 
    The following options are available:
 
-   - repo: string, the path of repository which should fetch data from.
-
-   - until: string, commit id of last built.
+   - identifier: string, the identifier of a user, uid, username or email.
 
 
 EOF;

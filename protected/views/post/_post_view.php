@@ -16,6 +16,6 @@
 	</div>
 	
 	<div class="content">
-		<?php echo $post->content->body;?>
+		<?php echo $post->content->formattedContent;?>
 	</div>
 </div>

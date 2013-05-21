@@ -8,6 +8,39 @@
 class GitBlog extends CComponent {
 	
 	/**
+	 * Render a username link.
+	 * 
+	 * @param mixed  $identifier
+	 * @param array  $htmlOptions
+	 */
+	public static function username($identifier = null, $htmlOptions = array()) {
+		if ($identifier == null) {
+			$identifier = Yii::app()->user->getState('user');
+		}
+		$user = $identifier instanceof User ? $identifier : User::load($identifier);
+		return CHtml::link($user->username, array('user/view', 'id' => $user->uid), $htmlOptions);
+	}
+	
+	/**
+	 * Render a user avatar with link to user profile page.
+	 * 
+	 * @param string $userOrUid
+	 * @param string $size
+	 * @param array  $htmlOptions
+	 * @param array  $imgOptions
+	 * @return string
+	 */
+	public static function userAvatarLink($userOrUid = null, $size = 'big', $htmlOptions = array(), $imgOptions  = array()) {
+		if ($userOrUid === null) {
+			$userOrUid = Yii::app()->user->getState('user');
+		}
+		$user = $userOrUid instanceof User ? $userOrUid : User::load($userOrUid);
+		
+		$img = self::userAvatar($user, $size, $imgOptions);
+		return CHtml::link($img, array('user/view', 'id' => $user->uid));
+	}
+	
+	/**
 	 * Render a image for display a avatar of a user.
 	 * 
 	 * @param string        $userOrUid
