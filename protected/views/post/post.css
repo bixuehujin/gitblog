@@ -1,3 +1,33 @@
-#column-content {
-    width: 700px;
+.post {
+    margin: 0 10px;
+    font-size: 14px;
+}
+.post .title {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.post .title h1 {
+    font-size: 23px;
+    margin: 0;
+}
+.post .title .author {
+    margin-left: 15px;
+    color: #888;
+}
+
+.post h2 {
+    font-size: 20px;
+}
+.post h3 {
+    font-size: 19px;
+}
+.post h4 {
+    font-size: 18px;
+}
+.post h5 {
+    font-size: 17px;
+}
+.post h6 {
+    font-size: 16px;
 }

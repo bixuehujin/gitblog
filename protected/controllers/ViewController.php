@@ -30,6 +30,13 @@ class ViewController extends Controller {
 	public function actionCategory() {
 		$id = Yii::app()->getRequest()->getQuery('id', 0);
 		
+		$layout = $this->getPageLayout();
+		if (Yii::app()->user->getIsGuest()) {
+			
+		}else {
+			$layout->addColumnItem('right', 'application.widgets.UserShow');
+		}
+		
 		$dataPravider = Post::fetchProviderByCategoryId($id);
 		
 		$this->render('category', array(
@@ -57,8 +64,7 @@ class ViewController extends Controller {
 		$dataProvider = Post::fetchProviderByAuthor($user->uid);
 		
 		$this->render('user', array(
-			'posts' => $dataProvider->getData(),
-			'pagination' => $dataProvider->getPagination(),
+			'provider' => $dataProvider,
 		));
 	}
 	
@@ -74,8 +80,7 @@ class ViewController extends Controller {
 		$provider = Post::fetchProviderByTag($id);
 		
 		$this->render('tag', array(
-			'posts' => $provider->getData(),
-			'pagination' => $provider->getPagination(),
+			'provider' => $provider,
 			'tag' => $tag,
 		));
 	}
@@ -88,24 +93,12 @@ class ViewController extends Controller {
 		if(!$id || !($post = Post::load($id))) {
 			throw new CHttpException(404, '访问页面不存在');
 		}
-		
-		$criteria = new CDbCriteria();
-		$criteria->condition = 'post_id=' . $_GET['id'];
-		$criteria->order = 'comment_id DESC';
-		
-		$provider = new CActiveDataProvider('Comment', array(
-			'criteria'=>$criteria,
-			'pagination'=>array(
-				'pageSize'=>Yii::app()->systemSettings->get('comment_page_size') ?: 10,
-			),
-		));
-		
+				
+		$commentForm = new CommentForm(null, $post);
 		
 		$this->render('comments', array(
-				'comments'=>$provider->getData(),
-				'post'=>$post,
-				'pagination'=>$provider->getPagination(),
-				'commentForm'=>new CommentForm(),
+			'post' => $post,
+			'commentForm' => $commentForm,
 		));
 	}
 	

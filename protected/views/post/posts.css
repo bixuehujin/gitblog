@@ -1,0 +1,37 @@
+.posts {
+    margin: 0 10px 20px;
+    
+}
+.posts .post {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+.posts .post .user {
+    width: 80px;
+    text-align: center;
+
+    float: left;
+}
+
+.posts .post .user img {
+    width: 60px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.posts .post .content {
+    width: 570px;
+    float: right;
+}
+.posts .post .content h2 {
+    font-size: 17px;
+    line-height: 17px;
+    font-weight: normal;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.posts .post .meta .author {
+    color: #777;
+}
+.posts .post .meta .tags {
+   
+}

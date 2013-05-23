@@ -1,0 +1,52 @@
+.comments, #comment-form {
+    margin: 0 10px;
+}
+
+#comment-form #author {
+    width: 100px;
+}
+#comment-form #email,
+#comment-form #website {
+    width: 252px;
+}
+#comment-form textarea {
+    width: 640px;
+    margin: 10px 0;
+}
+.comments {
+    margin-top: 20px;   
+    margin-bottom: 20px;
+}
+.comments .view-all {
+    font-size: 15px;
+    float: right;
+}
+.comments .comment {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.comments .comment .author {
+    float: left;
+    width: 70px;
+    text-align: center;
+}
+.comments .comment .author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+.comments .comment .content {
+    float: right;
+    width: 570px;
+}
+.comments .comment .content .links {
+    font-size: 13px;
+    color: #666;
+}
+.comments .comment:hover .content .links .reply {
+    display: inline;
+}
+.comments .comment .content .links .reply{
+    float: right;
+    display: none;
+}

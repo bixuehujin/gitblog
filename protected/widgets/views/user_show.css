@@ -1,0 +1,41 @@
+#widget-user-show {
+    padding: 8px;
+}
+
+#widget-user-show .widget-title {
+    background: #eee;
+    color: #777;
+    margin: -8px -8px 8px -8px;
+    line-height: 25px;
+    padding-left: 5px;
+    border-radius: 5px 5px 0 0 ;
+}
+
+#widget-user-show .avatar {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+#widget-user-show .avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+}
+#widget-user-show .avatar .username {
+    margin-left: 20px;
+    width: 150px;
+}
+#widget-user-show .avatar .username .intro {
+    font-size: 13px;
+    color: #888;
+}
+#widget-user-show .status {
+    width: 100%;
+    margin: 5px 0 5px 0;
+}
+#widget-user-show .status li{
+    list-style-type: none;
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid #eee;
+    width: 109px;
+}

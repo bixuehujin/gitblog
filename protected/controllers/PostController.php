@@ -44,19 +44,18 @@ class PostController extends Controller {
 			throw new CHttpException(404);
 		}
 		
-		$commentModel = Comment::model();
+		$layout = $this->getPageLayout();
+		$layout->addColumnItem('right', 'application.widgets.UserShow', array(
+			'user' => $post->getAuthor(),
+			'showTitle' => true,
+		));
 		
-		$options['condition'] = 'post_id=' . $id;
-		$options['order'] = 'comment_id DESC';
 		
-		$comments = $commentModel->findAll($options);
-		
-		$commentForm = new CommentForm();
+		$commentForm = new CommentForm(null, $post);
 		
 		if(isset($_POST['CommentForm'])) {
 			$commentForm->attributes = $_POST['CommentForm'];
 			if ($commentForm->save()) {
-				Yii::app()->sessionMessager->addMessage('发表评论成功', 'success');
 				$this->refresh(true, '#comment-form');
 			}
 		}
@@ -66,7 +65,6 @@ class PostController extends Controller {
 
 		$this->render('view', array(
 			'post' => $post,
-			'comments' => $comments,
 			'commentForm' => $commentForm,
 		));
 	}

@@ -5,7 +5,7 @@
  * @author Jin Hu <bixuehujin@gmail.com>
  */
 
-class Post extends CActiveRecord {
+class Post extends CActiveRecord implements Commentable{
 
 	const STATUS_NORMAL     = 0;
 	const STATUS_DELETED    = 1;
@@ -239,6 +239,16 @@ class Post extends CActiveRecord {
 	}
 	
 	/**
+	 * Get the comment DataProvider for current post.
+	 * 
+	 * @param integer $pageSize
+	 * @return CActiveDataProvider
+	 */
+	public function getCommentProvider($pageSize = 10) {
+		return Comment::fetchProviderByOwner($this, $pageSize);
+	}
+	
+	/**
 	 * Load a post by its pid.
 	 * 
 	 * @param integer $pid
@@ -331,5 +341,20 @@ class Post extends CActiveRecord {
 				'pageSize' => $pageSize,
 			)
 		));
+	}
+	
+	public function getOwnerId() {
+		return $this->pid;
+	}
+	
+	public function getOwnerType() {
+		return 'post';
+	}
+	
+	public function getCommentCount() {
+		return null;
+	}
+	
+	public function updateCommentCounter($count) {
 	}
 }

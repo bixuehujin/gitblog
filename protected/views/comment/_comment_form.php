@@ -7,58 +7,39 @@
 ?>
 
 <?php 
-	$form = $this->beginWidget('CActiveForm', array(
-		'id'=>'comment-form',
+	$form = $this->beginWidget('ext.bootstrap.widgets.TbActiveForm', array(
+		'id' => 'comment-form',
+		'type' => 'inline',
 		'action' => array('/post/view', 'id'=>$post->pid, '#'=>'comment-form'),
 		'enableClientValidation' => true,
 		'clientOptions' => array(
 			'validateOnSubmit' => true
 		),
-		'htmlOptions' => array(
-			'class'=>'form-horizontal',
-		)
 	))
 ?>
 
 <legend>发表评论
-<?php echo CHtml::submitButton('提交评论', array('class'=>'btn btn-primary pull-right'))?>
+
 </legend>
 
-	<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
-	<?php echo CHtml::errorSummary($commentForm, '表单提交发生错误，请检查：', null, array('class'=>'alert alert-error'))?>
-<section>
-	<?php echo $form->hiddenField($commentForm, 'post_id', array('value'=>$post->pid))?>
-	<?php echo $form->hiddenField($commentForm, 'comment_ref')?>
+	<?php echo Yii::app()->console->render();?>
+<section class="clearfix">
+	<?php echo $form->hiddenField($commentForm, 'parent', array('id' => 'parent'))?>
 	
-	<div class="control-group">
-		<?php echo $form->labelEx($commentForm, 'author', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textField($commentForm, 'author')?>
-		</div>
+	<?php if ($commentForm->isAnonymousScenario()):?>
+	<div>
+		<?php echo $form->textFieldRow($commentForm, 'author', array('id' => 'author'))?>
+		<?php echo $form->textFieldRow($commentForm, 'email', array('id' => 'email'))?>
+		<?php echo $form->textFieldRow($commentForm, 'website', array('id' => 'website'))?>
 	</div>
+	<?php endif;?>
 	
-	<div class="control-group">
-		<?php echo $form->labelEx($commentForm, 'email', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textField($commentForm, 'email')?>
-		</div>
+	<div>
+	<?php echo $form->textAreaRow($commentForm, 'content')?>
 	</div>
-	
-	<div class="control-group">
-		<?php echo $form->labelEx($commentForm, 'website', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textField($commentForm, 'website')?>
-		</div>
+	<div>
+	<?php echo CHtml::submitButton('提交评论', array('class'=>'btn btn-primary pull-right'))?>
 	</div>
-	
-	<div class="control-group">
-		<?php echo $form->labelEx($commentForm, 'content', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textArea($commentForm, 'content')?>
-		</div>
-	</div>
-	
-
 	
 </section>
 	

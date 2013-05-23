@@ -9,14 +9,6 @@
  */
 ?>
 <?php 
-$this->getPageLayout()
-	->addColumnItem('right', 'application.widgets.TagWidget', array(
-		'tags' => $post->attachedTags))
-	->addColumnItem('right', 'application.widgets.PostNavigationWidget', array(
-		'navItems'=>$post->content->getFormattedReference(), 'htmlOptions' => array('class' => 'navigation affix')))
-?>
-
-<?php 
 Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 	->registerPackage('jquery.scrollTo')
 	->registerScriptFile(Yii::app()->getBaseUrl(). '/js/post-view.js')
@@ -27,7 +19,7 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 ?>
 
 	
-<?php $this->renderPartial('_post_view', array('post'=>$post))?>
+<?php $this->renderPartial('_post', array('post'=>$post))?>
 
 <?php 
 	$this->renderPartial('/comment/_comment_form', array(
@@ -37,7 +29,7 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 ?>
 <?php 
 	$this->renderPartial('/comment/_comments', array(
-		'comments'=>$comments, 
+		'provider'=>$post->getCommentProvider(), 
 		'post'=>$post,
 		'showAllLink'=>true,
 	))

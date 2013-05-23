@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `avatar`   int(11)            unsigned   NOT NULL DEFAULT 0  COMMENT 'The file_managed.fid used as avatar.',
   `password` char(32)                      NOT NULL DEFAULT '',
   `email`    varchar(255)                  NOT NULL DEFAULT '',
+  `intro`    varchar(255)                  NOT NULL DEFAULT '',
   `github`   varchar(255)                  NOT NULL DEFAULT '',
   `weibo`    varchar(255)                  NOT NULL DEFAULT '',
   `created`  int(11)                       NOT NULL DEFAULT 0,

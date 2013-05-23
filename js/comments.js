@@ -8,6 +8,6 @@ $(function($){
       , textArea = $('textarea', $form).val('回复 ' + author + ': ').focus().get(0)
     
     textArea.setSelectionRange(textArea.value.length, textArea.value.length)
-    $('#CommentForm_comment_ref', $form).val(id);
+    $('#parent', $form).val(id);
   })
 })

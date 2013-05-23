@@ -7,6 +7,9 @@
  */
 ?>
 
+<?php 
+Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/posts.css');
+?>
 
 <div class="posts">
 	<?php foreach($provider->getData() as $post):?>
@@ -56,7 +59,7 @@
 					<?php endforeach;?>
 				</span>
 				<span class="author">
-					<span><?php echo GitBlog::username($post->getAuthor())?>  •
+					<span><?php echo GitBlog::username($post->getAuthor())?>  &nbsp;•&nbsp;
 					<span><?php echo $post->formattedCreated?></span></span>
 				</span>
 				<span class="read pull-right">

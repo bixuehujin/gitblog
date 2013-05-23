@@ -8,10 +8,23 @@ html, body {
     height: auto !important;
     height: 100%;
     margin: 0 auto -30px; /* the bottom margin is the negative value of the footer's height */
+    background: #ccc;
 }
-
 #page-content {
     padding-top: 50px;
+}
+#page-content-inner{
+    margin: 0 auto;
+}
+#column-content {
+    1margin-top: 50px;
+    background: #fff;
+    width: 680px;
+    border-radius: 5px;
+}
+#column-right .column-item {
+    background: #fff;
+    border-radius: 5px;
 }
 #page-footer, #page-push {
     height: 30px;
@@ -27,17 +40,18 @@ html, body {
 }
 #column-right {
 	float:right;
-	width:240px;
+	width:260px;
 }
 
 #column-content {
 	float:left;
 }
 
-#page-content-inner{
+.footer-inner {
 	margin: 0 auto;
 }
 
-.footer-inner {
-	margin: 0 auto;
+/* Override bootstrap css */
+.container, .navbar-fixed-top .container {
+    width: 960px;
 }

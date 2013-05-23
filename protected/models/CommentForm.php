@@ -1,25 +1,51 @@
 <?php
+/**
+ * CommentForm class file.
+ * 
+ * @author Jin Hu <bixuehujin@gmail.com>
+ */
+
 class CommentForm extends CFormModel {
 	
+	const SCENARIO_ANONYMOUS = 'anonymous';
+	const SCENARIO_REGISTER  = 'register';
+	
 	public $content;
-	public $post_id;
+	public $owner;
+	public $owner_type;
 	public $email;
 	public $website;
 	public $author;
-	public $comment_ref;
+	public $parent;
 	
-	public function init() {
-		
+	private $post;
+	
+	
+	public function __construct($scenario = null, $post = null) {
+		if ($scenario == null) {
+			$this->scenario = Yii::app()->user->getIsGuest() ? self::SCENARIO_ANONYMOUS : self::SCENARIO_REGISTER;
+		}
+		if (!$post instanceof Post || !$post->pid) {
+			throw new CException("The argument 'post' is not valid.");
+		}
+		$this->post = $post;
+		$this->owner = $post->getOwnerId();
+		$this->owner_type = $post->getOwnerType();
+	}
+	
+	public function isAnonymousScenario() {
+		return $this->getScenario() == self::SCENARIO_ANONYMOUS;
+	}
+	
+	public function isRegisterScenario() {
+		return $this->getScenario() == self::SCENARIO_REGISTER;
 	}
 	
 	public function rules() {
 		return array(
-				array('content', 'length', 'min' => 1),
-				array('post_id', 'required'),
-				array('author', 'required'),
-				array('email', 'required'),
-				array('website', 'required'),
-				array('comment_ref', 'type', 'type'=>'integer')
+			array('content,owner,owner_type', 'required'),
+			array('author,email,website', 'required', 'on' => self::SCENARIO_ANONYMOUS),
+			array('parent', 'type', 'type'=>'integer')
 		);
 	}
 	
@@ -35,13 +61,24 @@ class CommentForm extends CFormModel {
 	
 	
 	public function save() {
+		if (!$this->validate()) {
+			Yii::app()->console->addModel($this);
+			return false;
+		}
 		$comment = new Comment();
-		$comment->attributes = $this->attributes;
-		if ($this->validate() && $comment->save(false)) {
+		$comment->setAttributes($this->getAttributes(), false);
+		$comment->creator = Yii::app()->user->getId();
+		if ($this->isAnonymousScenario()) {
+			$comment->setState('author', $this->author)
+				->setState('email', $this->email)
+				->setState('website', $this->website);
+		}
+		if ($comment->save(false)) {
+			Yii::app()->console->addSuccess('评论成功');
 			return true;
 		} else {
+			Yii::app()->console->addError('评论失败');
 			return false;
 		}
 	}
-	
 }

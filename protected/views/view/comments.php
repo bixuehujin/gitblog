@@ -2,8 +2,8 @@
 /**
  * view all commtents in a single page.
  * 
- * @var $comments array of Comment object.
- * @var $post Post object comments attached to.
+ * @var CActiveDataProvider $provider The DataProvider of comment objects.
+ * @var Post $post object comments attached to.
  */
 ?>
 
@@ -17,11 +17,6 @@ $this->setBreadcrumbs(array(
 <?php $this->renderPartial('/comment/_comment_form', array('commentForm'=>$commentForm, 'post'=>$post))?>
 
 <?php 
-$this->renderPartial('/comment/_comments', array('comments'=>$comments, 'post'=>$post));
-?>
-
-<?php
-//render pager
-$this->renderPartial('/common/_pager', array('pagination'=>$pagination));
+$this->renderPartial('/comment/_comments', array('provider'=>$post->getCommentProvider()));
 ?>
 
