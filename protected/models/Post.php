@@ -109,7 +109,10 @@ class Post extends CActiveRecord implements Commentable{
 	
 	
 	public function getFormattedCreated() {
-		date_default_timezone_set('Asia/Shanghai');
+		return date('m月d日 H:i', $this->created);
+	}
+	
+	public function getFormattedModified() {
 		return date('m月d日 H:i', $this->created);
 	}
 	
@@ -246,6 +249,42 @@ class Post extends CActiveRecord implements Commentable{
 	 */
 	public function getCommentProvider($pageSize = 10) {
 		return Comment::fetchProviderByOwner($this, $pageSize);
+	}
+	
+	/**
+	 * Get all user contributed to the post.
+	 * 
+	 * @return User[]
+	 */
+	public function getCommitters() {
+		$criteria = new CDbCriteria();
+		$criteria->addColumnCondition(array('post_id' => $this->pid));
+		$criteria->distinct = true;
+		$criteria->select = array('creator');
+		$list = PostRevision::model()->findAll($criteria);
+		$users = array();
+		foreach ($list as $item) {
+			if ($user = User::load($item->creator)) {
+				$users[] = $user;
+			}
+		}
+		return $users;
+	}
+	
+	/**
+	 * Update the visitors counter of this post.
+	 */
+	public function updateVisitors() {
+		return (boolean)$this->updateCounters(array('visitors' => 1), 'pid=' . $this->pid);
+	}
+	
+	/**
+	 * Get all revison of this post.
+	 * 
+	 * @return PostRevision[]
+	 */
+	public function getRevisions() {
+		return PostRevision::fetchAllRevisions($this->pid);
 	}
 	
 	/**

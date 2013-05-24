@@ -69,4 +69,8 @@ class GitBlog extends CComponent {
 		return '<img ' . CHtml::renderAttributes($htmlOptions) .'/>';
 	}
 	
+	public static function formattedTimestamp($timestamp) {
+		return date('m月d日 H:i', $timestamp);
+	}
+	
 }

@@ -114,4 +114,23 @@ class Tag extends Term {
 		}
 		return $ret;
 	}
+	
+	/**
+	 * Load all tags from database.
+	 * 
+	 * @param string|array $tags
+	 * @return Tag[]
+	 */
+	public static function loadAllByNames($tags) {
+		$ret = array();
+		if (is_string($tags)) {
+			$tags = explode(',', $tags);
+			foreach ($tags as $tag) {
+				if ($o = static::loadByName(trim($tag))) {
+					$ret[] = $o;
+				}
+			}
+		}
+		return $ret;
+	}
 }

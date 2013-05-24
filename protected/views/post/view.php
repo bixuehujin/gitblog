@@ -18,7 +18,7 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 	$this->pageTitle = $post->title . ' | ' . $this->pageTitle;
 ?>
 
-	
+
 <?php $this->renderPartial('_post', array('post'=>$post))?>
 
 <?php 

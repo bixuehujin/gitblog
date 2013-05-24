@@ -12,6 +12,7 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log', 'bootstrap'),
 	'language'=>'zh_cn',
+	'timeZone'=>'Asia/Shanghai',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',

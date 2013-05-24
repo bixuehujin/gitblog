@@ -1,0 +1,33 @@
+.revisions {
+    margin: 0 10px;
+    
+}
+.revisions .revision {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    
+}
+.revision .committer {
+    width: 70px;
+    text-align: center;
+}
+.revision .committer img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+.revision .version {
+    color: #777;
+}
+.revision .commit {
+    width: 570px;
+    padding-left: 5px;
+}
+.revision .commit-content,
+.revision .commit-footer {
+    margin-top: 5px;
+}
+.revision .commit-footer {
+    color: #666;
+    font-size: 13px;
+}

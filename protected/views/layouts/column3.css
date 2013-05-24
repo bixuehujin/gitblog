@@ -43,6 +43,10 @@ html, body {
 	width:260px;
 }
 
+#column-right .column-item {
+    margin-bottom: 10px;
+}
+
 #column-content {
 	float:left;
 }
@@ -54,4 +58,19 @@ html, body {
 /* Override bootstrap css */
 .container, .navbar-fixed-top .container {
     width: 960px;
+}
+
+
+
+/* css for widgets related */
+.widget {
+    padding: 8px;   
+}
+.widget .widget-title {
+    background: #eee;
+    color: #777;
+    margin: -8px -8px 8px -8px;
+    line-height: 25px;
+    padding-left: 5px;
+    border-radius: 5px 5px 0 0 ;
 }

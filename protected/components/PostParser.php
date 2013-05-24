@@ -24,6 +24,10 @@ class PostParser extends CComponent {
 	 */
 	public $reference;
 	/**
+	 * @var string
+	 */
+	public $rawMeta;
+	/**
 	 * @var array meta information extart form raw content.
 	 */
 	public $meta;
@@ -74,6 +78,7 @@ class PostParser extends CComponent {
 	 * @return string
 	 */
 	protected function metaCallback($matches) {
+		$this->rawMeta = $matches[1];
 		$this->meta = $this->parseMetaData($matches[1]);
 		return '';
 	} 
@@ -98,7 +103,7 @@ class PostParser extends CComponent {
 	 * @param string $metaStr
 	 * @return array
 	 */
-	protected function parseMetaData($metaStr) {
+	public function parseMetaData($metaStr) {
 		$meta = array();
 		$metaStr = trim($metaStr, "\n");
 		$items = explode("\n", $metaStr);

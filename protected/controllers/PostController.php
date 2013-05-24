@@ -37,9 +37,28 @@ class PostController extends Controller {
 		);
 	}
 	
+	/**
+	 * Action to update the visitors count of a post.
+	 */
+	public function actionVisitors() {
+		$request = Yii::app()->getRequest();
+		$id = $request->getParam('id', 0);
+		if (!$request->getIsAjaxRequest()) {
+			throw new CHttpException(404);
+		}
+		$ajax = new AjaxReturn();
+		if (!$id || !($post = Post::load($id))) {
+			$ajax->setCode(100)->setMsg('The post id maybe not correct.')->send();
+		}
+		if (!$post->updateVisitors()) {
+			$ajax->setCode(300)->setMsg('Update the visitors counter failed');
+		}
+		$ajax->send();
+	}
 	
 	public function actionView() {
-		$id = Yii::app()->request->getQuery('id');
+		$id = Yii::app()->request->getQuery('id', 0);
+		$rid = Yii::app()->request->getQuery('rid', 0);
 		if(!$id || !($post = Post::load($id))) {
 			throw new CHttpException(404);
 		}
@@ -49,7 +68,19 @@ class PostController extends Controller {
 			'user' => $post->getAuthor(),
 			'showTitle' => true,
 		));
+		$layout->addColumnItem('right', 'application.widgets.PostCommitter', array('committers' => $post->getCommitters()));
+		$layout->addColumnItem('right', 'application.widgets.PostStatus', array('post' => $post, 'countVisitors' => !$rid));
 		
+		if ($rid) {
+			$revision = PostRevision::model()->findByPk($rid);
+			$layout->addColumnItem('right', 'application.widgets.CommitMessage', array('revision' => $revision));
+			$this->setBreadcrumbs(Category::getCategoryBreadcrumbsArray($revision->getCategory()->cid));
+			$this->render('revision', array(
+				'post' => $post,
+				'revision' => $revision,
+			));
+			Yii::app()->end();
+		}
 		
 		$commentForm = new CommentForm(null, $post);
 		
@@ -60,12 +91,30 @@ class PostController extends Controller {
 			}
 		}
 
-		$this->setBreadcrumbs(Category::getCategoryBreadcrumbsArray($post->cid)
-			+ array($post->title));
+		$this->setBreadcrumbs(Category::getCategoryBreadcrumbsArray($post->cid));
 
 		$this->render('view', array(
 			'post' => $post,
 			'commentForm' => $commentForm,
+		));
+	}
+	
+	public function actionRevisions() {
+		$id = Yii::app()->request->getQuery('id', 0);
+		if (!$id || !($post = Post::load($id))) {
+			throw new CHttpException(404);
+		}
+		$this->setBreadcrumbs(array(
+			$post->title => array('post/view', 'id' => $post->pid),
+			'版本修订历史'
+		));
+		
+		$layout = $this->getPageLayout();
+		$layout->addColumnItem('right', 'application.widgets.PostStatus', array('post' => $post, 'countVisitors' => false));
+		
+		$this->render('revisions', array(
+			'post' => $post,
+			'revisions' => $post->getRevisions(),
 		));
 	}
 }

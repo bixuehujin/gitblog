@@ -6,9 +6,7 @@
  */
 ?>
 <?php 
-$url = Yii::app()->createUrl('post/visitors', array('id' => $this->post->pid));
-Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/post_status.css')
-	->registerScript('post_status', "$.get('$url')", CClientScript::POS_READY);
+Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/post_status.css');
 ?>
 <div class="widget" id="widget-post-status">
 	<div class="widget-title">

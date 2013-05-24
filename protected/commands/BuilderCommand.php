@@ -103,6 +103,7 @@ class BuilderCommand extends CConsoleCommand {
 				$revision->oid = $oid;
 				$revision->creator = $this->user->uid;
 				$revision->title = $meta['title'];
+				$revision->meta = $parser->rawMeta;
 				$revision->path = $filename;
 				$revision->content = $parser->rawBody;
 				$revision->commit = $message;

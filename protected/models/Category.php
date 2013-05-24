@@ -119,8 +119,12 @@ class Category extends Term {
 	public static function getCategoryBreadcrumbsArray($id) {
 		$path  = self::fetchTermPath($id);
 		$ret = array();
+		$last = array_pop($path);
 		foreach ($path as $item) {
 			$ret[$item->name] = array('view/category', 'id' => $item->cid);
+		}
+		if ($last) {
+			$ret[] = $last->name;
 		}
 		return $ret;
 	}

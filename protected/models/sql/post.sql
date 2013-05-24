@@ -11,6 +11,7 @@ CREATE TABLE `post` (
   `created`   int(11)          NOT NULL DEFAULT '0',
   `modified`  int(11)          NOT NULL DEFAULT '0',
   `rid`       int(11)          NOT NULL DEFAULT '0',
+  `visitors`  int(11)          NOT NULL DEFAULT '0',
   `status`    tinyint(4)       NOT NULL DEFAULT '0',
   PRIMARY KEY (`pid`),
   INDEX `author`(`author`),
