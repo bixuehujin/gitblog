@@ -77,6 +77,9 @@ class ViewController extends Controller {
 			throw new CHttpException(404, '访问页面不存在');
 		}
 		
+		$layout = $this->getPageLayout();
+		$layout->addColumnItem('right', 'application.widgets.TagShow', array('tag' => $tag));
+		
 		$provider = Post::fetchProviderByTag($id);
 		
 		$this->render('tag', array(

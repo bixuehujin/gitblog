@@ -1,0 +1,10 @@
+#widget-tag-show .widget-content h3 {
+    font-size: 19px;
+    margin: 0;
+    line-height: 19px;
+    margin-bottom: 10px;
+}
+#widget-tag-show .widget-content h3 em {
+    font-size: 13px;
+    font-weight: normal;
+}
