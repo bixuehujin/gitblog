@@ -38,12 +38,14 @@ return array(
         	),
 		),
 	),
+	/*
 	'behaviors'=>array(
 		'sitePermissions'=>array(
 			'class'=>'application.behaviors.SitePermissionsBehavior',
 			'autoRebuild'=>true,
 		),
 	),
+	*/
 	// application components
 	'components'=>array(
 		'user'=>array(
@@ -106,6 +108,8 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
+				'user/<id:\d+>/'=>'user/',
+				'user/<id:\d+>/<action:\w+>'=>'user/<action>',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

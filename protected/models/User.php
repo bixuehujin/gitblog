@@ -71,6 +71,13 @@ class User extends CActiveRecord {
 	}
 	
 	/**
+	 * @return boolean
+	 */
+	public function isSelf() {
+		return $this->uid == Yii::app()->user->getId();
+	}
+	
+	/**
 	 * Load a user by its indentifier(uid, username, email) from database.
 	 * 
 	 * @param integer $identifier

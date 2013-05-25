@@ -18,7 +18,7 @@ class GitBlog extends CComponent {
 			$identifier = Yii::app()->user->getState('user');
 		}
 		$user = $identifier instanceof User ? $identifier : User::load($identifier);
-		return CHtml::link($user->username, array('user/view', 'id' => $user->uid), $htmlOptions);
+		return CHtml::link($user->username, array('user/', 'id' => $user->uid), $htmlOptions);
 	}
 	
 	/**

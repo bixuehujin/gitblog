@@ -102,7 +102,7 @@ class Controller extends CController{
 	 * @return array
 	 */
 	protected function userMenuItems() {
-		$items[] = array('label' => Yii::app()->user->getName(), 'url' => array('/feed/'));
+		$items[] = array('label' => Yii::app()->user->getName(), 'url' => array('/user/'));
 		$items[] = array('label' => '联系', 'url' => array('/site/contact'), 'visible' => Yii::app()->user->isGuest);
 		$items[] = array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest);
 		$items[] = array('label' => '我的账号<b class="caret"></b>', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest, 'items' => array(

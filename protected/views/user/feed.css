@@ -1,6 +1,5 @@
-#column-content {
-    width: 690px;
-    padding: 0 25px;
+#column-content .content-inner {
+    margin: 0 10px;
 }
 .section-title {
     width: 100%;
@@ -10,9 +9,9 @@
     font-weight: normal;
     font-size: 21px;
     width: 100%;
+    margin-left: 10px;
     border-bottom: 1px solid #e5e5e5;
 }
-
 .messages {
     margin-top: -10px;
 }
