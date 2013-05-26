@@ -210,5 +210,12 @@ class GitClient extends CComponent {
 		}
 		return $this->repo->lookup($entry->oid)->getContent();
 	}
+	
+	/**
+	 * @return Git2\Commit
+	 */
+	public function getCommitByOid($oid) {
+		return $this->repo->lookup($oid);
+	}
 }
 

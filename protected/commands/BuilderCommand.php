@@ -38,9 +38,15 @@ class BuilderCommand extends CConsoleCommand {
 		$lastCommit = $this->user->getSetting('last_commit');
 		$client = $this->getClient();
 		$commitsOld = $commits = $client->listCommitUntil($lastCommit);
+		
+		if (empty($commitsOld)) {
+			printf("[INFO] No commit needs to resolve, exiting...\n");
+			return;
+		}
+		
 		array_shift($commitsOld);
 		if ($lastCommit) {
-			$commitsOld[] = $lastCommit;
+			$commitsOld[] = $this->client->getCommitByOid($lastCommit);
 		}
 		foreach ($commitsOld as $i => $commitOld) {
 			$diff = $this->client->diffCommit($commitOld, $commits[$i]);
@@ -55,6 +61,7 @@ class BuilderCommand extends CConsoleCommand {
 				$this->parseContent($content, $entry->name, $commitOld->getMessage(), $entry->oid);
 			}
 		}
+		$this->user->setSetting('last_commit', $commits[0]->getOid());
 	}
 
 	protected function parseDiffFiles($diff, $currCommit) {
@@ -65,8 +72,8 @@ class BuilderCommand extends CConsoleCommand {
 			}
 		}else if (isset($diff['M'])) {
 			foreach ($diff['M'] as $filename) {
-				$content = $this->client->fetchContentByPath($currCommit->getTree(), $filename);
-				//var_dump($content);
+				$content = $this->client->fetchContentByPath($currCommit->getTree(), $filename, $oid);
+				$this->parseContent($content, $filename, $currCommit->getMessage(), $oid);
 			}
 		}else {
 			
