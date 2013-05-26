@@ -22,8 +22,8 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/user_show.css');
 		</div>
 	</div>
 	<ul class="status">
-		<li><a href="">文章(0)</a></li>
-		<li><a href="">专题(0)</a></li>
+		<li><a href="<?php echo Yii::app()->createUrl('user/', array('id' => $user->uid))?>">文章(<?php echo $this->articleCount?>)</a></li>
+		<li><a href="<?php echo Yii::app()->createUrl('user/topics', array('id' => $user->uid))?>">专题(<?php echo $this->topicCount?>)</a></li>
 	</ul>
 </div>
 

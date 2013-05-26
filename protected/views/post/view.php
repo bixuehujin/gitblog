@@ -23,7 +23,7 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 
 <?php 
 	$this->renderPartial('/comment/_comment_form', array(
-		'commentForm' => $commentForm,
+		'model' => $commentForm,
 		'post' => $post,
 	));
 ?>

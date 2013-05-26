@@ -37,7 +37,7 @@ class GitBlog extends CComponent {
 		$user = $userOrUid instanceof User ? $userOrUid : User::load($userOrUid);
 		
 		$img = self::userAvatar($user, $size, $imgOptions);
-		return CHtml::link($img, array('user/view', 'id' => $user->uid));
+		return CHtml::link($img, array('user/', 'id' => $user->uid));
 	}
 	
 	/**

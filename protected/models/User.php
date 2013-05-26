@@ -6,7 +6,7 @@
  * @since  2012-10-10
  */
 
-class User extends CActiveRecord {
+class User extends CActiveRecord implements Commentable{
 	
 	/**
 	 * Cahces of loaded user objects, indexed by uid.
@@ -75,6 +75,33 @@ class User extends CActiveRecord {
 	 */
 	public function isSelf() {
 		return $this->uid == Yii::app()->user->getId();
+	}
+	
+	/**
+	 * 
+	 * @param integer $pageSize
+	 * @return CActiveDataProvider
+	 */
+	public function getMessageProvider($pageSize = 10) {
+		return Comment::fetchProviderByOwner($this, $pageSize);
+	}
+	
+	/**
+	 * Get the topic count of the user.
+	 * 
+	 * @return integer
+	 */
+	public function getTopics() {
+		return Post::model()->count('author=' . $this->uid . '&type = ' . Post::TYPE_TOPIC);
+	}
+	
+	/**
+	 * Get the article count of the user.
+	 *
+	 * @return integer
+	 */
+	public function getArticles() {
+		return Post::model()->count('author=' . $this->uid . '&type = ' . Post::TYPE_ARTICLE);
 	}
 	
 	/**
@@ -169,4 +196,15 @@ class User extends CActiveRecord {
 		return ($user->uid != $uid);
 	}
 	
+	public function getOwnerId() {
+		return $this->uid;
+	}
+	
+	public function getOwnerType() {
+		return 'user';
+	}
+	
+	public function updateCommentCounter($count) {}
+	
+	public function getCommentCount() {}
 }

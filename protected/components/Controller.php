@@ -102,10 +102,11 @@ class Controller extends CController{
 	 * @return array
 	 */
 	protected function userMenuItems() {
-		$items[] = array('label' => Yii::app()->user->getName(), 'url' => array('/user/'));
-		$items[] = array('label' => '联系', 'url' => array('/site/contact'), 'visible' => Yii::app()->user->isGuest);
-		$items[] = array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest);
-		$items[] = array('label' => '我的账号<b class="caret"></b>', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest, 'items' => array(
+		$isGuest = Yii::app()->user->getIsGuest();
+		$items[] = array('label' => Yii::app()->user->getName(), 'url' => array('/user/'), 'visible' => !$isGuest);
+		$items[] = array('label' => '联系', 'url' => array('/site/contact'), 'visible' => $isGuest);
+		$items[] = array('label' => '登录', 'url' => array('/site/login'), 'visible' => $isGuest);
+		$items[] = array('label' => '我的账号<b class="caret"></b>', 'url' => array('/site/logout'), 'visible' => !$isGuest, 'items' => array(
 			array('label' => '系统管理', 'url' => array('/admin'), 'visible' => !Yii::app()->user->isGuest, 'linkOptions' => array('target' => '_blank')),
 			array('label' => '基本信息', 'url' => array('/account/info')),
 			array('label' => '头像设置', 'url' => array('/account/avatar')),

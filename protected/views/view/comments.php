@@ -14,7 +14,7 @@ $this->setBreadcrumbs(array(
 ));
 ?>
 
-<?php $this->renderPartial('/comment/_comment_form', array('commentForm'=>$commentForm, 'post'=>$post))?>
+<?php $this->renderPartial('/comment/_comment_form', array('model'=>$commentForm, 'post'=>$post))?>
 
 <?php 
 $this->renderPartial('/comment/_comments', array('provider'=>$post->getCommentProvider()));

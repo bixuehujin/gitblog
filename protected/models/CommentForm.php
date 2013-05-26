@@ -25,7 +25,7 @@ class CommentForm extends CFormModel {
 		if ($scenario == null) {
 			$this->scenario = Yii::app()->user->getIsGuest() ? self::SCENARIO_ANONYMOUS : self::SCENARIO_REGISTER;
 		}
-		if (!$post instanceof Post || !$post->pid) {
+		if (!$post instanceof Commentable || !$post->getOwnerId()) {
 			throw new CException("The argument 'post' is not valid.");
 		}
 		$this->post = $post;

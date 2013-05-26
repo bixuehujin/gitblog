@@ -38,6 +38,14 @@ class UserShow extends CWidget {
 		return $this->user;
 	}
 	
+	public function getArticleCount() {
+		return $this->getUser()->getArticles();
+	}
+	
+	public function getTopicCount() {
+		return $this->getUser()->getTopics();
+	}
+	
 	public function run() {
 		$this->renderFile($this->getViewFile('user_show'), array(
 			'user' => $this->getUser()

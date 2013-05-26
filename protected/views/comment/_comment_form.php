@@ -1,16 +1,23 @@
 <?php
 /**
- * comment form.
- * $commentForm: object 
- * $post: the post object.
+ * Comment form.
+ * 
+ * @var CommentForm $model
+ * @var string $ownerType
  */
 ?>
+<?php 
+if (!isset($ownerType)) {
+	$ownerType = '评论';
+}
+?>
+
 
 <?php 
 	$form = $this->beginWidget('ext.bootstrap.widgets.TbActiveForm', array(
 		'id' => 'comment-form',
 		'type' => 'inline',
-		'action' => array('/post/view', 'id'=>$post->pid, '#'=>'comment-form'),
+		'action' => '#comment-form',
 		'enableClientValidation' => true,
 		'clientOptions' => array(
 			'validateOnSubmit' => true
@@ -18,30 +25,26 @@
 	))
 ?>
 
-<legend>发表评论
-
-</legend>
+<legend>发表<?php echo $ownerType?></legend>
 
 	<?php echo Yii::app()->console->render();?>
 <section class="clearfix">
-	<?php echo $form->hiddenField($commentForm, 'parent', array('id' => 'parent'))?>
+	<?php echo $form->hiddenField($model, 'parent', array('id' => 'parent'))?>
 	
-	<?php if ($commentForm->isAnonymousScenario()):?>
+	<?php if ($model->isAnonymousScenario()):?>
 	<div>
-		<?php echo $form->textFieldRow($commentForm, 'author', array('id' => 'author'))?>
-		<?php echo $form->textFieldRow($commentForm, 'email', array('id' => 'email'))?>
-		<?php echo $form->textFieldRow($commentForm, 'website', array('id' => 'website'))?>
+		<?php echo $form->textFieldRow($model, 'author', array('id' => 'author'))?>
+		<?php echo $form->textFieldRow($model, 'email', array('id' => 'email'))?>
+		<?php echo $form->textFieldRow($model, 'website', array('id' => 'website'))?>
 	</div>
 	<?php endif;?>
 	
 	<div>
-	<?php echo $form->textAreaRow($commentForm, 'content')?>
+	<?php echo $form->textAreaRow($model, 'content')?>
 	</div>
 	<div>
-	<?php echo CHtml::submitButton('提交评论', array('class'=>'btn btn-primary pull-right'))?>
+	<?php echo CHtml::submitButton('提交' . $ownerType, array('class'=>'btn btn-primary pull-right'))?>
 	</div>
 	
 </section>
-	
-
 <?php $this->endWidget();?>

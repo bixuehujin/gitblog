@@ -49,8 +49,27 @@ class UserController extends Controller {
 	}
 	
 	public function actionMessages() {
+		$id = Yii::app()->request->getQuery('id', Yii::app()->user->getId());
+		$isGuest = Yii::app()->user->getIsGuest();
 		
-		$this->render('messages', array());
+		$user = User::load($id);
+		if (!$user) {
+			throw new CHttpException(404);
+		}
+		
+		$model = new CommentForm(null, $user);
+		
+		if (isset($_POST['CommentForm'])) {
+			$model->setAttributes($_POST['CommentForm']);
+			if ($model->save()) {
+				$this->refresh();
+			}
+		}
+		
+		$this->render('messages', array(
+			'model' => $model,
+			'provider' => $user->getMessageProvider(),
+		));
 	}
 	
 	public function actionInfo() {
