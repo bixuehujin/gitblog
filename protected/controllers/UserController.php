@@ -22,14 +22,14 @@ class UserController extends Controller {
 	}
 	
 	public function actionArticles() {
-		$provider = Post::fetchProviderByAuthor($this->uid);
+		$provider = Post::fetchProviderByAuthor($this->uid, Post::TYPE_ARTICLE);
 		$this->render('articles', array(
 			'provider' => $provider,
 		));
 	}
 	
 	public function actionTopics() {
-		$provider = Post::fetchProviderByAuthor($this->uid);
+		$provider = Post::fetchProviderByAuthor($this->uid, Post::TYPE_TOPIC);
 		$this->render('topics', array(
 			'provider' => $provider,
 		));

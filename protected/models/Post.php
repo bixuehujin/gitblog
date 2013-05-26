@@ -350,15 +350,19 @@ class Post extends CActiveRecord implements Commentable{
 	 * Fetch a data provider of Post by author.
 	 * 
 	 * @param integer $uid
+	 * @param integer $postType Post::TYPE_ARTICLE or Post::TYPE_TOPIC, null for both.
 	 * @param integer $pageSize
 	 * @return CActiveDataProvider
 	 */
-	public static function fetchProviderByAuthor($uid, $pageSize = 10) {
+	public static function fetchProviderByAuthor($uid, $postType = null, $pageSize = 10) {
 		$criteria = new CDbCriteria();
 		$criteria->addColumnCondition(array(
 			'author' => $uid,
 		));
 		$criteria->order = 'pid DESC';
+		if ($postType !== null) {
+			$criteria->addColumnCondition(array('type' => $postType));
+		}
 		return new CActiveDataProvider(__CLASS__, array(
 			'criteria' => $criteria,
 			'pagination' => array(
