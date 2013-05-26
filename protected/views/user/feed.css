@@ -22,3 +22,33 @@
 #post-form textarea#content {
     height: 150px;
 }
+
+/* css for comments list in home center */
+
+.comments {
+    margin: 0 10px;
+}
+.comments .comment {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.comments .comment .user {
+    width: 70px;
+    text-align: center;
+}
+.comments .comment .user img {
+    width: 50px;
+    border-radius: 4px;
+}
+.comments .comment .content {
+    width: 560px;
+}
+
+.comments .comment .content-body,
+.comments .comment .content-footer {
+    margin-top: 5px;
+}
+.comments .comment .content-footer {
+    color: #777;
+    font-size: 13px;
+}

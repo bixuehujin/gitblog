@@ -36,9 +36,15 @@ class UserController extends Controller {
 	}
 	
 	public function actionComments() {
+		$type = Yii::app()->request->getQuery('type', 'received');
+		if ($type === 'received') {
+			$provider = Comment::fetchProviderOfReceived();
+		}else {
+			$provider = Comment::fetchProviderOfSent();
+		}
 		
 		$this->render('comments', array(
-			//'provider' => $provider,
+			'provider' => $provider,
 		));
 	}
 	

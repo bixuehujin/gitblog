@@ -9,7 +9,7 @@ $isSelf = $user->isSelf();
 $items = array(
 	array('label' => '文章', 'url' => array('/user/articles')),
 	array('label' => '专题', 'url' => array('/user/topics')),
-	array('label' => '评论', 'url' => array('/user/comments', 'type' => 'received'), 'visible' => $isSelf),
+	array('label' => '评论', 'url' => array('/user/comments'), 'visible' => $isSelf),
 	array('label' => '信息', 'url' => array('/user/info'), 'visible' => !$isSelf),
 	array('label' => '留言', 'url' => array('/user/messages')),
 );
