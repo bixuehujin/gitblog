@@ -101,6 +101,9 @@ class BuilderCommand extends CConsoleCommand {
 					$post->author = $post->committer = $this->user->uid;
 					$post->oid = $oid;
 					$post->path = $filename;
+					if (isset($meta['topic']) && $meta['topic'] == 'true') {
+						$post->type = Post::TYPE_TOPIC;
+					}
 					$post->title = $meta['title'];
 					$post->save(false);
 				}

@@ -48,8 +48,19 @@ class ViewController extends Controller {
 	 * View by topics.
 	 */
 	public function actionTopic() {
+		$layout = $this->getPageLayout();
+		if (Yii::app()->user->getIsGuest()) {
+				
+		}else {
+			$layout->addColumnItem('right', 'application.widgets.UserShow');
+		}
 		
-		$this->render('topic', array());
+		$id = Yii::app()->request->getQuery('id', 0);
+		$provider = Post::fetchProviderByCategoryId($id, Post::TYPE_TOPIC);
+		
+		$this->render('topic', array(
+			'provider' => $provider,
+		));
 	}
 	
 	/**

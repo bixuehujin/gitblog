@@ -112,6 +112,7 @@ return array(
 				'user/<id:\d+>/<action:\w+>'=>'user/<action>',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'post/<path:[\w\/\._-]+>'=>'post/view',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 			'showScriptName' => false,

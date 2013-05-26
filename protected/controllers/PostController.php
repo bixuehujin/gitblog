@@ -57,9 +57,13 @@ class PostController extends Controller {
 	}
 	
 	public function actionView() {
-		$id = Yii::app()->request->getQuery('id', 0);
-		$rid = Yii::app()->request->getQuery('rid', 0);
-		if(!$id || !($post = Post::load($id))) {
+		$request = Yii::app()->getRequest();
+		$id = $request->getQuery('id', 0);
+		$path = $request->getQuery('path', null);
+		$rid = $request->getQuery('rid', 0);
+		if($id && ($post = Post::load($id))) {
+		}elseif ($path && ($post = Post::loadByPath($path))) {
+		}else {
 			throw new CHttpException(404);
 		}
 		

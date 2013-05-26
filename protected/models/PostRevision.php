@@ -48,7 +48,9 @@ class PostRevision extends CActiveRecord {
 	
 	public function getFormattedContent() {
 		$parser = $this->parseContent();
-		return $parser->content;
+		return preg_replace_callback('/gitroot:\/\/([\w.-_]+)/', function ($matches) {
+			return Yii::app()->createUrl('post/view', array('path' => $matches[1]));
+		}, $parser->content);
 	}
 	
 	public function getFormattedCreated() {

@@ -11,6 +11,9 @@ class Post extends CActiveRecord implements Commentable{
 	const STATUS_DELETED    = 1;
 	const STATUS_UNVISIABLE = 2; // only author can view.
 	
+	const TYPE_ARTICLE = 0;
+	const TYPE_TOPIC   = 1;
+	
 	/**
 	 * Tags attached to current post.
 	 * @var Tag[]
@@ -319,15 +322,19 @@ class Post extends CActiveRecord implements Commentable{
 	 * Fetch a data provider of Post by category id.
 	 * 
 	 * @param integer $catid
+	 * @param integer $postType Post::TYPE_ARTICLE or Post::TYPE_TOPIC, null for all types.
 	 * @param integer $pageSize
 	 * @return CActiveDataProvider
 	 */
-	public static function fetchProviderByCategoryId($catid = 0, $pageSize = 10) {
+	public static function fetchProviderByCategoryId($catid = 0, $postType = null, $pageSize = 10) {
 		$criteria = new CDbCriteria();
 		if ($catid) {
 			$ids = TermHierarchy::fetchChildren($catid);
 			$ids[] = $catid;
 			$criteria->addInCondition('cid', $ids);
+		}
+		if ($postType !== null) {
+			$criteria->addColumnCondition(array('type' => $postType));
 		}
 		$criteria->order = 'pid DESC';
 		return new CActiveDataProvider(__CLASS__, array(
