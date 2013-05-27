@@ -56,8 +56,16 @@ class AccountController extends Controller {
 			'设置' => array('/account'),
 			'密码修改',
 		));
-		
-		$this->render('password', array());
+		$model = new PasswordForm(PasswordForm::SCENARIO_CHANGE, User::load(Yii::app()->user->getId()));
+		if (isset($_POST['PasswordForm'])) {
+			$model->setAttributes($_POST['PasswordForm']);
+			if ($model->change()) {
+				$this->refresh();
+			}
+		}
+		$this->render('password', array(
+			'model' => $model,
+		));
 	}
 	
 	public function actionContent() {

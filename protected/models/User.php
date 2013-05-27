@@ -28,6 +28,7 @@ class User extends CActiveRecord implements Commentable{
 	private static $cachedEmail = array();
 	
 	private $_avatarImage;
+	private $_resetPasswordToken;
 	
 	/**
 	 * @return User
@@ -110,6 +111,16 @@ class User extends CActiveRecord implements Commentable{
 	 */
 	public function getArticles() {
 		return Post::model()->count('author=' . $this->uid . '&type = ' . Post::TYPE_ARTICLE);
+	}
+	
+	/**
+	 * Check whether the password is match.
+	 * 
+	 * @param string $password
+	 * @return boolean
+	 */
+	public function isPasswordMatch($password) {
+		return $this->password === $this->encryptPassword($password);
 	}
 	
 	/**
@@ -206,6 +217,33 @@ class User extends CActiveRecord implements Commentable{
 	
 	public static function encryptPassword($password) {
 		return md5($password);
+	}
+	
+	/**
+	 * @param string $email
+	 * @return string|false
+	 */
+	public static function generateResetPasswordToken($email) {
+		$model = User::load($email);
+		if (!$model) return false;
+		
+		$app = Yii::app();
+		$token = $app->request->getUserHostAddress() . microtime();
+		$token = sha1($token);
+ 		if ($app->getComponent('userData')->set('reset_password_token', $token, $model->uid, time() + 60 * 60 * 24)) {
+ 			return $token . ';' . $email;
+ 		}
+ 		return false;
+	}
+	
+	/**
+	 * @return AttachedData
+	 */
+	public function getResetPasswordToken() {
+		if ($this->_resetPasswordToken === null) {
+			$this->_resetPasswordToken = Yii::app()->userData->get('reset_password_token', $this->uid);
+		}
+		return $this->_resetPasswordToken;
 	}
 	
 	/**

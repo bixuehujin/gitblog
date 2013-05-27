@@ -68,7 +68,10 @@ return array(
 		'persistentMessage' => array(
 			'class' => 'PersistentMessage',
 		),
-		
+		'userData'=>array(
+			'class'=>'ext.common.components.AttachedDataComponent',
+			'name'=>'user',
+		),
 		'bootstrap'=>array(
 			'class'=>'ext.bootstrap.components.Bootstrap',
 		),

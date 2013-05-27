@@ -98,4 +98,45 @@ class SiteController extends Controller {
 			'model' => $model,
 		));
 	}
+	
+	/**
+	 * Password reset page.
+	 */
+	public function actionReset() {
+		$this->getPageLayout()->setState('section_title', '密码重置');
+		$token = Yii::app()->request->getQuery('token');
+		if (!$token) {
+			$model = new PasswordResetForm();
+			if (isset($_POST['PasswordResetForm'])) {
+				$model->setAttributes($_POST['PasswordResetForm']);
+				if ($model->reset()) {
+					$this->refresh();
+				}
+			}
+			$this->render('reset', array(
+				'model' => $model,
+				'template' => '/forms/password_reset',
+			));
+			Yii::app()->end();
+		}
+		
+		$template = '/forms/password';
+		$data = explode(';', $token);
+		if (isset($data[1]) && ($user = User::load($data[1])) && $user->getResetPasswordToken()) {
+			$model = new PasswordForm(PasswordForm::SCENARIO_RESET, $user);
+			if (isset($_POST['PasswordForm'])) {
+				$model->setAttributes($_POST['PasswordForm']);
+				if ($model->change()) {
+					$this->redirect('/site/login');
+				}
+			}
+			$this->render('reset', array(
+				'model' => $model,
+				'template' => $template,
+			));
+		}else {
+			Yii::app()->console->addError('重置连接错误或已过期！');
+			$this->redirect('/site/reset');
+		}
+	}
 }
