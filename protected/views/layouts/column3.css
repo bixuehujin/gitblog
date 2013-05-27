@@ -22,7 +22,8 @@ html, body {
     width: 680px;
     border-radius: 5px;
 }
-#column-right .column-item {
+#column-right .column-item,
+#column-left .column-item {
     background: #fff;
     border-radius: 5px;
 }
@@ -75,7 +76,9 @@ html, body {
 .messages {
     margin: 0 10px;
 }
-
+.inner {
+    margin: 10px;
+}
 /* css for widgets related */
 .widget {
     padding: 8px;   

@@ -10,7 +10,8 @@
  */
 ?>
 
-<div class="account-menu">
+<div class="account-menu widget">
+<div class="widget-content">
 <?php $this->widget('bootstrap.widgets.TbMenu', array(
 	'items' => array(
 		array('label' => '基本信息', 'url' => array('/account/info')),
@@ -20,4 +21,5 @@
 	),
 	'type' => 'list'
 ))?>
+</div>
 </div>

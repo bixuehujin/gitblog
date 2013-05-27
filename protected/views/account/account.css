@@ -1,4 +1,4 @@
 #column-content {
-    width: 710px;
-    padding: 0 15px;
+    width: 740px !important;
+    float: right !important;
 }
