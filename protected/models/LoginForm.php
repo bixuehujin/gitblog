@@ -56,9 +56,9 @@ class LoginForm extends CFormModel {
 	 * Logs in the user using the given username and password in the model.
 	 * @return boolean whether login is successful
 	 */
-	public function login() {
+	public function login($showErrors = true) {
 		if (!$this->validate()) {
-			Yii::app()->console->addModel($this);
+			$showErrors && Yii::app()->console->addModel($this);
 			return false;
 		}
 		if($this->_identity === null){

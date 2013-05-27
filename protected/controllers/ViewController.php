@@ -9,6 +9,21 @@ class ViewController extends Controller {
 	
 	public $defaultAction = 'category';
 	
+	
+	public function beforeAction($action) {
+		if (Yii::app()->user->getIsGuest() && in_array($action->getId(), array('category', 'topic', 'tag'))) {
+			$model = new LoginForm();
+			if (isset($_POST['LoginForm'])) {
+				$model->setAttributes($_POST['LoginForm']);
+				if ($model->login(false)) {
+					$this->refresh();
+				}
+			}
+			$this->getPageLayout()->addColumnItem('right', '/_blocks/user_login', array('model' => $model));
+		}
+		return true;
+	}
+	
 	/**
 	 * get data provider used by category, user, tag action.
 	 * 

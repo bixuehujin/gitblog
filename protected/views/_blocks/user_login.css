@@ -1,0 +1,35 @@
+#widget-user-login .widget-content{
+
+}
+#widget-user-login .control-group {
+    margin-bottom: 15px;
+}
+#widget-user-login .control-label {
+    width: 55px;
+    font-size: 13px;
+}
+#widget-user-login .controls {
+    margin-left: 66px;
+    
+}
+#widget-user-login section .controls input {
+    width: 165px;
+    font-size: 13px;
+    height: 17px;
+}
+#widget-user-login section .controls a {
+    display: none;
+}
+#widget-user-login .controls .checkbox {
+    float: left;
+    width: 100px;
+    
+    font-size: 13px;
+}
+#widget-user-login .controls .btn {
+    float: right;
+}
+#widget-user-login .control-group.buttons,
+#widget-user-login #login-form {
+    margin-bottom: 5px;
+}
