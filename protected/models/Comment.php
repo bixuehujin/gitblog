@@ -191,9 +191,9 @@ class Comment extends CActiveRecord {
 		//select c.cid, c.parent, p.cid, c.owner from comment c 
 		//join post on c.owner=post.pid join comment p  on c.parent=p.cid  
 		//where post.author=1 or p.creator=1
-		
+		$uid = Yii::app()->user->getId();
 		$criteria = new CDbCriteria();
-		$criteria->condition = 'post.author=1 or p.creator=1';
+		$criteria->condition = "post.author=$uid or p.creator=$uid";
 		$criteria->select = 'c.*';
 		$criteria->join = 'join post on c.owner=post.pid left join comment p  on c.parent=p.cid';
 		$criteria->alias = 'c';
