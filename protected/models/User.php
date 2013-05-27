@@ -40,6 +40,14 @@ class User extends CActiveRecord implements Commentable{
 		return 'user';
 	}
 	
+	public function behaviors() {
+		return array(
+			'userBehavior' => array(
+				'class' => 'application.behaviors.UserBehavior'
+			),
+		);
+	}
+	
 	public function beforeSave() {
 		return parent::beforeSave();
 	}
@@ -194,6 +202,41 @@ class User extends CActiveRecord implements Commentable{
 		if (!$user) return false;
 		
 		return ($user->uid != $uid);
+	}
+	
+	public static function encryptPassword($password) {
+		return md5($password);
+	}
+	
+	/**
+	 * Create a new user.
+	 * 
+	 * @param string $username
+	 * @param string $email
+	 * @param string $password
+	 * @return User
+	 */
+	public static function create($username, $email, $password) {
+		$user = new User();
+		$user->username = $username;
+		$user->email = $email;
+		$user->password = self::encryptPassword($password);
+		if ($user->save(false)) {
+			$user->userRegistered();
+			return $user;
+		}
+		return false;
+	}
+	
+	public function onUserRegistered($event) {
+		$this->raiseEvent('onUserRegistered', $event);
+	}
+	
+	protected function userRegistered() {
+		if ($this->hasEventHandler('onUserRegistered')) {
+			$event = new CModelEvent($this);
+			$this->onUserRegistered($event);
+		}
 	}
 	
 	public function getOwnerId() {

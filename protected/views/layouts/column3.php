@@ -22,9 +22,9 @@
 
 <div id="column-content">
 	<?php if ($layout->hasState('section_title')):?>
-		<section class="section-title">
-			<h2><?php echo $layout->getState('section_title')?></h2>
-		</section>
+		<div class="section-title">
+			<h1><?php echo $layout->getState('section_title')?></h1>
+		</div>
 	<?php endif;?>
 	<?php if ($layout->hasBreadcrumbs()):?>
 		<div class="breadcrumns">

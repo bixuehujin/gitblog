@@ -1,43 +1,31 @@
 <?php 
-	$form = $this->beginWidget('CActiveForm', array(
-		'id'=>'global-form',
-		'htmlOptions'=>array('class'=>'form-horizontal')
+/**
+ * System website wide configuration form template file.
+ * 
+ * @var SystemWebsiteForm $model
+ */
+?>
+<?php 
+	$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+		'id' => 'global-form',
+		'type' => 'horizontal',
 	));
 ?>
 <legend>站点信息</legend>
 <section>
 	<?php echo CHtml::errorSummary($model, '表单输入有误，请核对再提交:', null, array('class'=>'alert alert-error'))?>
 	<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+
 	
-	<div class="control-group">
-		<?php echo $form->labelEx($model, 'site_name', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textField($model, 'site_name');?>
-			<?php echo $form->error($model, 'site_name')?>
-		</div>
-	</div>
+	<?php echo $form->textFieldRow($model, 'site_name')?>
+
+	<?php echo $form->textFieldRow($model, 'site_desp')?>
 	
-	<div class="control-group">
-		<?php echo $form->labelEx($model, 'site_desp', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textArea($model, 'site_desp')?>
-		</div>
-	</div>
+	<?php echo $form->textFieldRow($model, 'site_slogan')?>
+
+	<?php echo $form->radioButtonListInlineRow($model, 'site_register_on', array('0' => '关闭', '1' => '开启'))?>
 	
-	<div class="control-group">
-		<?php echo $form->labelEx($model, 'site_slogan', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textArea($model, 'site_slogan')?>
-		</div>
-	</div>
-	
-	<div class="control-group">
-		<?php echo $form->labelEx($model, 'site_email', array('class'=>'control-label'))?>
-		<div class="controls">
-			<?php echo $form->textField($model, 'site_email')?>
-			<?php //echo $form->error($model, 'site_email')?>
-		</div>
-	</div>
+	<?php echo $form->textFieldRow($model, 'site_email')?>
 	
 	<div class="control-group">
 		<div class="controls">

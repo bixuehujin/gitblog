@@ -35,12 +35,12 @@ html, body {
 }
 
 #column-left {
-	float:left;
-	width:200px;
+    float:left;
+    width:200px;
 }
 #column-right {
-	float:right;
-	width:260px;
+    float:right;
+    width:260px;
 }
 
 #column-right .column-item {
@@ -48,11 +48,11 @@ html, body {
 }
 
 #column-content {
-	float:left;
+    float:left;
 }
 
 .footer-inner {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 /* Override bootstrap css */
@@ -60,7 +60,21 @@ html, body {
     width: 960px;
 }
 
+.section-title {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
 
+.section-title h1 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+.messages {
+    margin: 0 10px;
+}
 
 /* css for widgets related */
 .widget {

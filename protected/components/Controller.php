@@ -104,7 +104,7 @@ class Controller extends CController{
 	protected function userMenuItems() {
 		$isGuest = Yii::app()->user->getIsGuest();
 		$items[] = array('label' => Yii::app()->user->getName(), 'url' => array('/user/'), 'visible' => !$isGuest);
-		$items[] = array('label' => '联系', 'url' => array('/site/contact'), 'visible' => $isGuest);
+		$items[] = array('label' => '注册', 'url' => array('/site/register'), 'visible' => $isGuest && Yii::app()->settings->get('site_register_on', 1));
 		$items[] = array('label' => '登录', 'url' => array('/site/login'), 'visible' => $isGuest);
 		$items[] = array('label' => '我的账号<b class="caret"></b>', 'url' => array('/site/logout'), 'visible' => !$isGuest, 'items' => array(
 			array('label' => '系统管理', 'url' => array('/admin'), 'visible' => !Yii::app()->user->isGuest, 'linkOptions' => array('target' => '_blank')),
