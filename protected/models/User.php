@@ -101,7 +101,7 @@ class User extends CActiveRecord implements Commentable{
 	 * @return integer
 	 */
 	public function getTopics() {
-		return Post::model()->count('author=' . $this->uid . '&type = ' . Post::TYPE_TOPIC);
+		return Post::model()->count('author=' . $this->uid . '&&type = ' . Post::TYPE_TOPIC);
 	}
 	
 	/**
@@ -110,7 +110,7 @@ class User extends CActiveRecord implements Commentable{
 	 * @return integer
 	 */
 	public function getArticles() {
-		return Post::model()->count('author=' . $this->uid . '&type = ' . Post::TYPE_ARTICLE);
+		return Post::model()->count('author=' . $this->uid . '&&type=' . Post::TYPE_ARTICLE);
 	}
 	
 	/**
