@@ -266,6 +266,27 @@ class User extends CActiveRecord implements Commentable{
 		return false;
 	}
 	
+	/**
+	 * Fetch a user by given git repo path.
+	 * 
+	 * @param string $repoPath
+	 * @return User
+	 */
+	public static function fetchUserByRepo($repoPath) {
+		$name = basename($repoPath, '.git');
+		$criteria = new CDbCriteria();
+		$criteria->addColumnCondition(array(
+			'name' => 'repository',
+		));
+		$criteria->index = 'value';
+		$values = UserSetting::model()->findAll($criteria);
+		
+		if (isset($values[$name])) {
+			return self::load($values[$name]->uid);
+		}
+		return null;
+	}
+	
 	public function onUserRegistered($event) {
 		$this->raiseEvent('onUserRegistered', $event);
 	}

@@ -8,7 +8,6 @@
 
 class BuilderCommand extends CConsoleCommand {
 	
-	private $identifier;
 	private $repo;
 	/**
 	 * @var User
@@ -69,12 +68,12 @@ class BuilderCommand extends CConsoleCommand {
 		if (isset($diff['A'])) {
 			foreach ($diff['A'] as $filename) {
 				$content = $this->client->fetchContentByPath($currCommit->getTree(), $filename, $oid);
-				$this->parseContent($content, $filename, $currCommit->getMessage(), $oid);
+				$this->parseContent($content, $filename, $currCommit, $oid);
 			}
 		}else if (isset($diff['M'])) {
 			foreach ($diff['M'] as $filename) {
 				$content = $this->client->fetchContentByPath($currCommit->getTree(), $filename, $oid);
-				$this->parseContent($content, $filename, $currCommit->getMessage(), $oid);
+				$this->parseContent($content, $filename, $currCommit, $oid);
 			}
 		}else {
 			
@@ -86,9 +85,12 @@ class BuilderCommand extends CConsoleCommand {
 	 * 
 	 * @param string $content
 	 * @param string $filename
-	 * @param string $message The commit message.
+	 * @param Git2\Commit $message The commit object
 	 */
-	protected function parseContent($content, $filename, $message, $oid) {
+	protected function parseContent($content, $filename, $commit, $oid) {
+		$message = $commit->getMessage();
+		$user = User::load($commit->getAuthor()->email);
+		
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if (in_array($ext, array('md', 'markdown'))) {
 			$parser = new PostParser($content);
@@ -102,7 +104,7 @@ class BuilderCommand extends CConsoleCommand {
 				if (!$post) {
 					$newPost = true;
 					$post = new Post();
-					$post->author = $post->committer = $this->user->uid;
+					$post->author = $post->committer = $user->uid;
 					$post->oid = $oid;
 					$post->path = $filename;
 					if (isset($meta['topic']) && $meta['topic'] == 'true') {
@@ -115,7 +117,7 @@ class BuilderCommand extends CConsoleCommand {
 				$revision = new PostRevision();
 				$revision->post_id = $post->pid;
 				$revision->oid = $oid;
-				$revision->creator = $this->user->uid;
+				$revision->creator = $user->uid;
 				$revision->title = $meta['title'];
 				$revision->meta = $parser->rawMeta;
 				$revision->path = $filename;
@@ -124,9 +126,9 @@ class BuilderCommand extends CConsoleCommand {
 				$revision->save(false);
 				
 				if ($newPost) {
-					$post->author = $this->user->uid;
+					$post->author = $user->uid;
 				}
-				$post->committer = $this->user->uid;
+				$post->committer = $user->uid;
 				$post->rid = $revision->rid;
 				$post->title = $meta['title'];
 				$post->save(false);
@@ -149,17 +151,19 @@ class BuilderCommand extends CConsoleCommand {
 	 */
 	protected function parseOptions($args) {
 		list($action, $options, $args)=$this->resolveRequest($args);
-		if (!isset($options['identifier'])) {
+		if (!isset($options['repo'])) {
 			return false;
 		}
 
-		foreach (array('identifier') as $option) {
+		foreach (array('repo') as $option) {
 			if (isset($options[$option])) {
 				$this->$option = $options[$option];
 			}
 		}
-		if(!($this->user = $user = User::load($this->identifier))) {
-			printf("No record matched by identifier '{$this->identifier}'.\n");
+		$this->user = User::fetchUserByRepo($this->repo);
+		
+		if(!$this->user) {
+			printf("No record matched by repo '{$this->repo}'.\n");
 			return false;
 		}
 		return true;
@@ -177,8 +181,6 @@ DESCRIPTION
 PARAMETERS
 
    The following options are available:
-
-   - identifier: string, the identifier of a user, uid, username or email.
 
    - repo: string, the path of repository to resolve.
 
