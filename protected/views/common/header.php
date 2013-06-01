@@ -10,7 +10,7 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/header.css')
 	<div class="navbar-inner">
 		<div class="navbar-swapper container">
 			<div class="span8 header-nav">
-				<a class="brand" href="<?php echo Yii::app()->getBaseUrl() . '/' ?>">博客主页</a>
+				<a class="brand" href="<?php echo Yii::app()->getBaseUrl() . '/' ?>">GitCMS</a>
 				<div class="nav-collapse collapse">
 					<?php $this->widget('zii.widgets.CMenu',array(
 						'htmlOptions' => array('class'=>'nav'),

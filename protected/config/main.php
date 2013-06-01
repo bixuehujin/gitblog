@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'侠古仁风的博客',
+	'name'=>'Git+Markdown高效内容创作和管理',
 	'defaultController' => 'view',
 	// preloading 'log' component
 	'preload'=>array('log', 'bootstrap'),

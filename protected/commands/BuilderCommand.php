@@ -9,6 +9,7 @@
 class BuilderCommand extends CConsoleCommand {
 	
 	private $identifier;
+	private $repo;
 	/**
 	 * @var User
 	 */
@@ -93,6 +94,9 @@ class BuilderCommand extends CConsoleCommand {
 			$parser = new PostParser($content);
 			if ($parser->parse()) {
 				$meta = $parser->meta;
+				if (!isset($meta['title'])) {
+					return;
+				}
 				$post = Post::loadByPath($filename);
 				$newPost = false;
 				if (!$post) {
@@ -124,6 +128,7 @@ class BuilderCommand extends CConsoleCommand {
 				}
 				$post->committer = $this->user->uid;
 				$post->rid = $revision->rid;
+				$post->title = $meta['title'];
 				$post->save(false);
 				
 				$post->applyCategory($meta['category']);
@@ -175,6 +180,7 @@ PARAMETERS
 
    - identifier: string, the identifier of a user, uid, username or email.
 
+   - repo: string, the path of repository to resolve.
 
 EOF;
 	}

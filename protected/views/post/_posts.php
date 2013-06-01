@@ -14,14 +14,13 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/posts.css');
 <div class="posts">
 	<?php foreach($provider->getData() as $post):?>
 	<div class="post clearfix">
-	<?php //$this->renderPartial('/post/_post', array('post' => $post))?>
 		<div class="user">
 			<?php echo GitBlog::userAvatarLink($post->getAuthor())?>
 		</div>
 		<div class="content">
 			<h2><?php echo CHtml::link($post->title, array('post/view', 'id' => $post->pid))?></h2>
 			<div class="summary">
-				<?php echo $post->getAbstract()?>
+				<?php echo ($post->getAbstract())?>
 			</div>
 			<div class="meta">
 				<span class="tags">
@@ -37,7 +36,6 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/posts.css');
 					<?php echo CHtml::link('阅读全文', array('post/view', 'id' => $post->pid))?>
 				</span>
 			</div>
-			
 		</div>
 	</div>
 	<?php endforeach;?>

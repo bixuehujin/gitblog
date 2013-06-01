@@ -130,5 +130,4 @@ class ViewController extends Controller {
 			'commentForm' => $commentForm,
 		));
 	}
-	
 }

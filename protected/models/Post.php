@@ -172,6 +172,7 @@ class Post extends CActiveRecord implements Commentable{
 				$ret = $this->content->formattedContent;
 			}else {
 				$ret = mb_substr($this->content->formattedContent, 0, $len, 'utf-8') . '... ...';
+				$ret = GitBlog::truncate($ret, $len);
 			}
 		}
 		return $ret;
