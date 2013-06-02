@@ -1,0 +1,30 @@
+#widget-post-navigation{
+    position: fixed;
+    right: 0;
+    background: #fff;
+    top: 100px;
+    width: 180px;
+    margin-right: -160px;
+    padding: 0;
+}
+#widget-post-navigation .widget-title {
+    margin: 0;
+}
+#widget-post-navigation .widget-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+#widget-post-navigation ul {
+    padding: 0;
+}
+#widget-post-navigation .widget-content > ul {
+    padding: 5px 15px;
+    padding-left: 19px;
+}
+#widget-post-navigation .widget-content > ul > li > ul a{
+    font-size: 13px;
+    padding-left: 25px;
+}
+#widget-post-navigation .widget-footer {
+    padding-left: 3px;
+}

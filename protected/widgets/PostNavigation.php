@@ -1,6 +1,6 @@
 <?php
 /**
- * PostNavigationWidget class file.
+ * PostNavigation class file.
  * @author Jin Hu <bixuehujin@gmail.com>
  */
 
@@ -11,7 +11,7 @@ Yii::import('zii.widgets.CMenu');
  * 
  * @author Jin Hu <bixuehujin@gmail.com>
  */
-class PostNavigationWidget extends CWidget {
+class PostNavigation extends CWidget {
 	
 	/**
 	 * @var array the navigation array will be rendered.
@@ -44,17 +44,19 @@ class PostNavigationWidget extends CWidget {
 		if(!is_array($this->navItems)) {
 			return;
 		}
+		Yii::app()->clientScript->pregisterScriptFile(__DIR__ . '/views/post_navigation.js')
+			->pregisterCssFile(__DIR__ . '/views/post_navigation.css');
 		$items = $this->navItems;
-		//Helper::print_r($items);
+
 		$this->processNavItems($items);
 		
 		$output = $this->widget('zii.widgets.CMenu', array(
 			'items'=>$items,
 			'htmlOptions'=>$this->topmenuOptions,
 		), true);
-		
-		$attributesStr = $this->renderHtmlOptions($this->htmlOptions);
-		echo "<div $attributesStr>\n$output\n</div>\n";
+		$this->renderFile($this->getViewFile('post_navigation'), array(
+			'items' => $items,
+		));
 	}
 	
 	/**

@@ -74,7 +74,7 @@ class PostController extends Controller {
 		));
 		$layout->addColumnItem('right', 'application.widgets.PostCommitter', array('committers' => $post->getCommitters()));
 		$layout->addColumnItem('right', 'application.widgets.PostStatus', array('post' => $post, 'countVisitors' => !$rid));
-		
+		$layout->addColumnItem('right', 'application.widgets.PostNavigation', array('navItems' => $post->content->getFormattedReference()));
 		if ($rid) {
 			$revision = PostRevision::model()->findByPk($rid);
 			$layout->addColumnItem('right', 'application.widgets.CommitMessage', array('revision' => $revision));
