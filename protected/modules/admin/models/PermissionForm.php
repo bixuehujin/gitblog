@@ -99,11 +99,11 @@ class PermissionForm extends  CFormModel {
 	}
 	
 	
-	public function setAttributes($attributes) {
-		$this->_attributes = $attributes;
+	public function setAttributes($values, $safeOnly = true) {
+		$this->_attributes = $values;
 	}
 	
-	public function getAttributes() {
+	public function getAttributes($names = null) {
 		return $this->_attributes;
 	}
 }

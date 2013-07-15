@@ -49,8 +49,8 @@ class PasswordForm extends CFormModel {
 		return $prefix . '密码';
 	}
 	
-	public function validate() {
-		if (!parent::validate()) {
+	public function validate($attributes = null, $clearErrors = true) {
+		if (!parent::validate($attributes, $clearErrors)) {
 			return false;
 		}
 		if ($this->scenario == self::SCENARIO_CHANGE && !$this->user->isPasswordMatch($this->opassword)) {

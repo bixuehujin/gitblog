@@ -27,8 +27,8 @@ class RegisterForm extends CFormModel {
 		);
 	}
 	
-	public function validate() {
-		if (!parent::validate()) {
+	public function validate($attributes = null, $clearErrors = true) {
+		if (!parent::validate($attributes, $clearErrors)) {
 			return false;
 		}
 		if (User::isNameTaken($this->username)) {
