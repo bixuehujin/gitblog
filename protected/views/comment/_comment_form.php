@@ -14,7 +14,7 @@ if (!isset($ownerType)) {
 
 
 <?php 
-	$form = $this->beginWidget('ext.bootstrap.widgets.TbActiveForm', array(
+	$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id' => 'comment-form',
 		'type' => 'inline',
 		'action' => '#comment-form',

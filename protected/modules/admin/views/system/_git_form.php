@@ -7,7 +7,7 @@
 ?>
 
 <?php 
-$form = $this->beginWidget('ext.bootstrap.widgets.TbActiveForm', array(
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id' => 'system-git-form',
 		'type' => 'horizontal',
 ));

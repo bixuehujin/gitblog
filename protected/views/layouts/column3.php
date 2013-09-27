@@ -28,7 +28,7 @@
 	<?php endif;?>
 	<?php if ($layout->hasBreadcrumbs()):?>
 		<div class="breadcrumns">
-			<?php $layout->renderBreadcrumbs('ext.bootstrap.widgets.TbBreadcrumbs')?>
+			<?php $layout->renderBreadcrumbs('bootstrap.widgets.TbBreadcrumbs')?>
 		</div>
 	<?php endif;?>
 	<?php if (Yii::app()->console->hasMessages):?>

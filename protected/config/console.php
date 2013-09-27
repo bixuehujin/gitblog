@@ -12,8 +12,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-		'ext.common.models.*',
-		'ext.common.components.*',
+		'ecom.models.*',
+		'ecom.components.*',
 		'system.web.helpers.*',
 	),
 	// application components
@@ -26,7 +26,7 @@ return array(
 			'charset' => 'utf8',
 		),
 		'settings'=>array(
-			'class' => 'ext.common.components.Settings',
+			'class' => 'ecom.components.Settings',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',

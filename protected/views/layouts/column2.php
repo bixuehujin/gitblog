@@ -11,7 +11,7 @@
 	<div class="span9 content-swapper">
 		
 		<?php if ($layout->hasBreadcrumbs()):?>
-			<?php $layout->renderBreadcrumbs('ext.bootstrap.widgets.TbBreadcrumbs', array(
+			<?php $layout->renderBreadcrumbs('bootstrap.widgets.TbBreadcrumbs', array(
 				'tagName' => 'ul',
 				'links' => $layout->getBreadcrumbs(),
 				'activeLinkTemplate' => '<li><a href="{url}">{label}</a></li>',

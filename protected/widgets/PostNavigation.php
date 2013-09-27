@@ -41,7 +41,7 @@ class PostNavigation extends CWidget {
 	
 	
 	public function run() {
-		if(!is_array($this->navItems)) {
+		if(!is_array($this->navItems) || empty($this->navItems)) {
 			return;
 		}
 		Yii::app()->clientScript->pregisterScriptFile(__DIR__ . '/views/post_navigation.js')

@@ -13,14 +13,17 @@ return array(
 	'preload'=>array('log', 'bootstrap'),
 	'language'=>'zh_cn',
 	'timeZone'=>'Asia/Shanghai',
-	// autoloading model and component classes
+	'aliases'=>array(
+		'ecom' => 'application.vendors.ecom.ecom',
+		'bootstrap' => 'application.vendors.crisu83.yii-bootstrap',
+	),
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
 		'application.components.widgets.*',
 		'application.components.exceptions.*',
-		'ext.common.models.*',
-		'ext.common.components.*',
+		'ecom.models.*',
+		'ecom.components.*',
 		'system.web.helpers.*',
 	),
 
@@ -57,10 +60,10 @@ return array(
 			'forceCopy' => YII_DEBUG,
 		),
 		'systemSettings'=>array(
-			'class' => 'ext.common.components.Settings',
+			'class' => 'ecom.components.Settings',
 		),
 		'settings'=>array(
-			'class' => 'ext.common.components.Settings',
+			'class' => 'ecom.components.Settings',
 		),
 		'sessionMessager' => array(
 			'class' => 'SessionMessager',
@@ -69,14 +72,14 @@ return array(
 			'class' => 'PersistentMessage',
 		),
 		'userData'=>array(
-			'class'=>'ext.common.components.AttachedDataComponent',
+			'class'=>'ecom.components.AttachedDataComponent',
 			'name'=>'user',
 		),
 		'bootstrap'=>array(
-			'class'=>'ext.bootstrap.components.Bootstrap',
+			'class'=>'bootstrap.components.Bootstrap',
 		),
 		'clientScript' => array(
-			'class' => 'ext.common.components.MinifyClientScript',
+			'class' => 'ecom.components.MinifyClientScript',
 			'coreScriptUrl' => '/assets',
 			'debug' => YII_DEBUG,
 			'packages' => array(
@@ -163,7 +166,7 @@ return array(
 			),
 		),
 		'mailgun'=>array(
-			'class'=>'ext.common.components.EMailgun',
+			'class'=>'ecom.components.EMailgun',
 			'config'=>array(
 				'password'=>'key-8urgft93rdddn1zr03kjq1hfp64a3xt9',
 				'domain'=>'hujin.mailgun.org',
@@ -171,16 +174,16 @@ return array(
 			'defaultSender'=>'i@hujin.me',
 		),
 		'layout'=>array(
-			'class'=>'ext.common.components.PageLayout',
+			'class'=>'ecom.components.PageLayout',
 			'defaultHeader'=>array('/common/header', array()),
 			'defaultFooter'=>array('/common/footer', array()),
 			'layout'=>'//layouts/column3',
 		),
 		'console'=>array(
-			'class'=>'ext.common.components.Console'
+			'class'=>'ecom.components.Console'
 		),
 		'fileManager'=>array(
-			'class' => 'ext.common.components.FileManager',
+			'class' => 'ecom.components.FileManager',
 			'thumbBasePath' => 'thumbnails',
 			'domains' => array(
 				'avatar' => 'avatar',

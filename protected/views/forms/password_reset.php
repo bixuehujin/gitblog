@@ -8,7 +8,7 @@
  */
 ?>
 
-<?php $form = $this->beginWidget('ext.bootstrap.widgets.TbActiveForm', array(
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id' => 'password-reset-form',
 	'type' => 'vertical',
 ))?>

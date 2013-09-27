@@ -1,6 +1,4 @@
-.settings/
-.project
-.buildpath
+.*
 *.log
 /protected/runtime/
 /assets/
@@ -9,3 +7,7 @@ yii
 /php/
 /thumbnails/
 /uploads/  
+*.lock
+/repo/
+/uploads/
+/cc
