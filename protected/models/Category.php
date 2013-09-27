@@ -13,7 +13,7 @@
  * @property string  $description
  * @property integer $weight
  */
-class Category extends Term {
+class Category extends Tree {
 
 	public function getCid() {
 		return $this->tid;
@@ -117,7 +117,7 @@ class Category extends Term {
 	 * @return array
 	 */
 	public static function getCategoryBreadcrumbsArray($id) {
-		$path  = self::fetchTermPath($id);
+		$path  = self::load($id)->getPath();
 		$ret = array();
 		$last = array_pop($path);
 		foreach ($path as $item) {

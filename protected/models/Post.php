@@ -330,7 +330,7 @@ class Post extends CActiveRecord implements Commentable{
 	public static function fetchProviderByCategoryId($catid = 0, $postType = null, $pageSize = 10) {
 		$criteria = new CDbCriteria();
 		if ($catid) {
-			$ids = TermHierarchy::fetchChildren($catid);
+			$ids = Category::load($catid)->children(true);
 			$ids[] = $catid;
 			$criteria->addInCondition('cid', $ids);
 		}
