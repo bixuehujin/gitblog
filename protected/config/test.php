@@ -1,17 +1,17 @@
 <?php
 
 return CMap::mergeArray(
-	require(dirname(__FILE__).'/main.php'),
+	require(dirname(__FILE__) . '/main.php'),
 	array(
-		'components'=>array(
-			'fixture'=>array(
-				'class'=>'system.test.CDbFixtureManager',
+		'components' => array(
+			'fixture' => array( 
+				'class' => 'system.test.CDbFixtureManager',
 			),
-			'db'=>array(
+			'db' => array(
 				'connectionString' => 'mysql:host=localhost;dbname=gitblog-test',
 				'emulatePrepare' => true,
-				'username' => 'root',
-				'password' => 'sdyxzsdyxz',
+				'username' => 'test',
+				'password' => 'test',
 				'charset' => 'utf8',
 			),
 		),

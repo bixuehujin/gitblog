@@ -1,23 +1,16 @@
 <?php
-
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Git+Markdown高效内容创作和管理',
+	'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+	'name' => 'GitBlog Content Management System',
 	'defaultController' => 'view',
-	// preloading 'log' component
-	'preload'=>array('log', 'bootstrap'),
-	'language'=>'zh_cn',
-	'timeZone'=>'Asia/Shanghai',
-	'aliases'=>array(
+	'preload' => array('log', 'bootstrap'),
+	'language' => 'zh_cn',
+	'timeZone' => 'Asia/Shanghai',
+	'aliases' => array(
 		'ecom' => 'application.vendors.ecom.ecom',
 		'bootstrap' => 'application.vendors.crisu83.yii-bootstrap',
 	),
-	'import'=>array(
+	'import' => array(
 		'application.models.*',
 		'application.components.*',
 		'application.components.widgets.*',
@@ -26,43 +19,42 @@ return array(
 		'ecom.components.*',
 		'system.web.helpers.*',
 	),
-
-	'modules'=>array(
+	'modules' => array(
 		'admin' => array(),
-		// uncomment the following to enable the Gii tool
-		
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
+		/*
+		'gii' => array(
+			'class' => 'system.gii.GiiModule',
+			'password' => 'Enter Your Password Here',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-			'generatorPaths'=>array(
-            	'bootstrap.gii',
-        	),
+			'ipFilters' => array('127.0.0.1', '::1'),
+			'generatorPaths' => array(
+				'bootstrap.gii',
+			),
 		),
+		*/
 	),
 	/*
-	'behaviors'=>array(
-		'sitePermissions'=>array(
-			'class'=>'application.behaviors.SitePermissionsBehavior',
-			'autoRebuild'=>true,
-		),
-	),
-	*/
+	 'behaviors' => array(
+	 	'sitePermissions' => array(
+	 		'class' => 'application.behaviors.SitePermissionsBehavior',
+	 		'autoRebuild' => true,
+	 	),
+	 ),
+*/
 	// application components
-	'components'=>array(
-		'user'=>array(
+	'components' => array(
+		'user' => array(
 			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+			'allowAutoLogin' => true,
 		),
-		'assetManager'=>array(
+		'assetManager' => array(
 			'basePath' => __DIR__ . '/../../assets',
 			'forceCopy' => YII_DEBUG,
 		),
-		'systemSettings'=>array(
+		'systemSettings' => array(
 			'class' => 'ecom.components.Settings',
 		),
-		'settings'=>array(
+		'settings' => array(
 			'class' => 'ecom.components.Settings',
 		),
 		'sessionMessager' => array(
@@ -71,131 +63,112 @@ return array(
 		'persistentMessage' => array(
 			'class' => 'PersistentMessage',
 		),
-		'userData'=>array(
+		'userData' => array(
 			'class'=>'ecom.components.AttachedDataComponent',
 			'name'=>'user',
 		),
-		'bootstrap'=>array(
-			'class'=>'bootstrap.components.Bootstrap',
+		'bootstrap' => array(
+			'class' => 'bootstrap.components.Bootstrap',
 		),
 		'clientScript' => array(
 			'class' => 'ecom.components.MinifyClientScript',
 			'coreScriptUrl' => '/assets',
 			'debug' => YII_DEBUG,
 			'packages' => array(
-				'bootstrap' => array(
-						'css' => array('bootstrap/css/bootstrap.css'),
-				),
-				'bootstrap.responsive' => array(
-						'css' => array('bootstrap/css/bootstrap-responsive.css'),
-						'depends' => array('bootstrap')
-				),
-				'bootstrap.plugins' => array(
-						'js' => array('bootstrap/js/bootstrap.js'),
-						'depends' => array('bootstrap', 'jquery'),
-				),
-				'jquery.html5_upload' => array(
-						'js' => array('jquery/jquery.html5_upload.js'),
-						'depends' => array('jquery'),
-				),
-				'jquery.form' => array(
-						'js' => array('jquery/jquery.form.js'),
-						'depends' => array('jquery'),
-				),
 				'jquery.scrollTo' => array(
-						'js' => array('jquery.scrollTo.js'),
-						'depends' => array('jquery'),
+					'js' => array('jquery.scrollTo.js'),
+					'depends' => array('jquery'),
 				),
 				'template' => array(
-						'js' => array('template.js'),
+					'js' => array('template.js'),
 				),
 			),
 		),
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'user/<id:\d+>/'=>'user/',
-				'user/<id:\d+>/<action:\w+>'=>'user/<action>',
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'post/<path:[\w\/\._-]+>'=>'post/view',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+		'urlManager' => array(
+			'urlFormat' => 'path',
+			'rules' => array(
+				'user/<id:\d+>/' => 'user/',
+				'user/<id:\d+>/<action:\w+>' => 'user/<action>',
+				'<controller:\w+>/<id:\d+>' => '<controller>/view',
+				'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+				'post/<path:[\w\/\._-]+>' => 'post/view',
+				'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 			),
 			'showScriptName' => false,
 			'appendParams' => false,
 		),
-		'db'=>array(
+		'db' => array(
 			'connectionString' => 'mysql:host=localhost;dbname=gitblog',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'sdyxzsdyxz',
+			'username' => 'test',
+			'password' => 'test',
 			'charset' => 'utf8',
 		),
-		'authManager'=>array(
-			'class'=>'DbAuthManager',
+		'authManager' => array(
+			'class' => 'DbAuthManager',
 		),
-		'errorHandler'=>array(
+		'errorHandler' => array(
 			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
+			'errorAction' => 'site/error',
 		),
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
+		'log' => array(
+			'class' => 'CLogRouter',
+			'routes' => array(
 				array(
-						'class'=>'CFileLogRoute',
-						'levels'=>'error, warning,info,trace,profile',
+					'class' => 'CFileLogRoute',
+					'levels' => 'error, warning,info,trace,profile',
 				),
 				array(
-						'class'=>'CFileLogRoute',
-						'levels' => 'error, warning,info,trace,profile',
-						'categories'=>'system.db.*',
-						'logFile'=>'sql.log',
+					'class' => 'CFileLogRoute',
+					'levels' => 'error, warning,info,trace,profile',
+					'categories' => 'system.db.*',
+					'logFile' => 'sql.log',
 				),
 				array(
-						'class'=>'CFileLogRoute',
-						'levels' => 'error, warning,info,trace,profile',
-						'categories'=>'application.*',
-						'logFile'=>'gitblog.log',
+					'class' => 'CFileLogRoute',
+					'levels' => 'error, warning,info,trace,profile',
+					'categories' => 'application.*',
+					'logFile' => 'gitblog.log',
 				),
 				// uncomment the following to show log messages on web pages
 				/*
 				array(
-					'class'=>'CWebLogRoute',
+					'class' => 'CWebLogRoute',
 				),
 				*/
 			),
 		),
-		'mailgun'=>array(
-			'class'=>'ecom.components.EMailgun',
-			'config'=>array(
-				'password'=>'key-8urgft93rdddn1zr03kjq1hfp64a3xt9',
-				'domain'=>'hujin.mailgun.org',
+		'mailgun' => array(
+			'class' => 'ecom.components.EMailgun',
+			'config' => array(
+				'password' => 'key-8urgft93rdddn1zr03kjq1hfp64a3xt9',
+				'domain '=> 'hujin.mailgun.org',
 			),
-			'defaultSender'=>'i@hujin.me',
+			'defaultSender' => 'i@hujin.me',
 		),
-		'layout'=>array(
-			'class'=>'ecom.components.PageLayout',
-			'defaultHeader'=>array('/common/header', array()),
-			'defaultFooter'=>array('/common/footer', array()),
-			'layout'=>'//layouts/column3',
+		'layout' => array(
+			'class' => 'ecom.components.PageLayout',
+			'defaultHeader' => array('/common/header', array()),
+			'defaultFooter' => array('/common/footer', array()),
+			'layout' => '//layouts/column3',
 		),
-		'console'=>array(
-			'class'=>'ecom.components.Console'
+		'console' => array(
+			'class' => 'ecom.components.Console'
 		),
-		'fileManager'=>array(
+		'fileManager' => array(
 			'class' => 'ecom.components.FileManager',
 			'thumbBasePath' => 'thumbnails',
 			'domains' => array(
 				'avatar' => 'avatar',
 			),
-			
+
 		),
 	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
+	'params' => array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail' => 'webmaster@example.com',
 	),
 );
