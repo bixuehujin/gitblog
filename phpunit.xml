@@ -1,10 +1,14 @@
-<phpunit bootstrap="bootstrap.php"
-		colors="false"
+<phpunit bootstrap="protected/tests/bootstrap.php"
+		colors="true"
 		convertErrorsToExceptions="true"
 		convertNoticesToExceptions="true"
 		convertWarningsToExceptions="true"
 		stopOnFailure="false">
-
+	<testsuites>
+        <testsuite name="git blog test suite">
+            <directory>./protected/tests</directory>
+        </testsuite>
+    </testsuites>
 	<selenium>
 		<browser name="Internet Explorer" browser="*iexplore" />
 		<browser name="Firefox" browser="*firefox" />

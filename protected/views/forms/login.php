@@ -19,7 +19,7 @@
 <div class="control-group">
 	<?php echo $form->labelEx($model, 'password', array('class' => 'control-label'))?>
 	<div class="controls">
-		<?php echo $form->textField($model, 'password')?>
+		<?php echo $form->passwordField($model, 'password')?>
 		<?php echo $form->error($model, 'password')?>
 		<?php echo CHtml::link('忘记密码?', array('site/reset'))?>
 	</div>
