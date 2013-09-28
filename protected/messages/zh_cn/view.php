@@ -17,17 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Account List' => '',
-  'Account Management' => '',
-  'Create Account' => '',
-  'Modify Account' => '',
-  'Reset' => '',
-  'Roles Management' => '',
-  'administrator' => '@@管理员@@',
-  'anonymous user' => '@@匿名用户@@',
-  'authenticated user' => '@@认证用户@@',
-  'Create Role' => '创建角色',
-  'Delete Role' => '删除角色',
-  'Modify Role' => '修改角色',
-  'Roles List' => '角色列表',
+  'Articles' => '文章',
+  'Home' => '首页',
+  'Logout' => '退出',
+  'My Account<b class="caret"></b>' => '我的账号<b class="caret"></b>',
+  'Sign In' => '登陆',
+  'Sign Up' => '注册',
+  'Topics' => '专题',
 );

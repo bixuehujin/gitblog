@@ -67,7 +67,7 @@ class Controller extends CController{
 		$route = $this->getRequestRoute();
 		$model = Category::model();
 		$list = $model->getList();
-		$items [] = array('label' => '主页', 'url' => Yii::app()->getBaseUrl() . '/', 'active' => $route == '') ;
+		$items [] = array('label' => Yii::t('view', 'Home'), 'url' => Yii::app()->getBaseUrl() . '/', 'active' => $route == '') ;
 		foreach ($list as $item) {
 			$items[] = array(
 				'label' => $item->name,
@@ -104,15 +104,15 @@ class Controller extends CController{
 	protected function userMenuItems() {
 		$isGuest = Yii::app()->user->getIsGuest();
 		$items[] = array('label' => Yii::app()->user->getName(), 'url' => array('/user/'), 'visible' => !$isGuest);
-		$items[] = array('label' => '注册', 'url' => array('/site/register'), 'visible' => $isGuest && Yii::app()->settings->get('site_register_on', 1));
-		$items[] = array('label' => '登录', 'url' => array('/site/login'), 'visible' => $isGuest);
-		$items[] = array('label' => '我的账号<b class="caret"></b>', 'url' => array('#'), 'visible' => !$isGuest, 'items' => array(
+		$items[] = array('label' => Yii::t('view', 'Sign Up'), 'url' => array('/site/register'), 'visible' => $isGuest && Yii::app()->settings->get('site_register_on', 1));
+		$items[] = array('label' => Yii::t('view', 'Sign In'), 'url' => array('/site/login'), 'visible' => $isGuest);
+		$items[] = array('label' => Yii::t('view', 'My Account<b class="caret"></b>'), 'url' => array('#'), 'visible' => !$isGuest, 'items' => array(
 			array('label' => '系统管理', 'url' => array('/admin'), 'visible' => !Yii::app()->user->isGuest, 'linkOptions' => array('target' => '_blank')),
 			array('label' => '基本信息', 'url' => array('/account/info')),
 			array('label' => '头像设置', 'url' => array('/account/avatar')),
 			array('label' => '密码设置', 'url' => array('/account/password')),
 			array('label' => '', 'itemOptions' => array('class' => 'divider')),
-			array('label' => '退出登陆', 'url' => array('/site/logout')),
+			array('label' => Yii::t('view', 'Logout'), 'url' => array('/site/logout')),
 		),  'submenuOptions' => array('class' => 'dropdown-menu', 'role' => 'menu'),
 			'itemOptions' => array('class' => 'dropdown'),
 			'linkOptions' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown')

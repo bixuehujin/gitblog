@@ -54,23 +54,28 @@ class AdminController extends CController {
 			//	'active' => preg_match('/admin\/source.*/', $route)
 			//),
 			array(
-				'label'=>'Content', 
+				'label'=>Yii::t('admin', 'Content'), 
 				'url'=>array('/admin/content'), 
 				'active' => preg_match('/admin\/content.*/', $route)
 			),
 			array(
-				'label'=>'System', 
+				'label'=>Yii::t('admin', 'System'), 
 				'url'=>array('/admin/system'), 
 				'active' => preg_match('/admin\/system.*/', $route)
 			),
 			array(
-				'label' => 'Member',
+				'label'=>Yii::t('admin', 'Localization'),
+				'url'=>array('/admin/localization'),
+				'active' => preg_match('/admin\/localization.*/', $route)
+			),
+			array(
+				'label' => Yii::t('admin', 'Member'),
 				'url' => array('/admin/member'),
 				'visiable' => Yii::app()->user->id == 1,
 				'active' => preg_match('/admin\/member.*/', $route),
 			),
 			array(
-				'label'=>'Back To Front', 
+				'label'=>Yii::t('admin', 'Back To Front'), 
 				'url'=>Yii::app()->getBaseUrl() . '/'
 			)
 		);
