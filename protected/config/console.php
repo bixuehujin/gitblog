@@ -8,6 +8,9 @@ return array(
 	// preloading 'log' component
 	'preload' => array('log'),
 	'timezone' => 'Asia/Shanghai',
+	'aliases' => array(
+		'ecom' => 'application.vendors.ecom.ecom',
+	),
 	'import' => array(
 		'application.models.*',
 		'application.components.*',
