@@ -10,13 +10,13 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/header.css')
 	<div class="navbar-inner">
 		<div class="navbar-swapper container">
 			<div class="span8 header-nav">
-				<a class="brand" href="<?php echo Yii::app()->getBaseUrl() . '/' ?>">首页</a>
+				<a class="brand" href="<?php echo Yii::app()->getBaseUrl() . '/' ?>"><?php echo Yii::t('view', 'Home')?></a>
 				<div class="nav-collapse collapse">
 					<?php $this->widget('zii.widgets.CMenu',array(
 						'htmlOptions' => array('class'=>'nav'),
 						'items'=>array(
-							array('label' => '文章', 'url' => array('view/category')),
-							array('label' => '专题', 'url' => array('view/topic')),
+							array('label' => Yii::t('view', 'Articles'), 'url' => array('view/category')),
+							array('label' => Yii::t('view', 'Topics'), 'url' => array('view/topic')),
 						),
 						'encodeLabel'=>false,
 					)); 
