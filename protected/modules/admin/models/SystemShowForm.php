@@ -26,10 +26,10 @@ class SystemShowForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-				'post_page_size'=>'文章分页大小',
-				'comment_page_size'=>'评论分页大小',
-				'auto_abstract_generation'=>'自动生成摘要',
-				'post_abstract_len'=>'生成摘要长度',
+				'post_page_size'=>Yii::t('admin', 'Post page size'),
+				'comment_page_size'=>Yii::t('admin', 'Comment page size'),
+				'auto_abstract_generation'=>Yii::t('admin', 'Auto abstract generation'),
+				'post_abstract_len'=>Yii::t('admin', 'Abstract length'),
 		);
 	}
 	

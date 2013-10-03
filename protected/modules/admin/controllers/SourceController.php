@@ -15,9 +15,9 @@ class SourceController extends AdminController {
 		if(isset($_POST['ContentSettingForm'])) {
 			$contentSetting->attributes = $_POST['ContentSettingForm'];
 			if($contentSetting->save()) {
-				Yii::app()->sessionMessager->addMessage('保存设置成功', 'success');
+				Yii::app()->console->addSuccess(Yii::t('admin', 'Save configuration success'));
 			}else {
-				Yii::app()->sessionMessager->addMessage('保存设置失败', 'error');
+				Yii::app()->console->addError(Yii::t('admin', 'Save configuration failed'));
 			}
 			$this->refresh();
 		}
@@ -35,9 +35,9 @@ class SourceController extends AdminController {
 		
 		if (isset($_POST['SourceHookForm'])) {
 			if ($model->generate()) {
-				Yii::app()->sessionMessager->addMessage('生成Token成功', 'success');
+				Yii::app()->console->addSuccess('生成Token成功');
 			}else {
-				Yii::app()->sessionMessager->addMessage('生成Token失败', 'error');
+				Yii::app()->console->addError('生成Token失败');
 			}
 			$this->refresh();
 		}

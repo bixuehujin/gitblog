@@ -26,7 +26,7 @@ class SystemController extends AdminController {
 		if(isset($_POST['SystemWebsiteForm'])) {
 			$model->attributes = $_POST['SystemWebsiteForm'];
 			if($model->save()) {
-				Yii::app()->sessionMessager->addMessage('修改成功', 'success');
+				Yii::app()->console->addSuccess(Yii::t('admin', 'Save configuration success'));
 				$this->refresh();
 			}
 		}
@@ -41,7 +41,7 @@ class SystemController extends AdminController {
 		if(isset($_POST['SystemShowForm'])) {
 			$model->attributes = $_POST['SystemShowForm'];
 			if($model->save()) {
-				Yii::app()->sessionMessager->addMessage('保存成功', 'success');
+				Yii::app()->console->addSuccess(Yii::t('admin', 'Save configuration success'));
 				$this->refresh();
 			}
 		}

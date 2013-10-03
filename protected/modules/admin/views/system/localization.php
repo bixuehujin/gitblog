@@ -5,7 +5,8 @@
 ?>
 <?php echo Yii::app()->console->render();?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-	'id' => 'regional-form'
+	'id' => 'regional-form',
+	'type' => 'horizontal'
 ))?>
 
 <?php echo $form->dropDownListRow($model, 'default_country', $model->getAllCountries())?>

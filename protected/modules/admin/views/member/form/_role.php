@@ -33,14 +33,14 @@ $form = $this->beginWidget('ActiveForm', array(
 	<div class="control-group">
 		<div class="controls">
 			<?php if ($model->scenario == RoleForm::SCENARIO_CREATE):?>
-				<?php echo CHtml::submitButton('提交', array('class'=>'btn btn-primary'))?>
-				<?php echo CHtml::resetButton('重置', array('class'=>'btn'))?>
+				<?php echo CHtml::submitButton(Yii::t('admin', 'Submit'), array('class'=>'btn btn-primary'))?>
+				<?php echo CHtml::resetButton(Yii::t('admin', 'Reset'), array('class'=>'btn'))?>
 			<?php elseif ($model->scenario == RoleForm::SCENARIO_MODIFY):?>
-				<?php echo CHtml::submitButton('保存', array('class'=>'btn btn-primary'))?>
-				<?php echo CHtml::resetButton('重置', array('class'=>'btn'))?>
+				<?php echo CHtml::submitButton(Yii::t('admin', 'Save'), array('class'=>'btn btn-primary'))?>
+				<?php echo CHtml::resetButton(Yii::t('admin', 'Reset'), array('class'=>'btn'))?>
 			<?php else:?>
-				<?php echo CHtml::submitButton('删除', array('class'=>'btn btn-primary'))?>
-				<?php echo CHtml::resetButton('取消', array('class'=>'btn'))?>
+				<?php echo CHtml::submitButton(Yii::t('admin', 'Delete'), array('class'=>'btn btn-primary'))?>
+				<?php echo CHtml::resetButton(Yii::t('admin', 'Cancel'), array('class'=>'btn'))?>
 			<?php endif;?>
 		</div>
 	</div>

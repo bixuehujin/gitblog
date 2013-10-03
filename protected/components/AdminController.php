@@ -43,11 +43,6 @@ class AdminController extends CController {
 				'url'=>array('/admin'), 
 				'active' => $route == 'admin'
 			),
-			array(
-				'label'=>'User', 
-				'url'=>array('/admin/user'), 
-				'active' => preg_match('/admin\/user.*/', $route)
-			),
 			//array(
 			//	'label'=>'Source', 
 			//	'url'=>array('/admin/source'), 
