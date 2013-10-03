@@ -64,11 +64,6 @@ class AdminController extends CController {
 				'active' => preg_match('/admin\/system.*/', $route)
 			),
 			array(
-				'label'=>Yii::t('admin', 'Localization'),
-				'url'=>array('/admin/localization'),
-				'active' => preg_match('/admin\/localization.*/', $route)
-			),
-			array(
 				'label' => Yii::t('admin', 'Member'),
 				'url' => array('/admin/member'),
 				'visiable' => Yii::app()->user->id == 1,
