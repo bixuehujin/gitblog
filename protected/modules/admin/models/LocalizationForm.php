@@ -1,14 +1,15 @@
 <?php
 /**
- * RegionalForm class file.
+ * LocalizationForm class file.
  * 
  * @author Jin Hu <bixuehujin@gmail.com>
  */
 
-class RegionalForm extends CFormModel {
+class LocalizationForm extends CFormModel {
 	
 	public $default_timezone;
 	public $default_country;
+	public $default_language;
 	
 	public function init() {
 		foreach ($this->attributeNames() as $name) {
@@ -18,7 +19,7 @@ class RegionalForm extends CFormModel {
 	
 	public function rules() {
 		return array(
-			array('default_timezone,default_country', 'safe')
+			array('default_timezone,default_country,default_language', 'safe')
 		);
 	}
 	
@@ -26,6 +27,7 @@ class RegionalForm extends CFormModel {
 		return array(
 			'default_timezone' => Yii::t('admin', 'Default time zone'),
 			'default_country' => Yii::t('admin', 'Default country'),
+			'default_language' => Yii::t('admin', 'Default language'),
 		);
 	}
 	
@@ -52,5 +54,10 @@ class RegionalForm extends CFormModel {
 	public function getAllTimezones() {
 		$tzs = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
 		return array_combine($tzs, $tzs);
+	}
+	
+	public function getAllLanguages() {
+		$values = array('zh_cn', 'en_us');
+		return array_combine($values, $values);
 	}
 }
