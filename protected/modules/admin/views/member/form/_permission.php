@@ -28,8 +28,8 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 <div class="control-group">
 	<div class="controls pull-right">
 	<?php 
-		echo CHtml::resetButton('重置', array('class'=>'btn'));
-		echo CHtml::submitButton('保存', array('class'=>'btn btn-primary'));
+		echo CHtml::resetButton(Yii::t('admin', 'Reset'), array('class'=>'btn'));
+		echo CHtml::submitButton(Yii::t('admin', 'Save'), array('class'=>'btn btn-primary'));
 	?>
 	</div>
 </div>

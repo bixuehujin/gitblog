@@ -10,9 +10,9 @@ class ContentController extends AdminController {
 	
 	public function menuItems() {
 		return array(
-			array('label'=>'分类管理', 'url'=>array('/admin/content/category')),
-			array('label'=>'文档管理', 'url'=>array('/admin/content/article')),
-			array('label'=>'评论评论', 'url'=>array('/admin/content/comment')),
+			array('label'=>Yii::t('admin', 'Category'), 'url'=>array('/admin/content/category')),
+			array('label'=>Yii::t('admin', 'Article'), 'url'=>array('/admin/content/article')),
+			array('label'=>Yii::t('admin', 'Comments'), 'url'=>array('/admin/content/comment')),
 		);
 	}
 	

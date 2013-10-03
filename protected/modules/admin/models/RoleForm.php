@@ -44,8 +44,8 @@ class RoleForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-			'name'=>'角色名称',
-			'description'=>'角色描述',
+			'name'=>Yii::t('admin', 'Role name'),
+			'description'=>Yii::t('admin', 'Role description'),
 		);
 	}
 	
@@ -57,7 +57,7 @@ class RoleForm extends CFormModel {
 		
 		if ($this->scenario == self::SCENARIO_CREATE) {
 			if ((bool) Yii::app()->authManager->getAuthItem($this->name)) {
-				$this->addError('name', '该角色已存在');
+				$this->addError('name', Yii::t('admin', 'The role is existed'));
 				return false;
 			}
 		}
@@ -71,7 +71,7 @@ class RoleForm extends CFormModel {
 		
 		if ($this->scenario == self::SCENARIO_MODIFY) {
 			if ( Yii::app()->authManager->getAuthItem($this->name) && $name != $this->name) {
-				$this->addError('name', '该角色已存在');
+				$this->addError('name', Yii::t('admin', 'The role is existed'));
 				return false;
 			}
 		}
@@ -88,7 +88,7 @@ class RoleForm extends CFormModel {
 		if ($this->validateSave()) {
 			$ret = (bool)Yii::app()->authManager->createAuthItem($this->name, 2, $this->description);
 			if ($ret) {
-				Yii::app()->persistentMessage->addPersistentSuccess('创建角色成功');
+				Yii::app()->console->addSuccess(Yii::t('admin', 'Create role success'));
 			}
 		}
 		return $ret;
@@ -107,7 +107,7 @@ class RoleForm extends CFormModel {
 			$auth->description = $this->description;
 			
 			Yii::app()->authManager->saveAuthItem($auth, $name);
-			Yii::app()->persistentMessage->addPersistentSuccess('修改角色成功');
+			Yii::app()->console->addSuccess(Yii::t('admin', 'Role changed success'));
 			return true;
 		}else {
 			return false;
@@ -122,7 +122,7 @@ class RoleForm extends CFormModel {
 	public function delete() {
 		$ret = (bool)Yii::app()->authManager->removeAuthItem($this->name);
 		if($ret) {
-			Yii::app()->persistentMessage->addPersistentSuccess('删除角色成功');
+			Yii::app()->console->addSuccess(Yii::t('admin', 'Role deleted success'));
 		}
 		return $ret;
 	}

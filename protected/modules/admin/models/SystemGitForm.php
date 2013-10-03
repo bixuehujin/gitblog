@@ -29,7 +29,7 @@ class SystemGitForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-			'git_base_path' => 'Git基准目录',
+			'git_base_path' => Yii::t('admin', 'Git base path'),
 		);
 	}
 	
@@ -42,7 +42,7 @@ class SystemGitForm extends CFormModel {
 		foreach ($this->getAttributes() as $key => $value) {
 			$this->settings->set($key, $value);
 		}
-		Yii::app()->console->addSuccess('保存设置成功');
+		Yii::app()->console->addSuccess(Yii::t('admin', 'Save configuration success'));
 		return true;
 	}
 }

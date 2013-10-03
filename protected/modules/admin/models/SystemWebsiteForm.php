@@ -23,7 +23,7 @@ class SystemWebsiteForm extends CFormModel {
 			array('site_name', 'required'),
 			array('site_desp', 'required'),
 			array('site_slogan', 'default'),
-			array('site_email', 'email', 'allowEmpty' => false, 'message'=>'邮件地址不合法'),
+			array('site_email', 'email', 'allowEmpty' => false, 'message'=>Yii::t('admin', 'Email address is not valid')),
 			array('site_register_on', 'type', 'type' => 'integer'),
 		);
 	}
@@ -31,11 +31,11 @@ class SystemWebsiteForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-			'site_name' => '站点名称',
-			'site_desp' => '站点描述',
-			'site_slogan' => '网站口号',
-			'site_email' => '电子邮件地址',
-			'site_register_on' => '开启注册',
+			'site_name' => Yii::t('admin', 'Site name'),
+			'site_desp' => Yii::t('admin', 'Site description'),
+			'site_slogan' => Yii::t('admin', 'Slogan'),
+			'site_email' => Yii::t('admin', 'Email address'),
+			'site_register_on' => Yii::t('admin', 'Allow registration'),
 		);
 	}
 	

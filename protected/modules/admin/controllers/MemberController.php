@@ -94,7 +94,7 @@ class MemberController extends AdminController {
 	}
 	
 	public function actionPermissions() {
-		$this->sectionTitle = '授权管理';
+		$this->sectionTitle = Yii::t('admin', 'Permission Management');
 		$model = new PermissionForm();
 		
 		if (isset($_POST['PermissionForm'])) {
@@ -195,8 +195,8 @@ class MemberController extends AdminController {
 			$items[] = array('label'=>Yii::t('admin', 'Create Role'), 'url'=>array('/admin/member/createRole'));
 		}
 		
-		$items[] = array('label'=>'授权管理');
-		$items[] = array('label'=>'授权管理', 'url'=>array('/admin/member/permissions'));
+		$items[] = array('label'=>Yii::t('admin', 'Permission management'));
+		$items[] = array('label'=>Yii::t('admin', 'Permission management'), 'url'=>array('/admin/member/permissions'));
 		
 		$items[] = array('label'=>Yii::t('admin', 'Account Management'));
 		$items[] = array('label'=>Yii::t('admin', 'Account List'), 'url'=>array('/admin/member/accountList'));

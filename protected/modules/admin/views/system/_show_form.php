@@ -10,8 +10,8 @@ $form = $this->beginWidget('CActiveForm', array(
 		'htmlOptions'=>array('class'=>'form-horizontal')
 ));
 ?>
-<legend>显示设置</legend>
-<?php echo CHtml::errorSummary($model, '表单输入有误，请核对再提交:', null, array('class'=>'alert alert-error'))?>
+<legend><?php echo Yii::t('admin', 'Content setting')?></legend>
+<?php echo CHtml::errorSummary($model, null, null, array('class'=>'alert alert-error'))?>
 <?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
 
 <section>
@@ -35,7 +35,7 @@ $form = $this->beginWidget('CActiveForm', array(
 			<?php echo $form->radioButtonList(
 					$model, 
 					'auto_abstract_generation', 
-					array('1'=>'是', '0'=>'否'), 
+					array('1'=>Yii::t('admin', 'Yes'), '0'=>Yii::t('admin', 'No')), 
 					array('separator'=>'')
 				)
 			?>
@@ -50,8 +50,8 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 	<div class="control-group">
 		<div class="controls">
-			<?php echo CHtml::submitButton('保存', array('class'=>'btn btn-primary'));?>
-			<?php echo CHtml::resetButton('重置', array('class'=>'btn'));?>
+			<?php echo CHtml::submitButton(Yii::t('admin', 'Save'), array('class'=>'btn btn-primary'));?>
+			<?php echo CHtml::resetButton(Yii::t('admin', 'Reset'), array('class'=>'btn'));?>
 		</div>
 	</div>
 </section>
