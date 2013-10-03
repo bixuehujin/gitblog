@@ -39,7 +39,7 @@ class AdminController extends CController {
 		$route = Yii::app()->getUrlManager()->parseUrl(Yii::app()->getRequest());
 		$this->menu = array(
 			array(
-				'label'=>'Home', 
+				'label'=>Yii::t('admin', 'Home'), 
 				'url'=>array('/admin'), 
 				'active' => $route == 'admin'
 			),
