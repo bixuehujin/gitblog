@@ -14,8 +14,8 @@
 $this->widget('bootstrap.widgets.TbGridView', array(
 	'dataProvider'=>$rolesProvider,
 	'columns'=>array(
-		'name::角色名称',
-		'description::描述',
+		Yii::t('admin', 'name::Role name'),
+		Yii::t('admin', 'description::Description'),
 		array(
 			'class' => 'bootstrap.widgets.TbButtonColumn',
 			'template'=>'{update} {delete}',

@@ -39,14 +39,9 @@ class AdminController extends CController {
 		$route = Yii::app()->getUrlManager()->parseUrl(Yii::app()->getRequest());
 		$this->menu = array(
 			array(
-				'label'=>'Home', 
+				'label'=>Yii::t('admin', 'Home'), 
 				'url'=>array('/admin'), 
 				'active' => $route == 'admin'
-			),
-			array(
-				'label'=>'User', 
-				'url'=>array('/admin/user'), 
-				'active' => preg_match('/admin\/user.*/', $route)
 			),
 			//array(
 			//	'label'=>'Source', 
@@ -54,23 +49,23 @@ class AdminController extends CController {
 			//	'active' => preg_match('/admin\/source.*/', $route)
 			//),
 			array(
-				'label'=>'Content', 
+				'label'=>Yii::t('admin', 'Content'), 
 				'url'=>array('/admin/content'), 
 				'active' => preg_match('/admin\/content.*/', $route)
 			),
 			array(
-				'label'=>'System', 
+				'label'=>Yii::t('admin', 'System'), 
 				'url'=>array('/admin/system'), 
 				'active' => preg_match('/admin\/system.*/', $route)
 			),
 			array(
-				'label' => 'Member',
+				'label' => Yii::t('admin', 'Member'),
 				'url' => array('/admin/member'),
 				'visiable' => Yii::app()->user->id == 1,
 				'active' => preg_match('/admin\/member.*/', $route),
 			),
 			array(
-				'label'=>'Back To Front', 
+				'label'=>Yii::t('admin', 'Back To Front'), 
 				'url'=>Yii::app()->getBaseUrl() . '/'
 			)
 		);

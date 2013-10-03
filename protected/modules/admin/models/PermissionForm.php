@@ -54,7 +54,7 @@ class PermissionForm extends  CFormModel {
 		$this->dataProvider = new CArrayDataProvider($data);
 		
 		
-		$columns = array('name::权限','description::描述');
+		$columns = array(Yii::t('admin', 'name::Permission Name'),Yii::t('admin', 'description::Description'));
 		foreach ($roles as $role) {
 			$columns[] = array(
 					'class'=>'CheckBoxColumn',
@@ -94,7 +94,7 @@ class PermissionForm extends  CFormModel {
 				}
 			}
 		}
-		Yii::app()->persistentMessage->addPersistentSuccess('保存权限成功');
+		Yii::app()->console->addSuccess(Yii::t('admin', 'Permission saved success'));
 		return true;
 	}
 	

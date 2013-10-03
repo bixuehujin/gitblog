@@ -14,9 +14,10 @@ class SystemController extends AdminController {
 	
 	public function menuItems() {
 		return array(
-			array('label'=>'站点信息', 'url'=>array('/admin/system/website')),
-			array('label'=>'显示设置', 'url'=>array('/admin/system/show')),
-			array('label'=>'Git设置', 'url'=>array('/admin/system/git')),
+			array('label'=>Yii::t('admin', 'Site information'), 'url'=>array('/admin/system/website')),
+			array('label'=>Yii::t('admin', 'Content setting'), 'url'=>array('/admin/system/show')),
+			array('label'=>Yii::t('admin', 'Git setting'), 'url'=>array('/admin/system/git')),
+			array('label'=>Yii::t('admin', 'Localization setting'), 'url'=>array('/admin/system/localization')),
 		);
 	}
 	
@@ -25,7 +26,7 @@ class SystemController extends AdminController {
 		if(isset($_POST['SystemWebsiteForm'])) {
 			$model->attributes = $_POST['SystemWebsiteForm'];
 			if($model->save()) {
-				Yii::app()->sessionMessager->addMessage('修改成功', 'success');
+				Yii::app()->console->addSuccess(Yii::t('admin', 'Save configuration success'));
 				$this->refresh();
 			}
 		}
@@ -40,7 +41,7 @@ class SystemController extends AdminController {
 		if(isset($_POST['SystemShowForm'])) {
 			$model->attributes = $_POST['SystemShowForm'];
 			if($model->save()) {
-				Yii::app()->sessionMessager->addMessage('保存成功', 'success');
+				Yii::app()->console->addSuccess(Yii::t('admin', 'Save configuration success'));
 				$this->refresh();
 			}
 		}
@@ -62,5 +63,18 @@ class SystemController extends AdminController {
 		$this->render('git', array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionLocalization() {
+		$this->sectionTitle = Yii::t('admin', 'Localization setting');
+		
+		$model = new LocalizationForm();
+		if (isset($_POST['LocalizationForm'])) {
+			$model->setAttributes($_POST['LocalizationForm']);
+			if ($model->save()) {
+				$this->refresh();
+			}
+		}
+		$this->render('localization', array('model' => $model));
 	}
 }
