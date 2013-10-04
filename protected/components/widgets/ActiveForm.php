@@ -19,7 +19,7 @@ class ActiveForm extends TbActiveForm {
 	 * @param FormModel $model
 	 */
 	public function summary($models, $header = null, $footer = null, $htmlOptions = array()) {
-		$ret = Yii::app()->persistentMessage->renderMessages();
-		return $ret . parent::errorSummary($models, $header, $footer, $htmlOptions);
+		Yii::app()->console->render();
+		return parent::errorSummary($models, $header, $footer, $htmlOptions);
 	}
 }

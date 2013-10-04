@@ -14,9 +14,9 @@ Yii::app()->clientScript->registerPackage('bootstrap.responsive')
 			<div class="head">
 				<legend><?php echo $this->sectionTitle?></legend>
 			</div>
-			<?php if (Yii::app()->persistentMessage->hasMessages):?> 
+			<?php if (Yii::app()->console->hasMessages):?> 
 				<div class="messages">
-					<?php echo Yii::app()->persistentMessage->renderMessages();?>
+					<?php echo Yii::app()->console->render();?>
 				</div>
 			<?php endif;?>
 			<div class="content">

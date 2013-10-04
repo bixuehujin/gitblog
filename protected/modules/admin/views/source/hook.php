@@ -19,7 +19,7 @@ $labelOptions = array('class'=>'control-label');
 ?>
 
 <legend>Github Hook</legend>
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+<?php echo Yii::app()->console->render();?>
 
 <div class="control-group">
 	<?php echo $form->LabelEx($model, 'url', array('class'=>'control-label'))?>

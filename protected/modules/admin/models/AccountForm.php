@@ -135,7 +135,7 @@ class AccountForm extends CFormModel {
 		}
 		$msg = $this->getScenarioIsCreation()
 			? 'Add Account successfull' : 'Save Account successfull'; 
-		Yii::app()->persistentMessage->addPersistentSuccess($msg);
+		Yii::app()->console->addSuccess($msg);
 		return true;
 	}
 	

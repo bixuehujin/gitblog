@@ -16,7 +16,7 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 
 <legend>内容设定</legend>
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+<?php echo Yii::app()->console->render();?>
 <section>
 	<div class="control-group">
 		<?php echo $form->labelEx($contentSetting, 'github', $labelOptions);?>

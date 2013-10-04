@@ -13,7 +13,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 ));
 ?>
 
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+<?php echo Yii::app()->console->render();?>
 <section>
 	
 	<?php echo $form->textFieldRow($model, 'repository')?>

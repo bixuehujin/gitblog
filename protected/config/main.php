@@ -54,12 +54,6 @@ return array(
 		'settings' => array(
 			'class' => 'ecom.components.Settings',
 		),
-		'sessionMessager' => array(
-			'class' => 'SessionMessager',
-		),
-		'persistentMessage' => array(
-			'class' => 'PersistentMessage',
-		),
 		'userData' => array(
 			'class'=>'ecom.components.AttachedDataComponent',
 			'name'=>'user',

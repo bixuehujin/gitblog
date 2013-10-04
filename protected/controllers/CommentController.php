@@ -8,9 +8,9 @@ class CommentController extends Controller {
 		$this->preformAjaxCreate($comment);
 		
 		if($comment->save()) {
-			Yii::app()->sessionMessager->addMessage('添加评论成功', 'success');
+			Yii::app()->console->addSuccess('添加评论成功');
 		}else {
-			Yii::app()->sessionMessager->addMessage('添加评论失败', 'error');
+			Yii::app()->console->addError('添加评论失败');
 		}
 		$url = CHtml::normalizeUrl(array('/post/view', 'id'=>$_POST['CommentForm']['post_id'])) 
 			. '#comment-form';

@@ -12,7 +12,7 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 <legend><?php echo Yii::t('admin', 'Content setting')?></legend>
 <?php echo CHtml::errorSummary($model, null, null, array('class'=>'alert alert-error'))?>
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+<?php echo Yii::app()->console->render();?>
 
 <section>
 	<div class="control-group">

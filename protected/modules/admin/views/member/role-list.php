@@ -8,7 +8,7 @@
  */
 ?>
 
-<?php echo Yii::app()->sessionMessager->renderMessageWidget();?>
+<?php echo Yii::app()->console->render();?>
 
 <?php 
 $this->widget('bootstrap.widgets.TbGridView', array(
