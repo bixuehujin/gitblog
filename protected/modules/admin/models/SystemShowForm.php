@@ -9,7 +9,7 @@ class SystemShowForm extends CFormModel {
 	private $_settings;
 	
 	public function init() {
-		$this->_settings = Yii::app()->systemSettings;
+		$this->_settings = Yii::app()->settings;
 		foreach ($this->attributeNames() as $name) {
 			$this->$name = $this->_settings->get($name);
 		}

@@ -51,9 +51,6 @@ return array(
 			'basePath' => __DIR__ . '/../../assets',
 			'forceCopy' => YII_DEBUG,
 		),
-		'systemSettings' => array(
-			'class' => 'ecom.components.Settings',
-		),
 		'settings' => array(
 			'class' => 'ecom.components.Settings',
 		),

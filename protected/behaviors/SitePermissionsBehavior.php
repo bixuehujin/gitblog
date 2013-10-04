@@ -51,7 +51,7 @@ class SitePermissionsBehavior extends CBehavior {
 	 */
 	public function beginRequestHandler($event) {
 		$doRebuild = $this->autoRebuild ?:
-			(bool)Yii::app()->systemSettings->get('auto_permissions_rebuld');
+			(bool)Yii::app()->settings->get('auto_permissions_rebuld');
 		
 		if ($doRebuild) {
 			$this->rebuild();

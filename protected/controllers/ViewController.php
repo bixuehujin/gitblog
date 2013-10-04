@@ -33,7 +33,7 @@ class ViewController extends Controller {
 		return new CActiveDataProvider('Post', array(
 			'criteria' => $criteria,
 			'pagination' => array(
-				'pageSize'=>Yii::app()->systemSettings->get('post_page_size') ?: 20,	
+				'pageSize'=>Yii::app()->settings->get('post_page_size') ?: 20,	
 			)		
 		));
 	}

@@ -1,10 +1,10 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->systemSettings->get('site_name');
+$this->pageTitle=Yii::app()->settings->get('site_name');
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->systemSettings->get('site_name')); ?></i></h1>
+<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->settings->get('site_name')); ?></i></h1>
 
 <p>Congratulations! You have successfully created your Yii application.</p>
 
