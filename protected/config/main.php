@@ -52,7 +52,7 @@ return array(
 			'forceCopy' => YII_DEBUG,
 		),
 		'settings' => array(
-			'class' => 'ecom.components.Settings',
+			'class' => 'ecom\settings\Settings',
 		),
 		'userData' => array(
 			'class'=>'ecom.components.AttachedDataComponent',
