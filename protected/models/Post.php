@@ -87,7 +87,7 @@ class Post extends CActiveRecord implements Commentable{
 	 * @return object on success, otherwise null
 	 */
 	public function findByPath($path) {
-		return $this->find("path='$path'");
+		return $this->find("path=:path", array(':path' => $path));
 	}
 	
 	/**
@@ -316,7 +316,7 @@ class Post extends CActiveRecord implements Commentable{
 	 * @param integer $postId
 	 */
 	public static function checkExist($postId) {
-		return (bool)self::model()->find('post_id=' . $postId);
+		return (bool)self::model()->find('post_id=:post_id', array(':post_id' => $postId));
 	}
 	
 	/**
@@ -383,7 +383,8 @@ class Post extends CActiveRecord implements Commentable{
 	 */
 	public static function fetchProviderByTag($tagId, $pageSize = 10) {
 		$criteria = new CDbCriteria();
-		$criteria->join = 'join term_entity on pid=entity_id and tid=' . $tagId;
+		$criteria->join = 'join term_entity on pid=entity_id and tid=:tagid';
+		$criteria->params = array(':tagid' => $tagId);
 		$criteria->order = 'modified DESC';
 		return new CActiveDataProvider(__CLASS__, array(
 			'criteria' => $criteria,

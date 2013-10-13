@@ -193,11 +193,13 @@ class Comment extends CActiveRecord {
 		//where post.author=1 or p.creator=1
 		$uid = Yii::app()->user->getId();
 		$criteria = new CDbCriteria();
-		$criteria->condition = "post.author=$uid or p.creator=$uid";
+		$criteria->condition = "post.author=:uid or p.creator=:uid";
 		$criteria->select = 'c.*';
 		$criteria->join = 'join post on c.owner=post.pid left join comment p  on c.parent=p.cid';
 		$criteria->alias = 'c';
 		$criteria->order = 'c.cid DESC';
+		$criteria->params = array(':uid' => $uid);
+		
 		return new CActiveDataProvider(__CLASS__, array(
 			'criteria' => $criteria,
 			'pagination' => array(
