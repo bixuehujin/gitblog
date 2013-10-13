@@ -46,6 +46,9 @@ return array(
 */
 	// application components
 	'components' => array(
+		'request' => array(
+			'enableCsrfValidation' => true,
+		),
 		'user' => array(
 			// enable cookie-based authentication
 			'allowAutoLogin' => true,
