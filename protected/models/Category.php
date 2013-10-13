@@ -23,7 +23,7 @@ class Category extends Tree {
 		$vocabulary = TermVocabulary::loadByMName('category');
 		if (!$vocabulary) {
 			$vocabulary = new TermVocabulary();
-			$vocabulary->name = '分类';
+			$vocabulary->name = 'category';
 			$vocabulary->mname = 'category';
 			$vocabulary->save(false);
 		}
@@ -47,7 +47,7 @@ class Category extends Tree {
 		$activeCid = Yii::app()->request->getQuery('id', 0);
 		$menu = $this->buildMenu(0, $activeCid);
 		$menu[] = array(
-			'label' => '全部',
+			'label' => Yii::t('view', 'All'),
 			'url' => array(''),
 			'active' => $activeCid == 0,
 		);
@@ -67,7 +67,7 @@ class Category extends Tree {
 	 * @param integer $categoryId
 	 */
 	public function checkExist($categoryId) {
-		return (bool)$this->find('category_id=' . $categoryId);
+		return (bool)$this->find('category_id=:id', array(':id' => (int)$categoryId));
 	}
 	
 	
@@ -76,7 +76,7 @@ class Category extends Tree {
 	 * @param integer $parent
 	 */
 	public function getList($parent = 0) {
-		$res = $this->findAll('parent=' . $parent);
+		$res = $this->findAll('parent=:parent', array(':parent' => (int)$parent));
 		return $res;
 	}
 

@@ -15,14 +15,14 @@
 
 <?php echo $form->textFieldRow($model, 'username')?>
 <?php echo $form->textFieldRow($model, 'email')?>
-<?php echo $form->radioButtonListRow($model, 'gender', array('m' => '男', 'f' => '女', 'u' => '保密'))?>
+<?php echo $form->radioButtonListRow($model, 'gender', array('m' => Yii::t('view', 'Male'), 'f' => Yii::t('view', 'Female'), 'u' => Yii::t('view', 'Secret')))?>
 <?php echo $form->textFieldRow($model, 'truename')?>
 <?php echo $form->textFieldRow($model, 'github')?>
 <?php echo $form->textFieldRow($model, 'weibo')?>
 
 <div class="control-group">
 	<div class="controls">
-		<?php echo CHtml::submitButton('保存', array('class' => 'btn btn-primary'))?>
+		<?php echo CHtml::submitButton(Yii::t('view', 'Save'), array('class' => 'btn btn-primary'))?>
 	</div>
 </div>
 

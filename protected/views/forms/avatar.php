@@ -13,6 +13,6 @@
 ))?>
 
 <?php echo $form->fileField($model, 'files', array('name' => 'files[avatar]'))?>
-<?php echo CHtml::submitButton('上传', array('class' => 'btn'))?>
+<?php echo CHtml::submitButton(Yii::t('view', 'Upload Avatar'), array('class' => 'btn'))?>
 
 <?php $this->endWidget()?>

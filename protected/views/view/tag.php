@@ -9,7 +9,7 @@
 
 <?php 
 $this->setBreadcrumbs(array(
-	'标签'=>'#',
+	Yii::t('view', 'tag')=>'#',
 	$tag->name,
 ));
 ?>

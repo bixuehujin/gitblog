@@ -29,8 +29,8 @@ Yii::app()->clientScript->registerPackage('bootstrap.plugins')
 	</div>
 	<?php if ($post->rid != $revision->rid):?>
 	<div class="alert alert-info">
-		<span>您正在查看 <?php echo $revision->formattedCreated ?> 创建的历史版本。</span>
-		<span class="pull-right"><?php echo CHtml::link('查看最新版', array('post/view', 'id' => $post->pid))?></span>
+		<span><?php echo Yii::t('view', 'Viewing history version created in {time}.', array('{time}' => $revision->formattedCreated))?></span>
+		<span class="pull-right"><?php echo CHtml::link(Yii::t('view', 'Visit the latest'), array('post/view', 'id' => $post->pid))?></span>
 	</div>
 	<?php endif;?>
 	<div class="summary">

@@ -17,10 +17,6 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Article Management' => '文章管理',
-  'Category Management' => '分类管理',
-  'Comment Management' => '评论管理',
-  'Home' => '首页',
   'administrator' => '管理员',
   'anonymous user' => '匿名用户',
   'authenticated user' => '认证用户',
@@ -28,10 +24,13 @@ return array (
   'Account List' => '账号列表',
   'Account Management' => '账号管理',
   'Allow registration' => '允许注册',
+  'Article Management' => '文章管理',
   'Auto abstract generation' => '自动生成摘要',
   'Back To Front' => '返回前台',
   'Cancel' => '取消',
   'Category List' => '分类列表',
+  'Category Management' => '分类管理',
+  'Comment Management' => '评论管理',
   'Comment page size' => '评论分页大小',
   'Content' => '内容',
   'Content setting' => '内容设置',
@@ -47,6 +46,7 @@ return array (
   'Email address is not valid' => '邮件地址不合法',
   'Git base path' => 'Git基准目录',
   'Git setting' => 'Git设置',
+  'Home' => '首页',
   'Localization setting' => '本地化设置',
   'Member' => '成员',
   'Modify Account' => '修改账号',

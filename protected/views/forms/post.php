@@ -8,7 +8,7 @@
  */
 ?>
 <?php 
-Yii::app()->getComponent('layout')->setState('section_title', '发表文章');
+Yii::app()->getComponent('layout')->setState('section_title', Yii::t('view', 'Create Post'));
 ?>
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id' => 'post-form',
@@ -22,7 +22,7 @@ Yii::app()->getComponent('layout')->setState('section_title', '发表文章');
 <?php echo $form->textAreaRow($model, 'commit', array('id' => 'commit'))?>
 
 <div class="clearfix">
-<?php echo CHtml::submitButton('提交', array('class' => 'btn btn-primary pull-right'))?>
+<?php echo CHtml::submitButton(Yii::t('view', 'Submit'), array('class' => 'btn btn-primary pull-right'))?>
 </div>
 
 <?php $this->endWidget()?>

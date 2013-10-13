@@ -8,7 +8,7 @@
  */
 ?>
 <?php 
-$ownerType = isset($ownerType) ? $ownerType : '评论';
+$ownerType = isset($ownerType) ? $ownerType : 'Comments';
 $showReplyLink = isset($showReplyLink) ? $showReplyLink : true;
 ?>
 <?php
@@ -19,10 +19,10 @@ Yii::app()->clientScript->registerPackage('jquery.scrollTo')
 
 <div class="comments">
 	<legend class="clearfix">
-		<span class="title"><?php echo $ownerType?>列表 (<?php echo $provider->totalItemCount?>)</span>
+		<span class="title"><?php echo $ownerType?>(<?php echo $provider->totalItemCount?>)</span>
 		<?php
 			if(isset($showAllLink) && $showAllLink) { 
-				echo CHtml::link('查看全部', array('/view/comments', 'id'=>$post->pid), array('class'=>'view-all'));
+				echo CHtml::link(Yii::t('view', 'View All'), array('/view/comments', 'id'=>$post->pid), array('class'=>'view-all'));
 			}
 		?>
 	</legend>
@@ -40,7 +40,7 @@ Yii::app()->clientScript->registerPackage('jquery.scrollTo')
 			<div class="links">
 				<span class="date"><?php echo $comment->formattedDate?></span>
 				<?php if ($showReplyLink):?>
-					<?php echo CHtml::link('回复', '#comment-form', array('class'=>'reply', 'data-id'=>$comment->cid, 'data-author'=>$comment->author))?>
+					<?php echo CHtml::link(Yii::t('view', 'Reply'), '#comment-form', array('class'=>'reply', 'data-id'=>$comment->cid, 'data-author'=>$comment->author))?>
 				<?php endif;?>
 			</div>
 		</div>

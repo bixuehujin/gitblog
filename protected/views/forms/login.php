@@ -21,7 +21,7 @@
 	<div class="controls">
 		<?php echo $form->passwordField($model, 'password')?>
 		<?php echo $form->error($model, 'password')?>
-		<?php echo CHtml::link('忘记密码?', array('site/reset'))?>
+		<?php echo CHtml::link(Yii::t('view', 'Forgot password?'), array('site/reset'))?>
 	</div>
 </div>
 </section>
@@ -29,9 +29,9 @@
 	<div class="controls">
 		<label class="checkbox">
 			<?php echo $form->checkBox($model,'rememberMe'); ?>
-			记住登录状态
+			<?php echo Yii::t('view', 'Remember Me')?>
 		</label>
-		<?php echo CHtml::submitButton('登录', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton(Yii::t('view', 'Login'), array('class'=>'btn btn-primary')); ?>
 	</div>
 </div>
 

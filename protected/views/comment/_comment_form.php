@@ -8,7 +8,7 @@
 ?>
 <?php 
 if (!isset($ownerType)) {
-	$ownerType = '评论';
+	$ownerType = Yii::t('view', 'Comment');
 }
 ?>
 
@@ -25,7 +25,7 @@ if (!isset($ownerType)) {
 	))
 ?>
 
-<legend>发表<?php echo $ownerType?></legend>
+<legend><?php echo Yii::t('view', $ownerType) ?></legend>
 
 	<?php echo Yii::app()->console->render();?>
 <section class="clearfix">
@@ -43,7 +43,7 @@ if (!isset($ownerType)) {
 	<?php echo $form->textAreaRow($model, 'content')?>
 	</div>
 	<div>
-	<?php echo CHtml::submitButton('提交' . $ownerType, array('class'=>'btn btn-primary pull-right'))?>
+	<?php echo CHtml::submitButton(Yii::t('view', 'Submit ') . $ownerType, array('class'=>'btn btn-primary pull-right'))?>
 	</div>
 	
 </section>

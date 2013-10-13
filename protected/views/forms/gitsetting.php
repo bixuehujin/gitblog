@@ -22,8 +22,8 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	
 	<div class="control-group">
 		<div class="controls">
-			<?php echo CHtml::submitButton('保存', array('class'=>'btn btn-primary'))?>
-			<?php echo CHtml::resetButton('重置', array('class'=>'btn'))?>
+			<?php echo CHtml::submitButton(Yii::t('view', 'Save'), array('class'=>'btn btn-primary'))?>
+			<?php echo CHtml::resetButton(Yii::t('view', 'Reset'), array('class'=>'btn'))?>
 		</div>
 	</div>
 </section>

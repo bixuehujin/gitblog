@@ -14,10 +14,10 @@
 <div class="widget-content">
 <?php $this->widget('bootstrap.widgets.TbMenu', array(
 	'items' => array(
-		array('label' => '基本信息', 'url' => array('/account/info')),
-		array('label' => '头像设置', 'url' => array('/account/avatar')),
-		array('label' => '密码修改', 'url' => array('/account/password')),
-		array('label' => '内容设定', 'url' => array('/account/content')),
+		array('label' => Yii::t('view', 'Profile'), 'url' => array('/account/info')),
+		array('label' => Yii::t('view', 'Avatar'), 'url' => array('/account/avatar')),
+		array('label' => Yii::t('view', 'Password'), 'url' => array('/account/password')),
+		array('label' => Yii::t('view', 'Content'), 'url' => array('/account/content')),
 	),
 	'type' => 'list'
 ))?>

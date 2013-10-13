@@ -9,12 +9,12 @@
 
 <?php $this->renderPartial('/comment/_comment_form', array(
 	'model' => $model, 
-	'ownerType' => '留言'
+	'ownerType' => Yii::t('view', 'Message')
 ))?>
 
 
 <?php $this->renderPartial('/comment/_comments', array(
 	'provider' => $provider, 
-	'ownerType' => '留言',
+	'ownerType' => Yii::t('view', 'Message'),
 	'showReplyLink' => !Yii::app()->user->isGuest,
 ))?>

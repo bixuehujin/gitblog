@@ -10,7 +10,7 @@
 <?php 
 $this->setBreadcrumbs(array(
 	$post->title=>array('/post/view', 'id'=>$post->pid),
-	'评论列表'
+	Yii::t('view', 'Comments')
 ));
 ?>
 

@@ -10,7 +10,7 @@
 
 <?php 
 $this->setBreadcrumbs(array(
-	'用户归档'=>'#',
+	Yii::t('view', 'user')=>'#',
 	User::getName($_GET['id']),
 ));
 ?>

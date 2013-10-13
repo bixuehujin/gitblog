@@ -18,10 +18,10 @@
 			</div>
 			<div class="content-body">
 				<?php if ($comment->parent):?>
-					回复我的评论: 
+					<?php echo Yii::t('view', 'Reply to me:')?> 
 					<?php echo CHtml::link($comment->getParentObject()->content, array('post/view', 'id' => $comment->ownerObject->pid))?>
 				<?php else:?>
-					评论我的文章: 
+					<?php echo Yii::t('view', 'Comment to me:')?>
 					<?php echo CHtml::link($comment->getOwnerObject()->title, array('post/view', 'id' => $comment->ownerObject->pid))?>
 				<?php endif;?>
 			</div>

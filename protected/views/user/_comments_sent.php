@@ -22,10 +22,10 @@
 			</div>
 			<div class="content-body">
 				<?php if ($comment->parent):?>
-					回复 <?php echo $comment->parentObject->authorLink?>的评论: 
+					<?php echo Yii::t('view', 'Reply to {author}:', array('{author}' => $comment->getParentObject()->content))?>
 					<?php echo CHtml::link($comment->getParentObject()->content, array('post/view', 'id' => $comment->ownerObject->pid))?>
 				<?php else:?>
-					评论 <?php echo GitBlog::username($comment->ownerObject->author)?>的文章: 
+					<?php echo Yii::t('view', 'Comment to {author}:', array('{author}' => GitBlog::username($comment->ownerObject->author)))?>
 					<?php echo CHtml::link($comment->getOwnerObject()->title, array('post/view', 'id' => $comment->ownerObject->pid))?>
 				<?php endif;?>
 			</div>

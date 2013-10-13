@@ -17,7 +17,7 @@
 <?php echo $form->textFieldRow($model, 'email')?>
 
 <div class="actions">
-	<?php echo CHtml::submitButton('发送邮件', array('class'=>'btn')); ?>
+	<?php echo CHtml::submitButton(Yii::t('view', 'Send mail'), array('class'=>'btn')); ?>
 </div>
 
 <?php $this->endWidget()?>

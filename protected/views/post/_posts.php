@@ -33,7 +33,7 @@ Yii::app()->clientScript->pregisterCssFile(__DIR__ . '/posts.css');
 					<span><?php echo $post->formattedCreated?></span></span>
 				</span>
 				<span class="read pull-right">
-					<?php echo CHtml::link('阅读全文', array('post/view', 'id' => $post->pid))?>
+					<?php echo CHtml::link(Yii::t('view', 'show all'), array('post/view', 'id' => $post->pid))?>
 				</span>
 			</div>
 		</div>

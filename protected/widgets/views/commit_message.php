@@ -7,7 +7,7 @@
 
 <div class="widget" id="widget-commit-message">
 	<div class="widget-title">
-		修订信息
+		<?php echo Yii::t('view', 'Revision information')?>
 	</div>
 	<div class="widget-content">
 		<?php echo $this->commit?>

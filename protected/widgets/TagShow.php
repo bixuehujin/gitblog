@@ -33,7 +33,7 @@ class TagShow extends CWidget {
 	}
 	
 	public function getDescription() {
-		return $this->getTag()->getAttribute('description') ?: '没有描述信息';
+		return $this->getTag()->getAttribute('description') ?: Yii::t('view', 'no description');
 	}
 	
 	public function getAttachedCount() {

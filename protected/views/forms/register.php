@@ -20,7 +20,7 @@
 
 <div class="control-group">
 	<div class="controls">
-		<?php echo CHtml::submitButton('注册', array('class' => 'btn btn-primary'))?>
+		<?php echo CHtml::submitButton(Yii::t('view', 'Sign up'), array('class' => 'btn btn-primary'))?>
 	</div>
 </div>
 
