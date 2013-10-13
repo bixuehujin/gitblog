@@ -19,6 +19,9 @@ return array(
 		'ecom.components.*',
 		'system.web.helpers.*',
 	),
+	'behaviors' => array(
+		'siteConfig' => 'application.behaviors.SiteConfigBehavior',
+	),
 	'modules' => array(
 		'admin' => array(),
 		/*
