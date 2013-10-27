@@ -15,10 +15,10 @@ class AccountController extends Controller {
 	}
 	
 	public function actionInfo() {
-		$this->setTitle('基本信息');
+		$this->setTitle(Yii::t('view', 'Profile'));
 		$this->getPageLayout()->setBreadcrumbs(array(
-			'设置' => array('/account'),
-			'基本信息',
+			Yii::t('view', 'Settings') => array('/account'),
+			Yii::t('view', 'Profile'),
 		));
 		
 		$accountInfo = new AccountInfoForm(null, User::load(Yii::app()->user->getId()));
@@ -35,10 +35,10 @@ class AccountController extends Controller {
 	}
 	
 	public function actionAvatar() {
-		$this->setTitle('头像设置');
+		$this->setTitle(Yii::t('view', 'Avatar Setting'));
 		$this->getPageLayout()->setBreadcrumbs(array(
-			'设置' => array('/account'),
-			'头像设置',
+			Yii::t('view', 'Settings') => array('/account'),
+			Yii::t('view', 'Avatar'),
 		));
 		$model = new AvatarForm();
 		if (!empty($_FILES)) {
@@ -51,10 +51,10 @@ class AccountController extends Controller {
 	}
 	
 	public function actionPassword() {
-		$this->setTitle('密码修改');
+		$this->setTitle(Yii::t('view', 'Change Password'));
 		$this->getPageLayout()->setBreadcrumbs(array(
-			'设置' => array('/account'),
-			'密码修改',
+			Yii::t('view', 'Settings') => array('/account'),
+			Yii::t('view', 'Password'),
 		));
 		$model = new PasswordForm(PasswordForm::SCENARIO_CHANGE, User::load(Yii::app()->user->getId()));
 		if (isset($_POST['PasswordForm'])) {
@@ -69,10 +69,10 @@ class AccountController extends Controller {
 	}
 	
 	public function actionContent() {
-		$this->setTitle('内容设定');
+		$this->setTitle(Yii::t('view', 'Content Setting'));
 		$this->getPageLayout()->setBreadcrumbs(array(
-			'设置' => array('/account'),
-			'内容设定',
+			Yii::t('view', 'Settings') => array('/account'),
+			Yii::t('view', 'Content'),
 		));
 		$model = new GitSettingForm();
 		if (isset($_POST['GitSettingForm'])) {

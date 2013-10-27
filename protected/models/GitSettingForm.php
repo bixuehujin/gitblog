@@ -23,8 +23,8 @@ class GitSettingForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-			'branch' => '分支名称',
-			'repository' => '仓库名称',
+			'branch' => Yii::t('view', 'Branch Name'),
+			'repository' => Yii::t('view', 'Repo Name'),
 		);
 	}
 	
@@ -48,7 +48,7 @@ class GitSettingForm extends CFormModel {
 		foreach ($this->getAttributes() as $key => $value) {
 			$this->_model->set($key, $value);
 		}
-		Yii::app()->console->addSuccess('保存配置成功');
+		Yii::app()->console->addSuccess(Yii::t('view', 'Configuration saved success'));
 		return true;
 	}
 }

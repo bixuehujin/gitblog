@@ -42,12 +42,12 @@ class AccountInfoForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-			'username' => '用户名',
-			'email' => 'Email',
-			'truename' => '真实姓名',
-			'gender' => '性别',
-			'github' => 'github帐号',
-			'weibo' => '微博帐号',
+			'username' => Yii::t('view', 'Username'),
+			'email' => Yii::t('view', 'Email'),
+			'truename' => Yii::t('view', 'True Name'),
+			'gender' => Yii::t('view', 'Gender'),
+			'github' => Yii::t('view', 'GitHub Account'),
+			'weibo' => Yii::t('view', 'Twitter Account')
 		);
 	}
 	
@@ -63,10 +63,10 @@ class AccountInfoForm extends CFormModel {
 		}
 		$this->_user->setAttributes($this->getAttributes(), false);
 		if (!$this->_user->save(false)) {
-			Yii::app()->console->addError('保存设置失败');
+			Yii::app()->console->addError(Yii::t('view', 'Failed to save configurations'));
 			return false;
 		}
-		Yii::app()->console->addSuccess('保存设置成功');
+		Yii::app()->console->addSuccess(Yii::t('view', 'Save configuration success'));
 		return true;
 	}
 }

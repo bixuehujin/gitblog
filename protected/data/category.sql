@@ -6,10 +6,10 @@
 
 
 INSERT INTO `term`(`tid`, `vid`, `name`) VALUES
-(1, 1, 'Web开发'),
-(2, 1, '设计'),
-(3, 1, '前端'),
-(4, 1, '数据库'),
+(1, 1, 'Web Develepment'),
+(2, 1, 'Design'),
+(3, 1, 'Front End'),
+(4, 1, 'Database'),
 (5, 1, 'PHP'),
 (6, 1, 'Python'),
 (7, 1, 'Java'),

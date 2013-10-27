@@ -27,9 +27,9 @@ class PasswordForm extends CFormModel {
 	
 	public function attributeLabels() {
 		return array(
-			'opassword' => '旧密码',
-			'npassword' => '新密码',
-			'npassword2' => '确认密码',
+			'opassword' => Yii::t('view', 'Old Password'),
+			'npassword' => Yii::t('view', 'New Password'),
+			'npassword2' => Yii::t('view', 'Repeat Password'),
 		);
 	}
 	
@@ -42,11 +42,10 @@ class PasswordForm extends CFormModel {
 	
 	public function getButtonLabel() {
 		if ($this->getScenario() === self::SCENARIO_CHANGE) {
-			$prefix = '修改';
+			return Yii::t('view', 'Change Password');
 		}else {
-			$prefix = '重置';
+			return Yii::t('view', 'Reset Password');
 		}
-		return $prefix . '密码';
 	}
 	
 	public function validate($attributes = null, $clearErrors = true) {
@@ -54,10 +53,10 @@ class PasswordForm extends CFormModel {
 			return false;
 		}
 		if ($this->scenario == self::SCENARIO_CHANGE && !$this->user->isPasswordMatch($this->opassword)) {
-			$this->addError('opassword', '旧密码输入错误');
+			$this->addError('opassword', Yii::t('view', 'The old password is not correct'));
 		}
 		if ($this->npassword !== $this->npassword2) {
-			$this->addError('npassword', '两次密码输入不匹配');
+			$this->addError('npassword', Yii::t('view', 'The new password are not match'));
 		}
 		return !$this->hasErrors();
 	}
@@ -67,7 +66,6 @@ class PasswordForm extends CFormModel {
 			Yii::app()->console->addModel($this);
 			return false;
 		}
-		$action = $this->scenario === self::SCENARIO_CHANGE ? '修改' : '重置';
 
 		$this->user->password = User::encryptPassword($this->npassword);
 		if ($this->user->save(false, array('password'))) {
@@ -75,10 +73,14 @@ class PasswordForm extends CFormModel {
 				$token = $this->user->getResetPasswordToken();
 				$token->delete();
 			}
-			Yii::app()->console->addSuccess($action . '密码成功');
+			$message = $this->scenario === self::SCENARIO_CHANGE 
+				? Yii::t('view', 'Change password success') : Yii::t('view', 'Reset password success');
+			Yii::app()->console->addSuccess($message);
 			return true;
 		}else {
-			Yii::app()->console->addError($action . '密码失败');
+			$message = $this->scenario === self::SCENARIO_CHANGE
+				? Yii::t('view', 'Change password failed') : Yii::t('view', 'Reset password failed');
+			Yii::app()->console->addError($message);
 			return false;
 		}
 	}
