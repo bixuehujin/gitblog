@@ -20,12 +20,13 @@ class AvatarForm extends CFormModel {
 			$this->addErrors($file->getErrors());
 			return false;
 		}
-		$user = Yii::app()->user->getState('user');
+		$user = User::load(Yii::app()->user->getId());
 		$uid = $user->uid;
 		FileUsage::removeAllAttached($uid, 'user');
 		if (FileUsage::add($uid, 'user', $file)) {
 			$user->avatar = $file->fid;
 			$user->save(false, array('avatar'));
+			Yii::app()->user->setState('user', $user);
 			Yii::app()->console->addSuccess(Yii::t('view', 'Upload avatar success'));
 			return true;
 		}else {
