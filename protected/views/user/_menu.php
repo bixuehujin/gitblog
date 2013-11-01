@@ -13,7 +13,14 @@ $items = array(
 	array('label' => Yii::t('view', 'Profile'), 'url' => array('/user/info'), 'visible' => !$isSelf),
 	array('label' => Yii::t('view', 'Message'), 'url' => array('/user/messages')),
 );
+
 $uid = Yii::app()->request->getQuery('id');
+foreach ($items as &$item) {
+	if (!$isSelf) {
+		$item['url']['id'] = $uid;
+	}
+}
+
 ?>
 <div class="widget">
 	<div class="widget-content">
