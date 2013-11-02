@@ -6,7 +6,7 @@
  * @since  2012-10-10
  */
 
-class User extends CActiveRecord implements Commentable{
+class User extends CActiveRecord implements Commentable {
 	
 	/**
 	 * Cahces of loaded user objects, indexed by uid.

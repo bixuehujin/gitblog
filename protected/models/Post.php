@@ -5,7 +5,7 @@
  * @author Jin Hu <bixuehujin@gmail.com>
  */
 
-class Post extends CActiveRecord implements Commentable{
+class Post extends CActiveRecord implements Commentable {
 
 	const STATUS_NORMAL     = 0;
 	const STATUS_DELETED    = 1;
@@ -16,6 +16,7 @@ class Post extends CActiveRecord implements Commentable{
 	
 	/**
 	 * Tags attached to current post.
+	 * 
 	 * @var Tag[]
 	 */
 	private $tags;
@@ -48,6 +49,7 @@ class Post extends CActiveRecord implements Commentable{
 	
 	/**
 	 * Fetch posts by category id.
+	 * 
 	 * @param integer $id
 	 * @param array $options specify extra options.
 	 * <ul>
@@ -91,19 +93,22 @@ class Post extends CActiveRecord implements Commentable{
 	}
 	
 	/**
-	 * fetch posts by tag_id.
+	 * Fetch posts by tag_id.
+	 * 
 	 * @param integer $id 
 	 * @return array
 	 */
 	public function getByTagId($id = 0) {
-		if($id == 0) 
+		if($id == 0) {
 			return array();
+		}
 		
 		$postTagModel = PostTag::model();
 		$postIds = $postTagModel->getPostIds($id);
 		
-		if(empty($postIds)) 
+		if(empty($postIds)) { 
 			return array();
+		}
 		
 		$criteria = new CDbCriteria();
 		$criteria->addInCondition('post_id', $postIds);
@@ -120,7 +125,7 @@ class Post extends CActiveRecord implements Commentable{
 	}
 	
 	/**
-	 * update tags relation to this post
+	 * Update tags relation to this post
 	 * 
 	 * @param mixed $tags
 	 */
@@ -157,7 +162,7 @@ class Post extends CActiveRecord implements Commentable{
 	}
 	
 	/**
-	 * get post abstract according to system settings.
+	 * Get post abstract according to system settings.
 	 * 
 	 * @return string
 	 */
@@ -312,7 +317,8 @@ class Post extends CActiveRecord implements Commentable{
 	}
 	
 	/**
-	 * check if specified post is exsit.
+	 * Check if specified post is exsit.
+	 * 
 	 * @param integer $postId
 	 */
 	public static function checkExist($postId) {
