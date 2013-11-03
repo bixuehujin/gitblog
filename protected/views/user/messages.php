@@ -15,6 +15,6 @@
 
 <?php $this->renderPartial('/comment/_comments', array(
 	'provider' => $provider, 
-	'ownerType' => Yii::t('view', 'Message'),
+	'ownerType' => Yii::t('view', 'Messages'),
 	'showReplyLink' => !Yii::app()->user->isGuest,
 ))?>

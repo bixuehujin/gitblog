@@ -107,7 +107,7 @@ class Controller extends CController{
 		$items[] = array('label' => Yii::t('view', 'Sign Up'), 'url' => array('/site/register'), 'visible' => $isGuest && Yii::app()->settings->get('site_register_on', 1));
 		$items[] = array('label' => Yii::t('view', 'Sign In'), 'url' => array('/site/login'), 'visible' => $isGuest);
 		$items[] = array('label' => Yii::t('view', 'My Account<b class="caret"></b>'), 'url' => array('#'), 'visible' => !$isGuest, 'items' => array(
-			array('label' => Yii::t('view', 'System'), 'url' => array('/admin'), 'visible' => !Yii::app()->user->isGuest, 'linkOptions' => array('target' => '_blank')),
+			array('label' => Yii::t('view', 'System'), 'url' => array('/admin'), 'visible' => Yii::app()->user->checkAccess('administrator'), 'linkOptions' => array('target' => '_blank')),
 			array('label' => Yii::t('view', 'Profile'), 'url' => array('/account/info')),
 			array('label' => Yii::t('view', 'Avatar'), 'url' => array('/account/avatar')),
 			array('label' => Yii::t('view', 'Password'), 'url' => array('/account/password')),
