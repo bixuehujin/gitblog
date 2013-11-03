@@ -122,14 +122,17 @@ class Category extends Tree {
 	 * @return array
 	 */
 	public static function getCategoryBreadcrumbsArray($id) {
-		$path  = self::load($id)->getPath();
+		$category = self::load($id);
 		$ret = array();
-		$last = array_pop($path);
-		foreach ($path as $item) {
-			$ret[$item->name] = array('view/category', 'id' => $item->cid);
-		}
-		if ($last) {
-			$ret[] = $last->name;
+		if ($category) {
+			$path  = $category->getPath();
+			$last = array_pop($path);
+			foreach ($path as $item) {
+				$ret[$item->name] = array('view/category', 'id' => $item->cid);
+			}
+			if ($last) {
+				$ret[] = $last->name;
+			}
 		}
 		return $ret;
 	}

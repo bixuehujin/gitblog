@@ -58,7 +58,7 @@ class BuilderCommand extends CConsoleCommand {
 			//TODO DO NOT SUPPORT TREE!
 			foreach ($commitOld->getTree() as $entry) {
 				$content = $this->client->fetchBlobContent($entry->oid);
-				$this->parseContent($content, $entry->name, $commitOld->getMessage(), $entry->oid);
+				$this->parseContent($content, $entry->name, $commitOld, $entry->oid);
 			}
 		}
 		$this->user->setSetting('last_commit', $commits[0]->getOid());
@@ -133,9 +133,12 @@ class BuilderCommand extends CConsoleCommand {
 				$post->title = $meta['title'];
 				$post->save(false);
 				
-				$post->applyCategory($meta['category']);
-				$post->applyTags($meta['tags']);
-				
+				if (isset($meta['category'])) {
+					$post->applyCategory($meta['category']);
+				}
+				if (isset($meta['tags'])) {
+					$post->applyTags($meta['tags']);
+				}
 			}
 		}else if (in_array($ext, array('jpg', 'png', 'jpeg', 'gif'))) {
 			

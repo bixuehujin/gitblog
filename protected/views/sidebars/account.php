@@ -17,7 +17,7 @@
 		array('label' => Yii::t('view', 'Profile'), 'url' => array('/account/info')),
 		array('label' => Yii::t('view', 'Avatar'), 'url' => array('/account/avatar')),
 		array('label' => Yii::t('view', 'Password'), 'url' => array('/account/password')),
-		array('label' => Yii::t('view', 'Content'), 'url' => array('/account/content')),
+		array('label' => Yii::t('view', 'Repository'), 'url' => array('/account/repository')),
 	),
 	'type' => 'list'
 ))?>

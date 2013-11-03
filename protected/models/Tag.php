@@ -110,10 +110,13 @@ class Tag extends Term {
 			'name' => $name
 		));
 		if (!$ret && $autoCreate) {
-			$ret = Tag::create($name);
+			$ret = new self();
+			$ret->name = $name;
+			$ret->save(false);
 		}
 		return $ret;
 	}
+	
 	
 	/**
 	 * Load all tags from database.

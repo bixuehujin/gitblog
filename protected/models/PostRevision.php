@@ -75,7 +75,11 @@ class PostRevision extends CActiveRecord {
 	
 	public function getCategory() {
 		$meta = $this->getMeta();
-		return Category::loadByName($meta['category']);
+		if (isset($meta['category'])) {
+			return Category::loadByName($meta['category']);
+		}else {
+			return Category::model();
+		}
 	}
 	
 	protected function processReference(&$items) {

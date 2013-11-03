@@ -68,11 +68,11 @@ class AccountController extends Controller {
 		));
 	}
 	
-	public function actionContent() {
-		$this->setTitle(Yii::t('view', 'Content Setting'));
+	public function actionRepository() {
+		$this->setTitle(Yii::t('view', 'Repository Setting'));
 		$this->getPageLayout()->setBreadcrumbs(array(
 			Yii::t('view', 'Settings') => array('/account'),
-			Yii::t('view', 'Content'),
+			Yii::t('view', 'Repository'),
 		));
 		$model = new GitSettingForm();
 		if (isset($_POST['GitSettingForm'])) {
@@ -81,7 +81,7 @@ class AccountController extends Controller {
 				$this->refresh();
 			}
 		}
-		$this->render('content', array(
+		$this->render('repository', array(
 			'model' => $model,
 		));
 	}

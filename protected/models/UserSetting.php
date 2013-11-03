@@ -140,5 +140,14 @@ class UserSetting extends CActiveRecord {
 			return true;
 		}
 		return false;
-	} 
+	}
+	
+	public function create($name, $value, $uid = null) {
+		$setting = new self();
+		$setting->uid = $uid ?: Yii::app()->user->getId();
+		$setting->name = $name;
+		$setting->value = $value;
+		$setting->save(false);
+		return $setting;
+	}
 }

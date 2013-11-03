@@ -217,5 +217,28 @@ class GitClient extends CComponent {
 	public function getCommitByOid($oid) {
 		return $this->repo->lookup($oid);
 	}
+	
+	/**
+	 * Create and initialize an empty git repository based on [git_base_path].
+	 * 
+	 * @param string $name
+	 * @return bool
+	 * @throws CException
+	 */
+	public static function createRepository($name) {
+		$gitBasePath = Yii::app()->settings->get('git_base_path', '/home/gitdaemon');
+		if (!is_dir($gitBasePath) || !is_writable($gitBasePath)) {
+			throw new CException("The git base path '$gitBasePath' is not a writable directory.");
+		}
+		$path = $gitBasePath . '/' . $name . '.git';
+		
+		$repo = Repository::init($path, true);
+		if ($repo) {
+			$target = $path . '/hooks/post-receive';
+			copy($gitBasePath . '/hooks/post-receive', $target);
+			chmod($target, 755);
+		}
+		return $repo;
+	}
 }
 

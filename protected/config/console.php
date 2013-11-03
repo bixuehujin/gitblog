@@ -28,7 +28,7 @@ return array(
 			'charset' => 'utf8',
 		),
 		'settings' => array(
-			'class' => 'ecom.components.Settings',
+			'class' => 'ecom\settings\Settings',
 		),
 		'log' => array(
 			'class' => 'CLogRouter',
