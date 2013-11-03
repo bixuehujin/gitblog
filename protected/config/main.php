@@ -139,7 +139,7 @@ return array(
 			'class' => 'ecom.components.EMailgun',
 			'config' => array(
 				'password' => 'key-8urgft93rdddn1zr03kjq1hfp64a3xt9',
-				'domain '=> 'hujin.mailgun.org',
+				'domain'=> 'hujin.mailgun.org',
 			),
 			'defaultSender' => 'i@hujin.me',
 		),
