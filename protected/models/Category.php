@@ -55,10 +55,15 @@ class Category extends Tree {
 	}
 	
 	public function buildSecondaryMenu() {
-		$activeCid = Yii::app()->request->getQuery('id', 0);
-		if (!$activeCid) return array();
-		
-		return $this->buildMenu($activeCid, 0);
+		$activeId = Yii::app()->request->getQuery('id', 0);
+		if (!$activeId) {
+			return array();
+		}
+		$cid = $activeId;
+		if (($cat = self::load($activeId)) && ($parent = $cat->getParent())) {
+			$cid = self::load($parent)->tid;
+		}
+		return $this->buildMenu($cid, $activeId);
 	}
 	
 	/**

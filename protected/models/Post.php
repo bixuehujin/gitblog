@@ -332,13 +332,17 @@ class Post extends CActiveRecord implements Commentable {
 	 * @param integer $postType Post::TYPE_ARTICLE or Post::TYPE_TOPIC, null for all types.
 	 * @param integer $pageSize
 	 * @return CActiveDataProvider
+	 * @throws CHttpException
 	 */
 	public static function fetchProviderByCategoryId($catid = 0, $postType = null, $pageSize = 10) {
 		$criteria = new CDbCriteria();
-		if ($catid) {
-			$ids = Category::load($catid)->children(true);
+		if ($catid && $category = Category::load($catid)) {
+			$ids = $category->children(true);
 			$ids[] = $catid;
 			$criteria->addInCondition('cid', $ids);
+		}
+		if ($catid && !$category) {
+			throw new CHttpException(404);
 		}
 		if ($postType !== null) {
 			$criteria->addColumnCondition(array('type' => $postType));
