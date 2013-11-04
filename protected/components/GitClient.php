@@ -132,7 +132,8 @@ class GitClient extends CComponent {
 		
 		$author = new Signature($username, $email, new DateTime());
 		
-		$commit = $this->repo->lookup($this->getParentsCommit()[0]);
+		$parentCommits = $this->getParentsCommit();
+		$commit = $this->repo->lookup($parentCommits[0]);
 		
 		$rootTree = $commit->getTree();
 		
