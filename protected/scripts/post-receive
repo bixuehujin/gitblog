@@ -1,0 +1,9 @@
+#! /bin/bash
+
+echo ---------- begin ---------
+yiic=/var/www/gitblog/protected/yiic
+
+$yiic builder --repo=$(pwd)
+
+echo ----------- end ----------
+

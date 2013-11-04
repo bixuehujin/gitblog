@@ -225,7 +225,7 @@ class GitClient extends CComponent {
 	 * @return bool
 	 * @throws CException
 	 */
-	public static function createRepository($name) {
+	public static function createRepository($name, $username, $email) {
 		$gitBasePath = Yii::app()->settings->get('git_base_path', '/home/gitdaemon');
 		if (!is_dir($gitBasePath) || !is_writable($gitBasePath)) {
 			throw new CException("The git base path '$gitBasePath' is not a writable directory.");
@@ -235,8 +235,12 @@ class GitClient extends CComponent {
 		$repo = Repository::init($path, true);
 		if ($repo) {
 			$target = $path . '/hooks/post-receive';
-			copy($gitBasePath . '/hooks/post-receive', $target);
-			chmod($target, 755);
+			copy(Yii::app()->getBasePath() . '/scripts/post-receive', $target);
+			chmod($target, 0755);
+			
+			$config = new Git2\Config($path . '/config');
+			$config->store('user.name', $username);
+			$config->store('user.email', $email);
 		}
 		return $repo;
 	}

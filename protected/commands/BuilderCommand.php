@@ -43,7 +43,7 @@ class BuilderCommand extends CConsoleCommand {
 			printf("[INFO] No commit needs to resolve, exiting...\n");
 			return;
 		}
-		
+
 		array_shift($commitsOld);
 		if ($lastCommit) {
 			$commitsOld[] = $this->client->getCommitByOid($lastCommit);
@@ -54,7 +54,7 @@ class BuilderCommand extends CConsoleCommand {
 			$this->parseDiffFiles($diff, $commits[$i]);
 		}
 		
-		if (!$lastCommit) {//deal with the firset init commit.
+		if (!$lastCommit && isset($commitOld)) {//deal with the firset init commit.
 			//TODO DO NOT SUPPORT TREE!
 			foreach ($commitOld->getTree() as $entry) {
 				$content = $this->client->fetchBlobContent($entry->oid);
@@ -99,7 +99,7 @@ class BuilderCommand extends CConsoleCommand {
 				if (!isset($meta['title'])) {
 					return;
 				}
-				$post = Post::loadByPath($filename);
+				$post = Post::loadByPath($filename, $user->uid);
 				$newPost = false;
 				if (!$post) {
 					$newPost = true;

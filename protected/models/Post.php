@@ -312,8 +312,8 @@ class Post extends CActiveRecord implements Commentable {
 	 * @param string $path
 	 * @return Post
 	 */
-	public static function loadByPath($path) {
-		return self::model()->findByAttributes(array('path' => $path));
+	public static function loadByPath($path, $uid) {
+		return self::model()->findByAttributes(array('path' => $path, 'author' => $uid));
 	}
 	
 	/**

@@ -19,7 +19,7 @@ class UserBehavior extends CActiveRecordBehavior {
 		$setting = UserSetting::model();
 		$setting->create('repository', $user->username, $user->uid);
 		$setting->create('branch', 'master', $user->uid);
-		GitClient::createRepository($user->username);
+		GitClient::createRepository($user->username, $user->username, $user->email);
 		
 		//send register email
 		$mailgun = Yii::app()->getComponent('mailgun');

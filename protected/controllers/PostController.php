@@ -62,7 +62,7 @@ class PostController extends Controller {
 		$path = $request->getQuery('path', null);
 		$rid = $request->getQuery('rid', 0);
 		if($id && ($post = Post::load($id))) {
-		}elseif ($path && ($post = Post::loadByPath($path))) {
+		}elseif ($path && ($post = Post::loadByPath($path, 0))) {//TODO problem with load by path
 		}else {
 			throw new CHttpException(404);
 		}
