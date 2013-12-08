@@ -6,7 +6,9 @@
  * @since  2012-10-10
  */
 
-class User extends CActiveRecord implements Commentable {
+use ecom\file\FileAttachable;
+
+class User extends CActiveRecord implements Commentable, FileAttachable {
 	
 	/**
 	 * Cahces of loaded user objects, indexed by uid.
@@ -58,7 +60,7 @@ class User extends CActiveRecord implements Commentable {
 	 */
 	public function getAvatarImage() {
 		if ($this->avatar && !$this->_avatarImage) {
-			$this->_avatarImage = Image::load($this->avatar);
+			$this->_avatarImage = Yii::app()->fileManager->load($this->avatar);
 		}
 		return $this->_avatarImage;
 	}
@@ -66,7 +68,7 @@ class User extends CActiveRecord implements Commentable {
 	public function getAvatarUrl($width, $height = null) {
 		$image = $this->getAvatarImage();
 		if ($image) {
-			return $image->getThumbURL($width, $height);
+			return $image->getThumbUrl('ar-' . $width . '-' . $height);
 		}
 		return '/misc/images/avatar-default.jpg';
 	}
@@ -315,4 +317,33 @@ class User extends CActiveRecord implements Commentable {
 	public function updateCommentCounter($count) {}
 	
 	public function getCommentCount() {}
+	
+	public function getEntityId() {
+		return $this->uid;
+	}
+	
+	/**
+	 * Get the type of the entity.
+	 *
+	 * @return string
+	*/
+	public function getEntityType() {
+		return 'user';
+	}
+	
+	/**
+	 * Get the number of files attached to the current entity.
+	 *
+	 * @return integer|null  if the number is stored, an integer should be returned, otherwise null.
+	*/
+	public function getAttachedFileCount() {}
+	
+	/**
+	 * Update the counter of how many files are attached to the entity.
+	 * If the counter do not stored, just leave the method blank.
+	 *
+	 * @param integer $step
+	 * @return boolean
+	*/
+	public function updateAttachedFileCounter($usageType, $step) {}
 }

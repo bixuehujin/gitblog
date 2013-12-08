@@ -9,6 +9,7 @@ return array(
 	'aliases' => array(
 		'ecom' => 'application.vendors.ecom.ecom',
 		'bootstrap' => 'application.vendors.crisu83.yii-bootstrap',
+		'PHPThumb' => __DIR__ . '/../vendors/masterexploder/phpthumb/src/PHPThumb',
 	),
 	'import' => array(
 		'application.models.*',
@@ -153,10 +154,14 @@ return array(
 			'class' => 'ecom.components.Console'
 		),
 		'fileManager' => array(
-			'class' => 'ecom.components.FileManager',
+			'class' => 'ecom\image\ImageManager',
 			'thumbBasePath' => 'thumbnails',
 			'domains' => array(
-				'avatar' => 'avatar',
+				'avatar' => array(
+					'validateRule' => array(
+						'types' => array('jpg', 'png'),
+					),
+				),
 			),
 
 		),

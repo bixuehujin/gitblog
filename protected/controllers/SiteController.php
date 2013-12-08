@@ -18,7 +18,7 @@ class SiteController extends Controller {
 				'backColor' => 0xFFFFFF,
 			),
 			'thumbnail' => array(
-				'class' => 'ecom.actions.ImageThumbnailAction',
+				'class' => 'ecom\image\ImageThumbAction',
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName

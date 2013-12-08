@@ -1,4 +1,5 @@
 <?php
+use ecom\image\model\ImageManaged;
 /**
  * AcatarForm class file.
  * 
@@ -14,17 +15,32 @@ class AvatarForm extends CFormModel {
 	 * @return boolean
 	 */
 	public function save() {
-		$file = FileManaged::model();
-		$file->setAllowExtensions('jpg|png|gif');
-		if (!$file->upload('avatar', 'avatar', FileManaged::STATUS_PERSISTENT)) {
-			$this->addErrors($file->getErrors());
+		
+		$fileManaged = Yii::app()->fileManager->createManagedObject('avatar');
+		
+		$uploadedFile = CUploadedFile::getInstanceByName('files[avatar]');
+		
+		if (!$uploadedFile) {
+			Yii::app()->console->addError(Yii::t('view', 'No file uploaded'));
 			return false;
 		}
+		
+		$newFile = $fileManaged->upload($uploadedFile);
+		if (!$newFile) {
+			Yii::app()->console->addError(Yii::t('view', $fileManaged->getUploadError()));
+			//$this->addError('', $fileManaged->getUploadError());
+			return false;
+		}
+		
 		$user = User::load(Yii::app()->user->getId());
 		$uid = $user->uid;
-		FileUsage::removeAllAttached($uid, 'user');
-		if (FileUsage::add($uid, 'user', $file)) {
-			$user->avatar = $file->fid;
+		
+		if ($user->avatar && $oldImage = ImageManaged::load($user->avatar)) {
+			$oldImage->detach($user);
+		}
+
+		if ($newFile->attach($user)) {
+			$user->avatar = $newFile->fid;
 			$user->save(false, array('avatar'));
 			Yii::app()->user->setState('user', $user);
 			Yii::app()->console->addSuccess(Yii::t('view', 'Upload avatar success'));
